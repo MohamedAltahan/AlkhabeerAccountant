@@ -1,0 +1,54 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlkhabeerAccountant"
+        xmlns:CustomControls="clr-namespace:AlkhabeerAccountant.CustomControls.MainWindow"
+        x:Class="AlkhabeerAccountant.MainWindow"
+        mc:Ignorable="d"
+        Title="الخبير المحاسبي"
+        Width="1300"
+        Height="750"
+        FlowDirection="RightToLeft"
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized">
+
+    <!-- Remove top margin when restoring window size -->
+    <WindowChrome.WindowChrome>
+        <WindowChrome
+            CaptionHeight="0"
+            ResizeBorderThickness="0"
+            CornerRadius="50"
+            GlassFrameThickness="50"
+            UseAeroCaptionButtons="False"/>
+    </WindowChrome.WindowChrome>
+
+    <Border x:Name="MainBorder"
+            Background="White"
+            CornerRadius="12"
+            BorderBrush="#DDD"
+            BorderThickness="0"
+            Margin="0,6">
+        <Grid Background="#FFD0D0D0">
+
+            <DockPanel LastChildFill="True">
+                <!-- Title Bar -->
+                <CustomControls:TitleBar DockPanel.Dock="Top" VerticalAlignment="Top"/>
+                <!--  Main Menu -->
+                <CustomControls:MainMenu DockPanel.Dock="Top"/>
+                <!--  Main Application Area -->
+                <Grid DockPanel.Dock="Top" Background="#FF244969">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="85*"/>
+                        <RowDefinition Height="568*"/>
+                    </Grid.RowDefinitions>
+                    <CustomControls:MainWindowWidgets VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,109,0,0" Grid.Row="1"/>
+                </Grid>
+            </DockPanel>
+
+            <!-- Bottom Bar -->
+            <CustomControls:BottomStatusBar DockPanel.Dock="Bottom" Margin="0,0,0,1" Height="35" VerticalAlignment="Bottom"/>
+        </Grid>
+    </Border>
+</Window>

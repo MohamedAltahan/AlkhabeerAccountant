@@ -1,0 +1,163 @@
+﻿<UserControl x:Class="AlkhabeerAccountant.CustomControls.MainWindow.MainWindowWidgets"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             Background="Transparent"
+             FlowDirection="RightToLeft">
+
+    <!-- ✅ Centralized Styles -->
+    <UserControl.Resources>
+
+        <!-- 🔹 Widget Card Style -->
+        <Style x:Key="WidgetTileStyle" TargetType="Border">
+            <Setter Property="Width" Value="250"/>
+            <Setter Property="Height" Value="135"/>
+            <Setter Property="CornerRadius" Value="6"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5"/>
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <ScaleTransform ScaleX="1" ScaleY="1"/>
+                </Setter.Value>
+            </Setter>
+
+            <!-- 🪄 Hover Animation -->
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                 To="1.03" Duration="0:0:0.05"/>
+                                <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                 To="1.03" Duration="0:0:0.05"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleX)"
+                                                 To="1" Duration="0:0:0.05"/>
+                                <DoubleAnimation Storyboard.TargetProperty="(RenderTransform).(ScaleTransform.ScaleY)"
+                                                 To="1" Duration="0:0:0.05"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <!-- 🔹 Text Style -->
+        <Style x:Key="WidgetTextStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+        </Style>
+
+        <!-- 🔹 Image Style -->
+        <Style x:Key="WidgetImageStyle" TargetType="Image">
+            <Setter Property="Width" Value="70"/>
+            <Setter Property="Height" Value="70"/>
+            <Setter Property="Margin" Value="0,15,0,10"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <!-- 🧭 Main Layout -->
+    <Grid Background="Transparent">
+        <Viewbox Margin="30,0" Stretch="Uniform" StretchDirection="Both" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid>
+                <UniformGrid Rows="2" Columns="5" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <!-- 🟧 Widget 1 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FFED6B21">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/product-limit.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="حد الطلب من المنتجات"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟨 Widget 2 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FFF68B1E">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/cash.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="رصيد الخزنة"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟩 Widget 3 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FFFFB900">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/cart.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="إدارة المشتريات"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟦 Widget 4 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FF00A65A">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/suppliers.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="حسابات الموردين"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟪 Widget 5 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FF0078D7">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/users.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="صلاحيات المستخدمين"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟥 Widget 6 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FF0078D7">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/sales-report.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="تقرير أرباح المبيعات"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟫 Widget 7 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FF9AA64C">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/returns.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="مرتجعات"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟩 Widget 8 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FF0A8EA0">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/sales.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="إدارة المبيعات"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟨 Widget 9 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FFB83560">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/customers.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="حسابات العملاء"/>
+                        </StackPanel>
+                    </Border>
+
+                    <!-- 🟥 Widget 10 -->
+                    <Border Style="{StaticResource WidgetTileStyle}" Background="#FFF55B5B">
+                        <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Image Style="{StaticResource WidgetImageStyle}" Source="/Resources/new-product.png"/>
+                            <TextBlock Style="{StaticResource WidgetTextStyle}" Text="إضافة منتجات"/>
+                        </StackPanel>
+                    </Border>
+
+                </UniformGrid>
+            </Grid>
+        </Viewbox>
+    </Grid>
+</UserControl>
