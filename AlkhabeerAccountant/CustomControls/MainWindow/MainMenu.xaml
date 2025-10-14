@@ -8,17 +8,16 @@
 
     <UserControl.Resources>
 
-        <!-- 🎨 Base Colors -->
+        <!--  Base Colors -->
         <SolidColorBrush x:Key="MenuBackground" Color="#f4f4f4"/>
         <SolidColorBrush x:Key="MenuItemHover" Color="#E8F0FE"/>
         <SolidColorBrush x:Key="MenuItemPressed" Color="#D2E3FC"/>
         <SolidColorBrush x:Key="MenuBorder" Color="#FFA6A6FF"/>
 
-        <!-- 🧩 Global Reusable Icon Size -->
-        <sys:Double x:Key="MenuIconSize">30</sys:Double>
-        <sys:Double x:Key="SubIconSize">30</sys:Double>
+        <!--  Icon Size -->
+        <sys:Double x:Key="MenuIconSize">25</sys:Double>
 
-        <!-- 🧭 Menu Style -->
+        <!--  Menu Style -->
         <Style TargetType="Menu">
             <Setter Property="Background" Value="{StaticResource MenuBackground}"/>
             <Setter Property="BorderBrush" Value="{StaticResource MenuBorder}"/>
@@ -116,29 +115,29 @@
             <MenuItem Header="اضافة عميل">
                 <MenuItem.Icon>
                     <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="قائمة العملاء">
                 <MenuItem.Icon>
                     <Image Source="/Resources/list.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="تحصيل">
                 <MenuItem.Icon>
                     <Image Source="/Resources/data-collection.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="الديون المستحقة">
                 <MenuItem.Icon>
                     <Image Source="/Resources/cashback.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -153,22 +152,22 @@
             <MenuItem Header="اضافة مورد">
                 <MenuItem.Icon>
                     <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="قائمة الموردين">
                 <MenuItem.Icon>
                     <Image Source="/Resources/list.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="سداد">
                 <MenuItem.Icon>
                     <Image Source="/Resources/payment-method.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -183,29 +182,29 @@
             <MenuItem Header="إضافة فاتورة مبيعات">
                 <MenuItem.Icon>
                     <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="إضافة مرتجع من عميل">
                 <MenuItem.Icon>
                     <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="عرض سعر">
                 <MenuItem.Icon>
                     <Image Source="/Resources/document.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="فواتير المبيعات">
                 <MenuItem.Icon>
                     <Image Source="/Resources/list.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -220,15 +219,15 @@
             <MenuItem Header="إضافة فاتورة مشتريات">
                 <MenuItem.Icon>
                     <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="إضافة مرتجع من مورد">
                 <MenuItem.Icon>
                     <Image Source="/Resources/rate-of-return.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -243,15 +242,15 @@
             <MenuItem Header="الدليل المحاسبي">
                 <MenuItem.Icon>
                     <Image Source="/Resources/list.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="دفتر اليومية">
                 <MenuItem.Icon>
                     <Image Source="/Resources/accounting.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -266,15 +265,15 @@
             <MenuItem Header="إضافة">
                 <MenuItem.Icon>
                     <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="قائمة الأصناف">
                 <MenuItem.Icon>
                     <Image Source="/Resources/order.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -289,15 +288,15 @@
             <MenuItem Header="إضافة">
                 <MenuItem.Icon>
                     <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="قائمة المخازن">
                 <MenuItem.Icon>
                     <Image Source="/Resources/list.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
@@ -312,15 +311,15 @@
             <MenuItem Header="المبيعات">
                 <MenuItem.Icon>
                     <Image Source="/Resources/document.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
             <MenuItem Header="المشتريات">
                 <MenuItem.Icon>
                     <Image Source="/Resources/shopping-cart.png"
-                           Width="{StaticResource SubIconSize}"
-                           Height="{StaticResource SubIconSize}"/>
+                           Width="{StaticResource MenuIconSize}"
+                           Height="{StaticResource MenuIconSize}"/>
                 </MenuItem.Icon>
             </MenuItem>
         </MenuItem>
