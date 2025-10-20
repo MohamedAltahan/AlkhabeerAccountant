@@ -8,7 +8,7 @@
         x:Class="AlkhabeerAccountant.MainWindow"
         mc:Ignorable="d"
         Title="الخبير المحاسبي"
-        Width="1300"
+        Width="1350"
         Height="750"
         FlowDirection="RightToLeft"
         WindowStartupLocation="CenterScreen"
@@ -30,25 +30,21 @@
             BorderBrush="#DDD"
             BorderThickness="0"
             Margin="0,6">
-        <Grid Background="#FFD0D0D0">
+        <Grid>
 
             <DockPanel LastChildFill="True">
                 <!-- Title Bar -->
-                <CustomControls:TitleBar DockPanel.Dock="Top" VerticalAlignment="Top"/>
+                <CustomControls:MainTitleBar DockPanel.Dock="Top" VerticalAlignment="Top"/>
                 <!--  Main Menu -->
                 <CustomControls:MainMenu DockPanel.Dock="Top"/>
                 <!--  Main Application Area -->
-                <Grid DockPanel.Dock="Top" Background="#FF244969">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="85*"/>
-                        <RowDefinition Height="568*"/>
-                    </Grid.RowDefinitions>
+                <Grid DockPanel.Dock="Top" Background="#FF123F65">
                     <CustomControls:MainWindowWidgets VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,109,0,0" Grid.Row="1"/>
                 </Grid>
             </DockPanel>
 
             <!-- Bottom Bar -->
-            <CustomControls:BottomStatusBar DockPanel.Dock="Bottom" Margin="0,0,0,1" Height="35" VerticalAlignment="Bottom"/>
+            <CustomControls:BottomStatusBar DockPanel.Dock="Bottom"  VerticalAlignment="Bottom"/>
         </Grid>
     </Border>
 </Window>

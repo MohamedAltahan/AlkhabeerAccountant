@@ -2,47 +2,52 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:ViewModel="clr-namespace:AlkhabeerAccountant.ViewModel"
              Height="Auto"
              Width="Auto"
              FlowDirection="RightToLeft">
 
-    <UserControl.Resources>
+    <UserControl.DataContext>
+        <ViewModel:MainViewModel />
+    </UserControl.DataContext>
 
+    <UserControl.Resources>
         <!--  Base Colors -->
         <SolidColorBrush x:Key="MenuBackground" Color="#f4f4f4"/>
-        <SolidColorBrush x:Key="MenuItemHover" Color="#E8F0FE"/>
-        <SolidColorBrush x:Key="MenuItemPressed" Color="#D2E3FC"/>
-        <SolidColorBrush x:Key="MenuBorder" Color="#FFA6A6FF"/>
-
-        <!--  Icon Size -->
-        <sys:Double x:Key="MenuIconSize">25</sys:Double>
-
         <!--  Menu Style -->
         <Style TargetType="Menu">
             <Setter Property="Background" Value="{StaticResource MenuBackground}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource MenuBorder}"/>
-            <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
-        <!-- 📋 MenuItem Style (Rounded + Working Dropdowns) -->
-        <Style TargetType="MenuItem">
-            <Setter Property="Padding" Value="10,10"/>
-            <Setter Property="Margin" Value="2"/>
-            <Setter Property="Foreground" Value="#333"/>
-            <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="FontSize" Value="16"/>
+        <!-- Shared Image style -->
+        <Style x:Key="MenuIconStyle" TargetType="Image">
+            <Setter Property="Width" Value="{StaticResource IconSize-3}" />
+            <Setter Property="Height" Value="{StaticResource IconSize-3}" />
+            <Setter Property="Stretch" Value="Uniform" />
+        </Style>
+
+        <!-- MenuItem Style Dropdowns -->
+        <Style TargetType="MenuItem" >
+            <Setter Property="Padding" Value="6"/>
+            <Setter Property="Margin" Value="1"/>
+            <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
+            <Setter Property="FontWeight" Value="{StaticResource FontWeigh-2}"/>
+            <Setter Property="FontSize" Value="{StaticResource FontSize-4}"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Background" Value="#c2ddff"/>
-
             <Setter Property="Template">
                 <Setter.Value>
-                    <ControlTemplate TargetType="MenuItem">
+                    <ControlTemplate TargetType="MenuItem" >
                         <Grid>
                             <!-- Main button area -->
                             <Border x:Name="Bd"
                                     Background="{TemplateBinding Background}"
-                                    CornerRadius="6"
-                                    Padding="{TemplateBinding Padding}">
+                                    CornerRadius="{StaticResource ButtonCornerRadius}"
+                                    Padding="{TemplateBinding Padding}"
+                                    Margin="1,1"
+                                    BorderThickness="1"
+                                    BorderBrush="{StaticResource TitleBarColor}">
+
                                 <Grid>
                                     <Grid.ColumnDefinitions>
                                         <ColumnDefinition Width="Auto"/>
@@ -51,7 +56,7 @@
                                     <!-- Icon -->
                                     <ContentPresenter x:Name="Icon"
                                                       ContentSource="Icon"
-                                                      Margin="0,0,8,0"
+                                                      Margin="0,0,2,0"
                                                       VerticalAlignment="Center"/>
                                     <!-- Header text -->
                                     <ContentPresenter Grid.Column="1"
@@ -60,17 +65,16 @@
                                 </Grid>
                             </Border>
 
-                            <!-- ✅ Popup for dropdown submenu -->
+                            <!-- Popup for dropdown submenu -->
                             <Popup x:Name="Popup"
                                    Placement="Bottom"
                                    IsOpen="{TemplateBinding IsSubmenuOpen}"
                                    AllowsTransparency="True"
                                    Focusable="False"
                                   >
-                                <Border Background="White"
-                                        BorderBrush="#CCC"
-                                        BorderThickness="1"
-                                        CornerRadius="6"
+                                <Border Background="White"                          
+                                        BorderThickness="2"
+                                        CornerRadius="{StaticResource ButtonCornerRadius}"
                                         SnapsToDevicePixels="True" >
                                     <StackPanel IsItemsHost="True"
                                                 KeyboardNavigation.DirectionalNavigation="Cycle"
@@ -78,12 +82,11 @@
                                 </Border>
                             </Popup>
                         </Grid>
-
-                        <!-- 🎯 Triggers -->
+                        <!-- Triggers -->
                         <ControlTemplate.Triggers>
                             <!-- Hover -->
                             <Trigger Property="IsHighlighted" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="{StaticResource MenuItemHover}"/>
+                                <Setter TargetName="Bd" Property="Background" Value="{StaticResource PrimaryLightBrush}"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -93,245 +96,226 @@
 
     </UserControl.Resources>
 
-    <!-- 🧭 Main Menu -->
-    <Menu DockPanel.Dock="Top">
+    <!--  Main Menu -->
+    <DockPanel LastChildFill="False">
+        <Menu DockPanel.Dock="Left" FlowDirection="RightToLeft">
+            <!-- =======================العملاء=========================== -->
+            <MenuItem Margin="10,0,0,0" Header="العملاء">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/customer.png"
+                        Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+                <MenuItem Header="اضافة عميل">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/plus1.png"
+                           
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="قائمة العملاء">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/list.png"
+                           
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="تحصيل">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/data-collection.png"
+                           
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="الديون المستحقة">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/cashback.png"
+                           
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+            <!--====================== الموردين ======================-->
+            <MenuItem Header="الموردين">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/supplier.png"
+                       Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+                <MenuItem Header="اضافة مورد">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/plus1.png"
+                           
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="قائمة الموردين">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/list.png"                          
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="سداد">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/payment-method.png"               
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
 
-        <!-- الإعدادات -->
-        <MenuItem Header="الإعدادات">
-            <MenuItem.Icon>
-                <Image Source="/Resources/setting.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-        </MenuItem>
-
-        <!-- العملاء -->
-        <MenuItem Header="العملاء">
-            <MenuItem.Icon>
-                <Image Source="/Resources/customer.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-            <MenuItem Header="اضافة عميل">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="قائمة العملاء">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/list.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="تحصيل">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/data-collection.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="الديون المستحقة">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/cashback.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </MenuItem>
-
-        <!-- الموردين -->
-        <MenuItem Header="الموردين">
-            <MenuItem.Icon>
-                <Image Source="/Resources/supplier.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-            <MenuItem Header="اضافة مورد">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="قائمة الموردين">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/list.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="سداد">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/payment-method.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </MenuItem>
-
-        <!-- المبيعات -->
-        <MenuItem Header="المبيعات">
-            <MenuItem.Icon>
-                <Image Source="/Resources/economy.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-            <MenuItem Header="إضافة فاتورة مبيعات">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="إضافة مرتجع من عميل">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="عرض سعر">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/document.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="فواتير المبيعات">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/list.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </MenuItem>
-
-        <!-- المشتريات -->
-        <MenuItem Header="المشتريات">
-            <MenuItem.Icon>
-                <Image Source="/Resources/shopping-cart.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-            <MenuItem Header="إضافة فاتورة مشتريات">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="إضافة مرتجع من مورد">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/rate-of-return.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </MenuItem>
-
-        <!-- الحسابات -->
-        <MenuItem Header="الحسابات">
-            <MenuItem.Icon>
-                <Image Source="/Resources/accounting.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-            <MenuItem Header="الدليل المحاسبي">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/list.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="دفتر اليومية">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/accounting.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </MenuItem>
-
-        <!-- الأصناف -->
-        <MenuItem Header="الأصناف">
-            <MenuItem.Icon>
-                <Image Source="/Resources/trolley.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-            <MenuItem Header="إضافة">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="قائمة الأصناف">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/order.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </MenuItem>
-
-        <!-- المخازن -->
-        <MenuItem Header="المخازن">
-            <MenuItem.Icon>
-                <Image Source="/Resources/shops.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-            <MenuItem Header="إضافة">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/plus1.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-            <MenuItem Header="قائمة المخازن">
-                <MenuItem.Icon>
-                    <Image Source="/Resources/list.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
-                </MenuItem.Icon>
-            </MenuItem>
-        </MenuItem>
-
-        <!-- التقارير -->
-        <MenuItem Header="التقارير">
-            <MenuItem.Icon>
-                <Image Source="/Resources/document.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
+            <!-- ======================المبيعات====================== -->
             <MenuItem Header="المبيعات">
                 <MenuItem.Icon>
-                    <Image Source="/Resources/document.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
+                    <Image Source="/Resources/economy.png"    
+                       Style="{StaticResource MenuIconStyle}"/>
                 </MenuItem.Icon>
+                <MenuItem Header="إضافة فاتورة مبيعات">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/plus1.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="إضافة مرتجع من عميل">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/plus1.png" 
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="عرض سعر">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/document.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="فواتير المبيعات">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/list.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
+
+            <!-- ======================المشتريات====================== -->
             <MenuItem Header="المشتريات">
                 <MenuItem.Icon>
                     <Image Source="/Resources/shopping-cart.png"
-                           Width="{StaticResource MenuIconSize}"
-                           Height="{StaticResource MenuIconSize}"/>
+                       Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+                <MenuItem Header="إضافة فاتورة مشتريات">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/plus1.png"  
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="إضافة مرتجع من مورد">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/rate-of-return.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <!-- ======================الحسابات====================== -->
+            <MenuItem Header="الحسابات">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/accounting.png"
+                       Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+                <MenuItem Header="الدليل المحاسبي">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/list.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="دفتر اليومية">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/accounting.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <!--====================== الأصناف====================== -->
+            <MenuItem Header="الأصناف">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/trolley.png"
+                       Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+                <MenuItem Header="إضافة">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/plus1.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="قائمة الأصناف">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/order.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <!--====================== المخازن ======================-->
+            <MenuItem Header="المخازن">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/shops.png"
+                       Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+                <MenuItem Header="إضافة">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/plus1.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="قائمة المخازن">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/list.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+
+            <!-- ======================التقارير====================== -->
+            <MenuItem Header="التقارير">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/document.png"
+                       Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+                <MenuItem Header="المبيعات">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/document.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                <MenuItem Header="المشتريات">
+                    <MenuItem.Icon>
+                        <Image Source="/Resources/shopping-cart.png"
+                           Style="{StaticResource MenuIconStyle}"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+            </MenuItem>
+        </Menu>
+
+        <Menu DockPanel.Dock="Right" FlowDirection="RightToLeft">
+            <!--====================== سجل الحركات ======================-->
+            <MenuItem Header="سجل الحركات">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/list.png"
+                       Style="{StaticResource MenuIconStyle}"/>
                 </MenuItem.Icon>
             </MenuItem>
-        </MenuItem>
-
-        <!-- سجل الحركات -->
-        <MenuItem Header="سجل الحركات">
-            <MenuItem.Icon>
-                <Image Source="/Resources/list.png"
-                       Width="{StaticResource MenuIconSize}"
-                       Height="{StaticResource MenuIconSize}"/>
-            </MenuItem.Icon>
-        </MenuItem>
-
-    </Menu>
+            <!-- الإعدادات -->
+            <MenuItem Header="الإعدادات"  Command="{Binding OpenSettingsCommand}" >
+                <MenuItem.Icon>
+                    <Image Source="/Resources/setting.png"
+                        Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+            </MenuItem>
+            <!-- الشرح -->
+            <MenuItem Margin="0,0,10,0" Header="الشرح">
+                <MenuItem.Icon>
+                    <Image Source="/Resources/youtube.png"
+                        Style="{StaticResource MenuIconStyle}"/>
+                </MenuItem.Icon>
+            </MenuItem>
+        </Menu>
+    </DockPanel>
 </UserControl>

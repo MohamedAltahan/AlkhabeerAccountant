@@ -47,12 +47,12 @@
     <None Remove="Resources\teamwork.png" />
     <None Remove="Resources\trial.png" />
     <None Remove="Resources\trolley.png" />
+    <None Remove="Resources\tutorial.png" />
+    <None Remove="Resources\youtube.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\" />
     <Folder Include="Views\Warehouses\" />
-    <Folder Include="Views\Settings\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="Views\Sales\" />
     <Folder Include="Views\Customers\" />
@@ -186,6 +186,18 @@
     <Resource Include="Resources\trolley.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\tutorial.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\youtube.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="CustomControls\SecondaryWindow\TitleBar.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,26 @@
+﻿<Window
+     Style="{StaticResource BaseWindowStyle}"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AlkhabeerAccountant.Views.Setting"
+        xmlns:ViewModel="clr-namespace:AlkhabeerAccountant.ViewModel"
+        xmlns:MainWindow="clr-namespace:AlkhabeerAccountant.CustomControls.MainWindow" x:Class="AlkhabeerAccountant.Views.Setting.Setting"
+        mc:Ignorable="d"
+        xmlns:wc="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="Setting" WindowStyle="None" >
+    <Window.DataContext>
+        <ViewModel:SettingViewModel />
+    </Window.DataContext>
+
+
+    <Grid FlowDirection="RightToLeft" AutomationProperties.IsOffscreenBehavior="Offscreen">
+        <Button Content="عرض رسالة"
+                Width="150" Height="40"
+                Command="{Binding ShowMessageCommand}" Grid.ColumnSpan="2" Margin="575,337,575,337" />
+        <DockPanel LastChildFill="False">
+            <MainWindow:TitleBar DockPanel.Dock="Top" VerticalAlignment="Top"/>
+        </DockPanel>
+    </Grid>
+</Window>

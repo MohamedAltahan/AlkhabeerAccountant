@@ -3,11 +3,11 @@ using System.Windows.Controls;
 using System.Windows.Input;
 namespace AlkhabeerAccountant.CustomControls.MainWindow
 {
-    public partial class TitleBar : UserControl
+    public partial class MainTitleBar : UserControl
     {
         private Point _startPoint;
 
-        public TitleBar()
+        public MainTitleBar()
         {
             InitializeComponent();
         }
@@ -77,6 +77,7 @@ namespace AlkhabeerAccountant.CustomControls.MainWindow
                 //Window.GetWindow(this)?.DragMove();
             }
         }
+        // hide palceholder when typing
         private void SearchBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             SearchPlaceholder.Visibility = string.IsNullOrEmpty(SearchBox.Text)
