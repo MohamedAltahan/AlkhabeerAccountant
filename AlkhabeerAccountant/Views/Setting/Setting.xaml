@@ -46,15 +46,13 @@
                 </Grid.RowDefinitions>
 
                 <!-- User Input Section -->
-         
                 <Border Grid.Row="0"
-        BorderBrush="{StaticResource BorderBrush}"
-        BorderThickness="{StaticResource BorderThick-1}"
-        CornerRadius="{StaticResource ButtonCornerRadius}"
-        Padding="{StaticResource ContentPadding}"
-        Background="{StaticResource CardBackgroundBrush}"
-        Margin="0,0,0,10">
-
+                        BorderBrush="{StaticResource BorderBrush}"
+                        BorderThickness="{StaticResource BorderThick-1}"
+                        CornerRadius="{StaticResource ButtonCornerRadius}"
+                        Padding="{StaticResource ContentPadding}"
+                        Background="{StaticResource CardBackgroundBrush}"
+                        Margin="0,0,0,10">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
@@ -69,37 +67,20 @@
 
                         <!-- اسم المستخدم -->
                         <TextBlock Text="اسم المستخدم" VerticalAlignment="Center" Margin="0,5" Grid.Row="0" Grid.Column="0"/>
-                        <Border Grid.Row="0" Grid.Column="1" Margin="5"
-                CornerRadius="{StaticResource InputCornerRadius}"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="{StaticResource BorderThick-1}"
-                Background="White">
-                            <TextBox  Background="Transparent" Text="محمد" BorderThickness="0" Padding="6,2"/>
-                        </Border>
+                        <TextBox Style="{StaticResource RoundedInputStyle}" Text="محمد" Margin="5" Grid.Row="0" Grid.Column="1" Height="28"/>
 
                         <!-- الرقم السري -->
                         <TextBlock Text="الرقم السري" VerticalAlignment="Center" Margin="0,5" Grid.Row="1" Grid.Column="0"/>
-                        <Border  Grid.Row="1" Grid.Column="1" Margin="5"
-                CornerRadius="{StaticResource ButtonCornerRadius}"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="{StaticResource BorderThick-1}"
-                Background="White">
-                            <TextBox  Background="Transparent" Text="123" BorderThickness="0" Padding="6,2"/>
-                        </Border>
+                        <TextBox Style="{StaticResource RoundedInputStyle}" Text="123" Margin="5" Grid.Row="1" Grid.Column="1" Height="28"/>
 
                         <!-- الصلاحية -->
                         <TextBlock Text="الصلاحية" VerticalAlignment="Center" Margin="0,5" Grid.Row="2" Grid.Column="0"/>
-                        <Border Grid.Row="2" Grid.Column="1" Margin="5"
-                CornerRadius="{StaticResource ButtonCornerRadius}"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="{StaticResource BorderThick-1}"
-                Background="White">
-                            <ComboBox Background="Transparent"  BorderThickness="0" Padding="4,2" SelectedIndex="0">
-                                <ComboBoxItem Content="كاشير"/>
-                                <ComboBoxItem Content="مدير"/>
-                                <ComboBoxItem Content="محاسب"/>
-                            </ComboBox>
-                        </Border>
+                        <ComboBox Style="{StaticResource RoundedComboBoxStyle}"
+                              Margin="5" Grid.Row="2" Grid.Column="1" Height="28" SelectedIndex="0">
+                            <ComboBoxItem Content="كاشير"/>
+                            <ComboBoxItem Content="مدير"/>
+                            <ComboBoxItem Content="محاسب"/>
+                        </ComboBox>
 
                         <!-- الحالة -->
                         <TextBlock Text="الحالة" VerticalAlignment="Center" Margin="0,5" Grid.Row="3" Grid.Column="0"/>
@@ -110,7 +91,6 @@
                     </Grid>
                 </Border>
 
-
                 <!-- 🔹 DataGrid with rounded border -->
                 <Border Grid.Row="1"
                     CornerRadius="{StaticResource ButtonCornerRadius}"
@@ -119,7 +99,7 @@
                     Background="{StaticResource CardBackgroundBrush}"
                                     Padding="2">
 
-             <DataGrid AutoGenerateColumns="False"
+                    <DataGrid AutoGenerateColumns="False"
               HeadersVisibility="All"
               IsReadOnly="True"
               FontSize="14"
@@ -137,7 +117,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
-                
+
                 <!-- 🟢 Save / Delete Buttons -->
                 <StackPanel Grid.Row="2"
                             Orientation="Horizontal"

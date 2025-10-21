@@ -13,6 +13,9 @@
                 <ResourceDictionary Source="/Shared/BaseStyles/Font.xaml" />
                 <ResourceDictionary Source="/Shared/BaseWindowStyle.xaml" />
                 <ResourceDictionary Source="/Shared/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/Shared/ControlStyle/ComboBoxStyle.xaml"/>
+                <ResourceDictionary Source="/Shared/ControlStyle/InputStyle.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
 
         </ResourceDictionary>

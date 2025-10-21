@@ -57,6 +57,7 @@
     <Page Remove="Shared\BaseWindowStyle.xaml" />
     <Page Remove="Shared\ButtonStyle.xaml" />
     <Page Remove="Shared\Colors.xaml" />
+    <Page Remove="Shared\ControlStyle\ComboBoxStyle.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -212,6 +213,7 @@
 
   <ItemGroup>
     <Resource Include="Shared\BaseStyles\Font.xaml" />
+    <Resource Include="Shared\ControlStyle\ComboBoxStyle.xaml" />
   </ItemGroup>
 
   <ItemGroup>
