@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AlkhabeerAccountant.Shared;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace AlkhabeerAccountant.Views.Setting
     /// <summary>
     /// Interaction logic for Setting.xaml
     /// </summary>
-    public partial class Setting : Window
+    public partial class Setting : BaseWindow
     {
         public Setting()
         {

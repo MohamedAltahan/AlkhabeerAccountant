@@ -40,7 +40,7 @@ namespace AlkhabeerAccountant.ViewModel
             double verticalShiftRatio = 0.05; // = 10% down
             // ✅ Center it on screen
             settingsWindow.Left = workArea.Left + (workArea.Width - settingsWindow.Width) / 2;
-            settingsWindow.Top = workArea.Top + (workArea.Height - settingsWindow.Height) / 2+ (workArea.Height * verticalShiftRatio);
+            settingsWindow.Top = workArea.Top + (workArea.Height - settingsWindow.Height) / 2 + (workArea.Height * verticalShiftRatio);
 
             settingsWindow.Show();
         }

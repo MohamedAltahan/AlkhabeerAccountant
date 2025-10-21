@@ -2,68 +2,73 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:AlkhaberAccountant"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"
-                      
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"         
              StartupUri="MainWindow.xaml">
+
     <Application.Resources>
-        <!--=============Colors==================-->
-        <SolidColorBrush     x:Key="TitleBarColor"     Color="#146EBE"/>
 
-        <!-- Main Brand -->
-        <Color x:Key="PrimaryColor">#146EBE</Color>
-        <Color x:Key="PrimaryLightColor">#1E88E5</Color>
-        <Color x:Key="PrimaryDarkColor">#0D4C91</Color>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Shared/BaseWindowStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
 
-        <!-- Accent -->
-        <Color x:Key="AccentColor">#F5B301</Color>
+            <!--=============Colors==================-->
 
-        <!-- Backgrounds -->
-        <Color x:Key="BackgroundColor">#F8FAFC</Color>
-        <Color x:Key="CardColor">#FFFFFF</Color>
-        <Color x:Key="BorderColor">#E1E8F0</Color>
+            <!-- Main Brand -->
+            <Color x:Key="PrimaryColor">#146EBE</Color>
+            <Color x:Key="PrimaryLightColor">#a8c5ff</Color>
+            <Color x:Key="PrimaryDarkColor">#0D4C91</Color>
 
-        <!-- Text -->
-        <Color x:Key="TextPrimaryColor">#1E293B</Color>
-        <Color x:Key="TextSecondaryColor">#64748B</Color>
+            <!-- Accent -->
+            <Color x:Key="AccentColor">#F5B301</Color>
 
-        <!-- Status -->
-        <Color x:Key="SuccessColor">#16A34A</Color>
-        <Color x:Key="WarningColor">#F59E0B</Color>
-        <Color x:Key="ErrorColor">#DC2626</Color>
-        <Color x:Key="InfoColor">#0EA5E9</Color>
+            <!-- Backgrounds -->
+            <Color x:Key="BackgroundColor">#F8FAFC</Color>
+            <Color x:Key="CardColor">#FFFFFF</Color>
+            <Color x:Key="BorderColor">#E1E8F0</Color>
 
-        <!-- Brushes -->
-        <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
-        <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLightColor}" />
-        <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDarkColor}" />
-        <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}" />
-        <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}" />
-        <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
-        <!--==============Fonts==================-->
-        <sys:Double x:Key="FontSize-1">13</sys:Double>
-        <sys:Double x:Key="FontSize-2">15</sys:Double>
-        <sys:Double x:Key="FontSize-3">17</sys:Double>
-        <sys:Double x:Key="FontSize-4">19</sys:Double>
-        <sys:Double x:Key="FontSize-5">21</sys:Double>
-        <!--===-->
-        <FontWeight x:Key="FontWeigh-1">Normal</FontWeight>
-        <FontWeight x:Key="FontWeigh-2">Medium</FontWeight>
-        <FontWeight x:Key="FontWeigh-3">SemiBold</FontWeight>
-        <FontWeight x:Key="FontWeigh-4">Bold</FontWeight>
-        <FontWeight x:Key="FontWeigh-5">ExtraBold</FontWeight>
-        <!--============cornerRadius============-->
-        <CornerRadius x:Key="ButtonCornerRadius">6</CornerRadius>
-        <!--=========== Icon Size================ -->
-        <sys:Double x:Key="IconSize-1">20</sys:Double>
-        <sys:Double x:Key="IconSize-2">25</sys:Double>
-        <sys:Double x:Key="IconSize-3">30</sys:Double>
-        <!--=========== Icon Size================ -->
-        <sys:Double x:Key="WindowWidthSize-1">20</sys:Double>
-        <sys:Double x:Key="WindowHeightSize-1">20</sys:Double>
-        <sys:Double x:Key="WindowWidthSize-2">20</sys:Double>
-        <sys:Double x:Key="WindowHeightSize-2">20</sys:Double>
-        <sys:Double x:Key="WindowWidthSize-3">1300</sys:Double>
-        <sys:Double x:Key="WindowHeightSize-3">730</sys:Double>
+            <!-- Text -->
+            <Color x:Key="TextPrimaryColor">#1E293B</Color>
+            <Color x:Key="TextSecondaryColor">#64748B</Color>
 
+            <!-- Status -->
+            <Color x:Key="SuccessColor">#16A34A</Color>
+            <Color x:Key="WarningColor">#F59E0B</Color>
+            <Color x:Key="ErrorColor">#DC2626</Color>
+            <Color x:Key="InfoColor">#0EA5E9</Color>
+
+            <!-- Brushes -->
+            <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColor}" />
+            <SolidColorBrush x:Key="PrimaryLightBrush" Color="{StaticResource PrimaryLightColor}" />
+            <SolidColorBrush x:Key="PrimaryDarkBrush" Color="{StaticResource PrimaryDarkColor}" />
+            <SolidColorBrush x:Key="BackgroundBrush" Color="{StaticResource BackgroundColor}" />
+            <SolidColorBrush x:Key="TextPrimaryBrush" Color="{StaticResource TextPrimaryColor}" />
+            <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+            <!--==============Fonts==================-->
+            <sys:Double x:Key="FontSize-1">13</sys:Double>
+            <sys:Double x:Key="FontSize-2">15</sys:Double>
+            <sys:Double x:Key="FontSize-3">17</sys:Double>
+            <sys:Double x:Key="FontSize-4">19</sys:Double>
+            <sys:Double x:Key="FontSize-5">21</sys:Double>
+            <!--===-->
+            <FontWeight x:Key="FontWeigh-1">Normal</FontWeight>
+            <FontWeight x:Key="FontWeigh-2">Medium</FontWeight>
+            <FontWeight x:Key="FontWeigh-3">SemiBold</FontWeight>
+            <FontWeight x:Key="FontWeigh-4">Bold</FontWeight>
+            <FontWeight x:Key="FontWeigh-5">ExtraBold</FontWeight>
+            <!--============cornerRadius============-->
+            <CornerRadius x:Key="ButtonCornerRadius">6</CornerRadius>
+            <!--=========== Icon Size================ -->
+            <sys:Double x:Key="IconSize-1">20</sys:Double>
+            <sys:Double x:Key="IconSize-2">25</sys:Double>
+            <sys:Double x:Key="IconSize-3">30</sys:Double>
+            <!--=========== Icon Size================ -->
+            <sys:Double x:Key="WindowWidthSize-1">20</sys:Double>
+            <sys:Double x:Key="WindowHeightSize-1">20</sys:Double>
+            <sys:Double x:Key="WindowWidthSize-2">20</sys:Double>
+            <sys:Double x:Key="WindowHeightSize-2">20</sys:Double>
+            <sys:Double x:Key="WindowWidthSize-3">1300</sys:Double>
+            <sys:Double x:Key="WindowHeightSize-3">730</sys:Double>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

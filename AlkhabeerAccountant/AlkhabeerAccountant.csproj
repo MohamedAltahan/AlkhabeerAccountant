@@ -52,6 +52,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Shared\BaseWindowStyle.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Views\Warehouses\" />
     <Folder Include="Views\Shared\" />
     <Folder Include="Views\Sales\" />
@@ -191,6 +195,9 @@
     </Resource>
     <Resource Include="Resources\youtube.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Shared\BaseWindowStyle.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

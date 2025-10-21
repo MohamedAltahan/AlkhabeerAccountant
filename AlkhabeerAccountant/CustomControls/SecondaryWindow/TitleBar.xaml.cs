@@ -1,7 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-namespace AlkhabeerAccountant.CustomControls.MainWindow
+namespace AlkhabeerAccountant.CustomControls.SecondaryWindow
 {
     public partial class TitleBar : UserControl
     {
@@ -10,6 +10,15 @@ namespace AlkhabeerAccountant.CustomControls.MainWindow
         public TitleBar()
         {
             InitializeComponent();
+        }
+
+        public static readonly DependencyProperty TitleTextProperty =
+        DependencyProperty.Register(nameof(TitleText), typeof(string), typeof(TitleBar),
+        new PropertyMetadata(string.Empty));
+        public string TitleText
+        {
+            get => (string)GetValue(TitleTextProperty);
+            set => SetValue(TitleTextProperty, value);
         }
 
         // 🔹 Let the parent window handle drag

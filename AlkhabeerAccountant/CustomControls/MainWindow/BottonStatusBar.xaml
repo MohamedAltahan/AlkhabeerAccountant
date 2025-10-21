@@ -5,24 +5,24 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
-             Background="{StaticResource TitleBarColor}">
+             Background="{StaticResource PrimaryBrush}">
 
 
 
-        <!--  Status Layout -->
-        <Grid Height="30" Margin="0,0" VerticalAlignment="Center" Background="{StaticResource TitleBarColor}">
-            <Grid.ColumnDefinitions>
-                <!-- Date/Time -->
-                <ColumnDefinition Width="Auto"/>
-                <!-- Spacer -->
-                <ColumnDefinition Width="*"/>
-                <!-- User Info -->
-                <ColumnDefinition Width="Auto"/>
-                <!-- Logout -->
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+    <!--  Status Layout -->
+    <Grid Height="30" Margin="0,0" VerticalAlignment="Center" Background="{StaticResource PrimaryBrush}">
+        <Grid.ColumnDefinitions>
+            <!-- Date/Time -->
+            <ColumnDefinition Width="Auto"/>
+            <!-- Spacer -->
+            <ColumnDefinition Width="*"/>
+            <!-- User Info -->
+            <ColumnDefinition Width="Auto"/>
+            <!-- Logout -->
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
 
-            <!--  Login Date & Time -->
+        <!--  Login Date & Time -->
         <StackPanel Grid.Column="0"
                         Orientation="Horizontal"
                         VerticalAlignment="Center" 
@@ -32,79 +32,79 @@
                            Foreground="White"
                            FontSize="13"
                            Margin="0,0,6,0"/>
-                <TextBlock x:Name="LoginDateTimeText"
+            <TextBlock x:Name="LoginDateTimeText"
                            Text="2025/10/13 11:32 ص"
                            Foreground="White"
                            FontSize="13"/>
-            </StackPanel>
+        </StackPanel>
 
-            <!--User Info -->
-            <StackPanel Grid.Column="2"
+        <!--User Info -->
+        <StackPanel Grid.Column="2"
                         Orientation="Horizontal"
                         VerticalAlignment="Center"
                         Margin="15,0">
-                <TextBlock Text="المستخدم:"
+            <TextBlock Text="المستخدم:"
                            FontWeight="Bold"
                            Foreground="White"
                            FontSize="13"
                            Margin="0,0,5,0"/>
-                <TextBlock x:Name="UserNameText"
+            <TextBlock x:Name="UserNameText"
                            Text="كريم"
                            Foreground="White"
                            FontSize="13"
                            Margin="0,0,10,0"/>
-                <TextBlock Text="الدور:"
+            <TextBlock Text="الدور:"
                            FontWeight="Bold"
                            Foreground="White"
                            FontSize="13"
                            Margin="0,0,5,0"/>
-                <TextBlock x:Name="UserRoleText"
+            <TextBlock x:Name="UserRoleText"
                            Text="مدير النظام"
                            Foreground="White"
                            FontSize="13"/>
-            </StackPanel>
+        </StackPanel>
 
-            <!--  Logout Button -->
-            <Button Grid.Column="3"
+        <!--  Logout Button -->
+        <Button Grid.Column="3"
                     Content="تسجيل الخروج"
                     Height="22"
                     Width="130"
                     FontSize="14"
                     FontWeight="Bold"
                     Cursor="Hand"
-                    Foreground="{StaticResource TitleBarColor}"
+                    Foreground="{StaticResource PrimaryBrush}"
                     Background="White"
                     BorderThickness="0"
                     VerticalAlignment="Center"
                     Margin="20,0">
-                <Button.Template>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}"
                                 CornerRadius="{StaticResource ButtonCornerRadius}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
                                 BorderThickness="{TemplateBinding BorderThickness}">
-                            <ContentPresenter HorizontalAlignment="Center"
+                        <ContentPresenter HorizontalAlignment="Center"
                                               VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Button.Template>
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
 
-                <!-- 🖱 Hover Effect -->
-                <Button.Style>
-                    <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
-                        <Setter Property="Background" Value="White"/>
-                        <Style.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#E8F1FC"/>
-                            </Trigger>
-                            <Trigger Property="IsPressed" Value="True">
-                                <Setter Property="Background" Value="#D8E6FB"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Button.Style>
-            </Button>
+            <!-- 🖱 Hover Effect -->
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
+                    <Setter Property="Background" Value="White"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#E8F1FC"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Background" Value="#D8E6FB"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+        </Button>
 
-        </Grid>
+    </Grid>
 
 </UserControl>

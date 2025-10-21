@@ -46,7 +46,7 @@
     </UserControl.Resources>
 
     <!-- Layout Grid -->
-    <Grid Background="{StaticResource TitleBarColor}">
+    <Grid Background="{StaticResource PrimaryBrush}">
         <Grid.ColumnDefinitions>
             <!-- App Title -->
             <ColumnDefinition Width="Auto"/>

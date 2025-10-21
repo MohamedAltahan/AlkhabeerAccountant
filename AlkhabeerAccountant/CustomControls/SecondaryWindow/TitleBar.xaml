@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AlkhabeerAccountant.CustomControls.MainWindow.TitleBar"
+﻿<UserControl x:Class="AlkhabeerAccountant.CustomControls.SecondaryWindow.TitleBar"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              Height="40"
@@ -45,51 +45,31 @@
 
     </UserControl.Resources>
 
-    <!-- Layout Grid -->
-    <Grid Background="{StaticResource TitleBarColor}">
+    <Grid Background="{StaticResource PrimaryBrush}">
         <Grid.ColumnDefinitions>
-            <!-- App Title -->
             <ColumnDefinition Width="Auto"/>
-            <!-- Center Search -->
             <ColumnDefinition Width="*"/>
-            <!-- Control Buttons -->
             <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
-        <!--  App Title -->
-        <TextBlock  Grid.Column="0"
-                    Text="الخبير المحاسبي"
-                    VerticalAlignment="Center"
-                    Margin="20,0,0,0"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="17"/>
+        <!--  App title centered across full grid  -->
+        <TextBlock Text="{Binding TitleText, RelativeSource={RelativeSource AncestorType=UserControl}}"
+               Foreground="White"
+               FontWeight="Bold"
+               FontSize="17"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               Grid.ColumnSpan="3"/>
+        <!-- 👈 spans all columns -->
 
-        <!--  Centered Search Box -->
-        <TextBlock Grid.Column="1"
-                    
-                    Text="الخبير المحاسبي"
-                    VerticalAlignment="Center"
-                    Margin="20,0,0,0"
-                    Foreground="White"
-                    FontWeight="Bold"
-                    FontSize="17">
-
-        </TextBlock>
-        <!-- Control Buttons -->
+        <!--  Control buttons (right side) -->
         <StackPanel Orientation="Horizontal"
-                        Grid.Column="2"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Right">
-            <Button Content="—"
-                        Style="{StaticResource TitleBarButton}"
-                        Click="MinimizeButton_Click" Height="40"/>
-            <Button Content="▢"
-                        Style="{StaticResource TitleBarButton}"
-                        Click="MaximizeButton_Click" Height="39"/>
-            <Button Content="✕"
-                        Style="{StaticResource CloseButtonStyle}"
-                        Click="CloseButton_Click" Height="38"/>
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right">
+            <Button Content="—" Style="{StaticResource TitleBarButton}" Click="MinimizeButton_Click" Height="40"/>
+            <Button Content="▢" Style="{StaticResource TitleBarButton}" Click="MaximizeButton_Click" Height="40"/>
+            <Button Content="✕" Style="{StaticResource CloseButtonStyle}" Click="CloseButton_Click" Height="40" Width="69"/>
         </StackPanel>
     </Grid>
 

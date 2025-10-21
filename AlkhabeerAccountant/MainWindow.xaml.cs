@@ -32,7 +32,8 @@ namespace AlkhabeerAccountant
                     MainBorder.Margin = new Thickness(0);
                 }
             };
-            // Assume you’ll get these later from DB or login session
+
+            //Assume you’ll get these later from DB or login session
             //string userName = "كريم الشركاوي";
             //string roleName = "مدير النظام"; // or "كاشير", "محاسب", etc.
             DateTime loginTime = DateTime.Now;

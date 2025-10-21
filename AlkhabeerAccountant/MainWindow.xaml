@@ -12,14 +12,15 @@
         Height="750"
         FlowDirection="RightToLeft"
         WindowStartupLocation="CenterScreen"
-        WindowState="Maximized">
+        WindowState="Maximized"
+    >
 
     <!-- Remove top margin when restoring window size -->
     <WindowChrome.WindowChrome>
         <WindowChrome
             CaptionHeight="0"
             ResizeBorderThickness="0"
-            CornerRadius="50"
+            CornerRadius="15"
             GlassFrameThickness="50"
             UseAeroCaptionButtons="False"/>
     </WindowChrome.WindowChrome>
