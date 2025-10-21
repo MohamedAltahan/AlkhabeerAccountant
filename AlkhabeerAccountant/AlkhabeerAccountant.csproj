@@ -52,7 +52,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Shared\BaseStyles\Font.xaml" />
+    <Page Remove="Shared\BaseStyles\General.xaml" />
     <Page Remove="Shared\BaseWindowStyle.xaml" />
+    <Page Remove="Shared\ButtonStyle.xaml" />
+    <Page Remove="Shared\Colors.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -196,9 +200,18 @@
     <Resource Include="Resources\youtube.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Shared\BaseStyles\General.xaml" />
     <Resource Include="Shared\BaseWindowStyle.xaml">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Shared\ButtonStyle.xaml">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Shared\BaseStyles\Colors.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Shared\BaseStyles\Font.xaml" />
   </ItemGroup>
 
   <ItemGroup>

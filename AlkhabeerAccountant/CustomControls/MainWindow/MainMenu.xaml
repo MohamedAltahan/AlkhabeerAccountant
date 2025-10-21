@@ -26,7 +26,7 @@
             <Setter Property="Padding" Value="6"/>
             <Setter Property="Margin" Value="1"/>
             <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}"/>
-            <Setter Property="FontWeight" Value="{StaticResource FontWeigh-2}"/>
+            <Setter Property="FontWeight" Value="{StaticResource FontWeight-2}"/>
             <Setter Property="FontSize" Value="{StaticResource FontSize-4}"/>
             <Setter Property="Cursor" Value="Hand"/>
             <Setter Property="Background" Value="{StaticResource PrimaryLightBrush}"/>
@@ -41,7 +41,7 @@
                                     Padding="{TemplateBinding Padding}"
                                     Margin="1,1"
                                     BorderThickness="1"
-                                    BorderBrush="{StaticResource PrimaryBrush}">
+                                    BorderBrush="{StaticResource BorderBrush}">
 
                                 <Grid>
                                     <Grid.ColumnDefinitions>
@@ -82,8 +82,10 @@
                             <!-- Hover -->
                             <Trigger Property="IsHighlighted" Value="True">
                                 <Setter TargetName="Bd" Property="Background" Value="{StaticResource PrimaryBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
+
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

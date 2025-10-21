@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib" >
+    <!--=========== Icon Size================ -->
+    <sys:Double x:Key="IconSize-1">20</sys:Double>
+    <sys:Double x:Key="IconSize-2">25</sys:Double>
+    <sys:Double x:Key="IconSize-3">30</sys:Double>
+
+    <!--=========== button height================ -->
+    <sys:Double x:Key="ButtonHeight-1">40</sys:Double>
+    <sys:Double x:Key="ButtonHeight-2">45</sys:Double>
+    <sys:Double x:Key="ButtonHeight-3">50</sys:Double>
+    <!--=========== Border Thick================ -->
+    <Thickness x:Key="BorderThick-1">1</Thickness>
+    <Thickness x:Key="BorderThick-2">2</Thickness>
+    <Thickness x:Key="BorderThick-3">3</Thickness>
+
+    <Thickness x:Key="ContentPadding">15</Thickness>
+    <Thickness x:Key="ContentMargin">15</Thickness>
+    <!--============cornerRadius============-->
+    <CornerRadius x:Key="ButtonCornerRadius">6</CornerRadius>
+    <CornerRadius x:Key="InputCornerRadius">4</CornerRadius>
+    
+    <!--=========== Icon Size================ -->
+    <!--<sys:Double x:Key="WindowWidthSize-1">20</sys:Double>
+    <sys:Double x:Key="WindowHeightSize-1">20</sys:Double>
+    <sys:Double x:Key="WindowWidthSize-2">20</sys:Double>
+    <sys:Double x:Key="WindowHeightSize-2">20</sys:Double>
+    <sys:Double x:Key="WindowWidthSize-3">1300</sys:Double>
+    <sys:Double x:Key="WindowHeightSize-3">730</sys:Double>-->
+</ResourceDictionary>

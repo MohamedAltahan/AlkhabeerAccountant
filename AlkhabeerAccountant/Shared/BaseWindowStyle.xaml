@@ -3,7 +3,6 @@
                     xmlns:sys="clr-namespace:System;assembly=mscorlib"         
                     xmlns:wc="clr-namespace:System.Windows.Shell;assembly=PresentationFramework">
 
-    <Thickness x:Key="ContentMargin">20</Thickness>
 
     <!--  Base style for all custom windows -->
     <Style x:Key="BaseWindowStyle" TargetType="Window">
@@ -29,50 +28,5 @@
                       ShadowDepth="2"
                       Opacity="0.15"/>
 
-    <!-- Rounded Button Template -->
-    <Style x:Key="RoundedButtonStyle" TargetType="Button">
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border x:Name="border"
-                            Background="{TemplateBinding Background}"
-                            CornerRadius="8"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="IsMouseOver" Value="True">
-                            <Setter TargetName="border" Property="Opacity" Value="0.9"/>
-                        </Trigger>
-                        <Trigger Property="IsPressed" Value="True">
-                            <Setter TargetName="border" Property="Opacity" Value="0.8"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
 
-    <!--  Side Menu Styles -->
-    <Style x:Key="SideMenuButtonStyle" TargetType="Button" BasedOn="{StaticResource RoundedButtonStyle}">
-        <Setter Property="Background" Value="#E5E7EB"/>
-        <Setter Property="Foreground" Value="#111827"/>
-        <Setter Property="FontWeight" Value="SemiBold"/>
-        <Setter Property="FontSize" Value="14"/>
-        <Setter Property="Height" Value="42"/>
-        <Setter Property="Margin" Value="0,2"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#2563EB"/>
-                <Setter Property="Foreground" Value="White"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>
-
-    <Style x:Key="SideMenuButtonActiveStyle" TargetType="Button" BasedOn="{StaticResource SideMenuButtonStyle}">
-        <Setter Property="Background" Value="red"/>
-        <Setter Property="Foreground" Value="White"/>
-    </Style>
 </ResourceDictionary>
