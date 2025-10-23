@@ -10,6 +10,7 @@
 
     <!-- Backgrounds -->
     <Color x:Key="CardBackgroundColor">#dbdbdb</Color>
+    <Color x:Key="WindowBackgroundcolor">white</Color>
 
     <!-- Text -->
     <Color x:Key="TextPrimaryColor">#1E293B</Color>
@@ -28,6 +29,7 @@
     <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
     <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource PrimaryDarkColor}" />
     <SolidColorBrush x:Key="CardBackgroundBrush" Color="{StaticResource CardBackgroundColor}" />
+    <SolidColorBrush x:Key="windowBackgroundBrush" Color="{StaticResource WindowBackgroundcolor}" />
 
 
 </ResourceDictionary>

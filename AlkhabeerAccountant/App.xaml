@@ -1,23 +1,24 @@
-﻿<Application x:Class="AlkhaberAccountant.App"
+﻿<Application x:Class="AlkhabeerAccountant.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:AlkhaberAccountant"
-             xmlns:sys="clr-namespace:System;assembly=mscorlib"         
+             xmlns:local="clr-namespace:AlkhabeerAccountant"
+             xmlns:helpers="clr-namespace:AlkhabeerAccountant.Helpers"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
 
     <Application.Resources>
         <ResourceDictionary>
+            <!--All shared dictionaries -->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Shared/BaseStyles/General.xaml" />
                 <ResourceDictionary Source="/Shared/BaseStyles/Colors.xaml" />
                 <ResourceDictionary Source="/Shared/BaseStyles/Font.xaml" />
                 <ResourceDictionary Source="/Shared/BaseWindowStyle.xaml" />
-                <ResourceDictionary Source="/Shared/ButtonStyle.xaml" />
+                <ResourceDictionary Source="/Shared/ControlStyle/ButtonStyle.xaml" />
                 <ResourceDictionary Source="/Shared/ControlStyle/ComboBoxStyle.xaml"/>
                 <ResourceDictionary Source="/Shared/ControlStyle/InputStyle.xaml"/>
-
+                <ResourceDictionary Source="/Shared/ControlStyle/TextBlock.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
         </ResourceDictionary>
     </Application.Resources>
 </Application>

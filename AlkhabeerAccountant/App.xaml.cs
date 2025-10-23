@@ -2,7 +2,7 @@
 using System.Data;
 using System.Windows;
 
-namespace AlkhaberAccountant
+namespace AlkhabeerAccountant
 {
     /// <summary>
     /// Interaction logic for App.xaml

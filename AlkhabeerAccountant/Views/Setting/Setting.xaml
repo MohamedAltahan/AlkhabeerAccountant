@@ -1,11 +1,15 @@
 ﻿<shared:BaseWindow
     xmlns:shared="clr-namespace:AlkhabeerAccountant.Shared"
+    xmlns:converters="clr-namespace:AlkhabeerAccountant.Helpers"
     x:Class="AlkhabeerAccountant.Views.Setting.Setting"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     FlowDirection="RightToLeft"
     TitleText="الإعدادات">
 
+    <Window.Resources>
+        <converters:ActiveButtonStyleConverter x:Key="ActiveButtonStyleConverter"/>
+    </Window.Resources>
 
     <Grid Margin="{StaticResource ContentMargin}">
         <Grid.ColumnDefinitions>
@@ -17,128 +21,82 @@
 
         <!-- 🔹 Side Menu -->
         <StackPanel Grid.Column="0" 
-                    Background="{StaticResource PrimaryLightBrush}"
+                    Background="{StaticResource CardBackgroundBrush}"
                     VerticalAlignment="Stretch">
-            <Button Content="الشركة" Style="{StaticResource GeneralButtonStyle}"/>
-            <Button Content="حساب تكلفة المخزون" Style="{StaticResource GeneralButtonStyle}"/>
-            <Button Content="البنوك" Style="{StaticResource GeneralButtonStyle}"/>
-            <Button Content="الخزن" Style="{StaticResource GeneralButtonStyle}"/>
-            <Button Content="المستخدمين" Style="{StaticResource GeneralButtonActiveStyle}"/>
-            <Button Content="الضريبة" Style="{StaticResource GeneralButtonStyle}"/>
-            <Button Content="الخصومات" Style="{StaticResource GeneralButtonStyle}"/>
-            <Button Content="طرق الدفع" Style="{StaticResource GeneralButtonStyle}"/>
-            <Button Content="العملة" Style="{StaticResource GeneralButtonStyle}"/>
+
+            <Button Content="الشركة" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Company"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Company}"/>
+
+            <Button Content="حساب تكلفة المخزون" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Cost"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Cost}"/>
+
+            <Button Content="البنوك" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Banks"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Banks}"/>
+
+            <Button Content="الخزن" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Stores"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Stores}"/>
+
+            <Button Content="المستخدمين" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Users"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Users}"/>
+
+            <Button Content="الضريبة" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Tax"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Tax}"/>
+
+            <Button Content="الخصومات" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Discounts"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Discounts}"/>
+
+            <Button Content="طرق الدفع" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="PaymentMethods"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=PaymentMethods}"/>
+
+            <Button Content="العملة" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Currency"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Currency}"/>
         </StackPanel>
 
         <!-- 🔹 Main Content -->
         <Border Grid.Column="1"
-                CornerRadius="{StaticResource ButtonCornerRadius}"
-                Background="White"
-                BorderBrush="{StaticResource BorderBrush}"
-                BorderThickness="{StaticResource BorderThick-1}"
-                Padding="10"
-                Margin="10,0,0,0">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="Auto"/>
-                </Grid.RowDefinitions>
-
-                <!-- User Input Section -->
-                <Border Grid.Row="0"
-                        BorderBrush="{StaticResource BorderBrush}"
-                        BorderThickness="{StaticResource BorderThick-1}"
-                        CornerRadius="{StaticResource ButtonCornerRadius}"
-                        Padding="{StaticResource ContentPadding}"
-                        Background="{StaticResource CardBackgroundBrush}"
-                        Margin="0,0,0,10">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-
-                        <!-- اسم المستخدم -->
-                        <TextBlock Text="اسم المستخدم" VerticalAlignment="Center" Margin="0,5" Grid.Row="0" Grid.Column="0"/>
-                        <TextBox Style="{StaticResource RoundedInputStyle}" Text="محمد" Margin="5" Grid.Row="0" Grid.Column="1" Height="28"/>
-
-                        <!-- الرقم السري -->
-                        <TextBlock Text="الرقم السري" VerticalAlignment="Center" Margin="0,5" Grid.Row="1" Grid.Column="0"/>
-                        <TextBox Style="{StaticResource RoundedInputStyle}" Text="123" Margin="5" Grid.Row="1" Grid.Column="1" Height="28"/>
-
-                        <!-- الصلاحية -->
-                        <TextBlock Text="الصلاحية" VerticalAlignment="Center" Margin="0,5" Grid.Row="2" Grid.Column="0"/>
-                        <ComboBox Style="{StaticResource RoundedComboBoxStyle}"
-                              Margin="5" Grid.Row="2" Grid.Column="1" Height="28" SelectedIndex="0">
-                            <ComboBoxItem Content="كاشير"/>
-                            <ComboBoxItem Content="مدير"/>
-                            <ComboBoxItem Content="محاسب"/>
-                        </ComboBox>
-
-                        <!-- الحالة -->
-                        <TextBlock Text="الحالة" VerticalAlignment="Center" Margin="0,5" Grid.Row="3" Grid.Column="0"/>
-                        <StackPanel Orientation="Horizontal" Margin="5" Grid.Row="3" Grid.Column="1">
-                            <RadioButton Content="نشط" IsChecked="True" Margin="5,0"/>
-                            <RadioButton Content="غير نشط" Margin="5,0"/>
-                        </StackPanel>
-                    </Grid>
-                </Border>
-
-                <!-- 🔹 DataGrid with rounded border -->
-                <Border Grid.Row="1"
-                    CornerRadius="{StaticResource ButtonCornerRadius}"
-                    BorderBrush="{StaticResource BorderBrush}"
-                    BorderThickness="{StaticResource BorderThick-1}"
-                    Background="{StaticResource CardBackgroundBrush}"
-                                    Padding="2">
-
-                    <DataGrid AutoGenerateColumns="False"
-              HeadersVisibility="All"
-              IsReadOnly="True"
-              FontSize="14"
-              SelectionMode="Single"
-              RowHeight="30"
-              BorderThickness="0"
-              Background="Transparent"
-              AlternatingRowBackground="#FFF8F8F8">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Header="اسم المستخدم" Binding="{Binding UserName}" Width="*"/>
-                            <DataGridTextColumn Header="الصلاحية" Binding="{Binding Role}" Width="*"/>
-                            <DataGridTextColumn Header="اخر دخول" Binding="{Binding LastLogin}" Width="*"/>
-                            <DataGridTextColumn Header="اخر خروج" Binding="{Binding LastLogout}" Width="*"/>
-                            <DataGridTextColumn Header="الحالة" Binding="{Binding Status}" Width="100"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                </Border>
-
-                <!-- 🟢 Save / Delete Buttons -->
-                <StackPanel Grid.Row="2"
-                            Orientation="Horizontal"
-                            HorizontalAlignment="Center"
-                            Margin="0,15,0,0">
-                    <Button Content="حفظ"
-                            Width="100" Height="38"
-                            Background="#2E7D32"
-                            Foreground="White"
-                            FontWeight="Bold"
-                            BorderBrush="#1B5E20"
-                            BorderThickness="1"/>
-                    <Button Content="حذف"
-                            Width="100" Height="38"
-                            Background="#C62828"
-                            Foreground="White"
-                            FontWeight="Bold"
-                            BorderBrush="#B71C1C"
-                            BorderThickness="1"/>
-                </StackPanel>
-            </Grid>
+        CornerRadius="{StaticResource ButtonCornerRadius}"
+        Background="{StaticResource windowBackgroundBrush}"
+        BorderBrush="{StaticResource BorderBrush}"
+        BorderThickness="{StaticResource BorderThick-1}"
+        Padding="10"
+        Margin="10,0,0,0">
+            <ContentControl Content="{Binding CurrentContent}" />
         </Border>
     </Grid>
 
