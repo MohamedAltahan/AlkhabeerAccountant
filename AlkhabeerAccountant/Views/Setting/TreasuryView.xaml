@@ -1,0 +1,96 @@
+﻿<UserControl x:Class="AlkhabeerAccountant.Views.Setting.TreasuryView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:cc="clr-namespace:AlkhabeerAccountant.CustomControls.SecondaryWindow"
+             mc:Ignorable="d"
+             FlowDirection="RightToLeft"
+             d:DesignHeight="650" d:DesignWidth="900">
+
+    <Grid>
+        <!-- Define Rows: main content + bottom buttons -->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <!-- Main Border Content -->
+            <RowDefinition Height="Auto"/>
+            <!-- Bottom Buttons -->
+        </Grid.RowDefinitions>
+
+        <!-- ===================  Main Border Container =================== -->
+        <Border Grid.Row="0" Style="{StaticResource MainCardBorderStyle}">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Form -->
+                    <RowDefinition Height="*"/>
+                    <!-- Table -->
+                </Grid.RowDefinitions>
+
+                <!-- ===================  Treasury Form Section =================== -->
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                        <!-- Full-width inputs -->
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!-- اسم الخزنة -->
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="اسم الخزنة" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+
+                    <!-- المستخدم المسؤول عن الخزنة -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="المستخدم المسؤول عن الخزنة" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedComboBoxStyle}" Margin="5" SelectedIndex="0">
+                        <ComboBoxItem Content="محمد"/>
+                        <ComboBoxItem Content="أحمد"/>
+                        <ComboBoxItem Content="فاطمة"/>
+                    </ComboBox>
+
+                    <!-- الرصيد الافتتاحي -->
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="الرصيد الافتتاحي" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+
+                    <!-- الرصيد الحالي -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="الرصيد الحالي (يُحدث تلقائيًا)" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+
+                    <!-- ملاحظات -->
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="ملاحظات" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+
+                    <!-- الحالة -->
+                    <cc:StatusSelector Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" IsActive="{Binding IsActive, Mode=TwoWay}" />
+                </Grid>
+
+                <!-- ===================  Treasury Table Section =================== -->
+                <Border Grid.Row="1" Style="{StaticResource TableBorderStyle}">
+                    <DataGrid Style="{StaticResource TableStyle}">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="اسم الخزنة" Binding="{Binding TreasuryName}" Width="*"/>
+                            <DataGridTextColumn Header="الرصيد الحالي" Binding="{Binding CurrentBalance}" Width="*"/>
+                            <DataGridTextColumn Header="الحالة" Binding="{Binding Status}" Width="100"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Border>
+            </Grid>
+        </Border>
+
+        <!-- ===================  Bottom Buttons Outside Border =================== -->
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,15">
+            <!-- Save Button -->
+            <Button Content="حفظ"  Style="{StaticResource SaveButtonStyle}" />
+            <!-- Delete Button -->
+            <Button Content="حذف"  Style="{StaticResource DeleteButtonStyle}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

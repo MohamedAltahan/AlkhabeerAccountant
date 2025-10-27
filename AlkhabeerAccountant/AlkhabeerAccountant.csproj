@@ -25,6 +25,7 @@
     <None Remove="Resources\discounts.png" />
     <None Remove="Resources\document.png" />
     <None Remove="Resources\economy.png" />
+    <None Remove="Resources\edit.png" />
     <None Remove="Resources\exchange.png" />
     <None Remove="Resources\financial-data.png" />
     <None Remove="Resources\list.png" />
@@ -128,6 +129,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\economy.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\exchange.png">

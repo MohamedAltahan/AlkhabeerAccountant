@@ -16,8 +16,10 @@
                 <ResourceDictionary Source="/Shared/BaseWindowStyle.xaml" />
                 <ResourceDictionary Source="/Shared/ControlStyle/ButtonStyle.xaml" />
                 <ResourceDictionary Source="/Shared/ControlStyle/ComboBoxStyle.xaml"/>
-                <ResourceDictionary Source="/Shared/ControlStyle/InputStyle.xaml"/>
+                <ResourceDictionary Source="/Shared/ControlStyle/TextInputStyle.xaml"/>
                 <ResourceDictionary Source="/Shared/ControlStyle/TextBlock.xaml"/>
+                <ResourceDictionary Source="/Shared/ControlStyle/RadioButtonStyle.xaml"/>
+                <ResourceDictionary Source="/Shared/ControlStyle/SharedStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

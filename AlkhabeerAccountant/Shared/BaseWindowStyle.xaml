@@ -15,7 +15,7 @@
                 <wc:WindowChrome 
                 CaptionHeight="0"
                 ResizeBorderThickness="0"
-                CornerRadius="15"
+                CornerRadius="{StaticResource MainCardCornerRadius}"
                 GlassFrameThickness="30"
                 UseAeroCaptionButtons="False"/>
             </Setter.Value>

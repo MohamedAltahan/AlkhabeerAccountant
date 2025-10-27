@@ -20,12 +20,8 @@
     <!--============cornerRadius============-->
     <CornerRadius x:Key="ButtonCornerRadius">6</CornerRadius>
     <CornerRadius x:Key="InputCornerRadius">4</CornerRadius>
-    
-    <!--=========== Icon Size================ -->
-    <!--<sys:Double x:Key="WindowWidthSize-1">20</sys:Double>
-    <sys:Double x:Key="WindowHeightSize-1">20</sys:Double>
-    <sys:Double x:Key="WindowWidthSize-2">20</sys:Double>
-    <sys:Double x:Key="WindowHeightSize-2">20</sys:Double>
-    <sys:Double x:Key="WindowWidthSize-3">1300</sys:Double>
-    <sys:Double x:Key="WindowHeightSize-3">730</sys:Double>-->
+    <CornerRadius x:Key="MainCardCornerRadius">10</CornerRadius>
+    <CornerRadius x:Key="WindowCornerRadius">10</CornerRadius>
+
+
 </ResourceDictionary>

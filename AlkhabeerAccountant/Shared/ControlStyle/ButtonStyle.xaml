@@ -97,6 +97,7 @@
         <!-- Consistent Size -->
         <Setter Property="Width" Value="140"/>
         <Setter Property="Height" Value="45"/>
+        <Setter Property="Margin" Value="10,0"/>
 
         <!-- Common Typography -->
         <Setter Property="Foreground" Value="White"/>
@@ -186,6 +187,15 @@
         <Setter Property="Background" Value="#a82828"/>
         <Setter Property="BorderBrush" Value="#a82828"/>
         <Setter Property="Tag" Value="/Resources/delete.png"/>
+    </Style>
+
+    <!--  edit Button -->
+    <Style x:Key="EditButtonStyle"
+           BasedOn="{StaticResource BaseRoundedButton}"
+           TargetType="Button">
+        <Setter Property="Background" Value="#0D6EFD"/>
+        <Setter Property="BorderBrush" Value="#0D6EFD"/>
+        <Setter Property="Tag" Value="/Resources/edit.png"/>
     </Style>
 
 </ResourceDictionary>

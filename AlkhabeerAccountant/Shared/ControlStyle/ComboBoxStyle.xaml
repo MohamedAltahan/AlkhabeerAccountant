@@ -27,16 +27,17 @@
                                 <Path x:Name="Arrow"
                                       Data="M 0 0 L 4 4 L 8 0 Z"
                                       Fill="Gray"
-                                      Width="10" Height="6"
-                                      Margin="8"
+                                      Width="20"
+                                      Margin="10,15,10,0"
+                                      Height="{StaticResource FontSize-3}"
                                       VerticalAlignment="Center"
-                                      DockPanel.Dock="Left"/>
+                                      DockPanel.Dock="Right"/>
                                 <!-- Arrow on the LEFT -->
 
                                 <!-- Selected item text -->
                                 <ContentPresenter Margin="6,2"
                                                   VerticalAlignment="Center"
-                                                  HorizontalAlignment="Right"
+                                                  HorizontalAlignment="Left"
                                                   RecognizesAccessKey="True"
                                                   Content="{TemplateBinding SelectionBoxItem}"
                                                   ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"

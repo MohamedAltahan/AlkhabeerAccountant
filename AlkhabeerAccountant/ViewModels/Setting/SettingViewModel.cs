@@ -59,30 +59,33 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                     case "Company":
                         CurrentContent = new CompanyView();
                         break;
-                    //case "Cost":
-                    //    CurrentContent = new CostView();
-                    //    break;
-                    //case "Banks":
-                    //    CurrentContent = new BanksView();
-                    //    break;
-                    //case "Stores":
-                    //    CurrentContent = new StoresView();
-                    //    break;
+                    case "InventoryCost":
+                        CurrentContent = new InventoryCostView();
+                        break;
+                    case "Banks":
+                        CurrentContent = new BanksView();
+                        break;
+                    case "Treasures":
+                        CurrentContent = new TreasuryView();
+                        break;
                     case "Users":
                         CurrentContent = new UsersView();
                         break;
-                        //case "Tax":
-                        //    CurrentContent = new TaxView();
-                        //    break;
-                        //case "Discounts":
-                        //    CurrentContent = new DiscountsView();
-                        //    break;
-                        //case "PaymentMethods":
-                        //    CurrentContent = new PaymentMethodsView();
-                        //    break;
-                        //case "Currency":
-                        //    CurrentContent = new CurrencyView();
-                        //    break;
+                    case "Roles":
+                        CurrentContent = new RolesView();
+                        break;
+                    //case "Tax":
+                    //    CurrentContent = new TaxView();
+                    //    break;
+                    //case "Discounts":
+                    //    CurrentContent = new DiscountsView();
+                    //    break;
+                    case "PaymentMethods":
+                        CurrentContent = new PaymentMethodsView();
+                        break;
+                    case "Currency":
+                        CurrentContent = new CurrencyView();
+                        break;
                 }
             }
         }

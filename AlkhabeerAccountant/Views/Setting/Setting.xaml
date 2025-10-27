@@ -33,10 +33,10 @@
 
             <Button Content="حساب تكلفة المخزون" 
                     Command="{Binding NavigateCommand}"
-                    CommandParameter="Cost"
+                    CommandParameter="InventoryCost"
                     Style="{Binding ActivePage, 
                             Converter={StaticResource ActiveButtonStyleConverter}, 
-                            ConverterParameter=Cost}"/>
+                            ConverterParameter=InventoryCost}"/>
 
             <Button Content="البنوك" 
                     Command="{Binding NavigateCommand}"
@@ -47,10 +47,10 @@
 
             <Button Content="الخزن" 
                     Command="{Binding NavigateCommand}"
-                    CommandParameter="Stores"
+                    CommandParameter="Treasures"
                     Style="{Binding ActivePage, 
                             Converter={StaticResource ActiveButtonStyleConverter}, 
-                            ConverterParameter=Stores}"/>
+                            ConverterParameter=Treasures}"/>
 
             <Button Content="المستخدمين" 
                     Command="{Binding NavigateCommand}"
@@ -58,6 +58,13 @@
                     Style="{Binding ActivePage, 
                             Converter={StaticResource ActiveButtonStyleConverter}, 
                             ConverterParameter=Users}"/>
+
+            <Button Content="الصلاحيات" 
+                    Command="{Binding NavigateCommand}"
+                    CommandParameter="Roles"
+                    Style="{Binding ActivePage, 
+                            Converter={StaticResource ActiveButtonStyleConverter}, 
+                            ConverterParameter=Roles}"/>
 
             <Button Content="الضريبة" 
                     Command="{Binding NavigateCommand}"
