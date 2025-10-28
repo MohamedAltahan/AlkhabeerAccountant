@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Alkhabeer.Data.Repositories;
+using AlkhabeerAccountant.ViewModels.Setting;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using Microsoft.Extensions.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +19,13 @@ using System.Windows.Shapes;
 
 namespace AlkhabeerAccountant.Views.Setting
 {
-    /// <summary>
-    /// Interaction logic for PaymentMethodsView.xaml
-    /// </summary>
-    public partial class PaymentMethodsView : UserControl
+
+    public partial class CompanySettingView : UserControl
     {
-        public PaymentMethodsView()
+        public CompanySettingView()
         {
             InitializeComponent();
+            DataContext = Ioc.Default.GetService<CompanySettingViewModel>();
         }
     }
 }

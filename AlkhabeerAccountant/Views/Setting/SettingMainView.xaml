@@ -1,7 +1,7 @@
 ﻿<shared:BaseWindow
     xmlns:shared="clr-namespace:AlkhabeerAccountant.Shared"
     xmlns:converters="clr-namespace:AlkhabeerAccountant.Helpers"
-    x:Class="AlkhabeerAccountant.Views.Setting.Setting"
+    x:Class="AlkhabeerAccountant.Views.Setting.SettingMainView"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     FlowDirection="RightToLeft"

@@ -1,6 +1,4 @@
-﻿using AlkhabeerAccountant.Shared;
-using AlkhabeerAccountant.ViewModels.Setting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AlkhabeerAccountant.Views.Setting
 {
     /// <summary>
-    /// Interaction logic for Setting.xaml
+    /// Interaction logic for Inventory_Cost.xaml
     /// </summary>
-    public partial class Setting : BaseWindow
+    public partial class InventoryCostSettingView : UserControl
     {
-        public Setting()
+        public InventoryCostSettingView()
         {
             InitializeComponent();
-            DataContext = new SettingViewModel();
         }
-
     }
 }

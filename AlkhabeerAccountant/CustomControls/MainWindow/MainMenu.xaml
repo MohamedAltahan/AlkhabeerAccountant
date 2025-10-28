@@ -300,7 +300,7 @@
                 </MenuItem.Icon>
             </MenuItem>
             <!-- الإعدادات -->
-            <MenuItem Header="الإعدادات"  Click="OpenSettings_Click" >
+            <MenuItem Header="الإعدادات"  Click="OpenSettings_Click" IsEnabled="{Binding IsLoading}" >
                 <MenuItem.Icon>
                     <Image Source="/Resources/setting.png"
                         Style="{StaticResource MenuIconStyle}"/>

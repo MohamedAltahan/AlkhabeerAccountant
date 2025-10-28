@@ -10,7 +10,7 @@ namespace Alkhabeer.Core.Models
     {
         public long Id { get; set; }
 
-        public string Key { get; set; } = string.Empty;//make it required(not null)
+        public string Key { get; set; } = string.Empty;// required
         public string? Value { get; set; }
         public string? Type { get; set; } = string.Empty;
         public string? Group { get; set; } = string.Empty;

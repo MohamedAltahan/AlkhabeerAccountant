@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AlkhabeerAccountant.Views.Setting
 {
     /// <summary>
-    /// Interaction logic for company.xaml
+    /// Interaction logic for UsersView.xaml
     /// </summary>
-    public partial class CompanyView : UserControl
+    public partial class UsersSettingView : UserControl
     {
-        public CompanyView()
+        public UsersSettingView()
         {
             InitializeComponent();
         }

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace AlkhabeerAccountant.Views.Setting
 {
     /// <summary>
-    /// Interaction logic for Inventory_Cost.xaml
+    /// Interaction logic for PaymentMethodsView.xaml
     /// </summary>
-    public partial class InventoryCostView : UserControl
+    public partial class PaymentMethodsSettingView : UserControl
     {
-        public InventoryCostView()
+        public PaymentMethodsSettingView()
         {
             InitializeComponent();
         }

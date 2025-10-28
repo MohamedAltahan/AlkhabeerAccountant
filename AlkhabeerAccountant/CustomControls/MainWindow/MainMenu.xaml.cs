@@ -1,4 +1,5 @@
-﻿using AlkhabeerAccountant.Views.Setting;
+﻿using AlkhabeerAccountant.Helpers;
+using AlkhabeerAccountant.Views.Setting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,8 +28,8 @@ namespace AlkhabeerAccountant.CustomControls.MainWindow
         }
         private void OpenSettings_Click(object sender, RoutedEventArgs e)
         {
-            var window = new Setting();
-            window.Show();
+            WindowManager.ShowSingle<SettingMainView>();
         }
+
     }
 }

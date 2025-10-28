@@ -22,6 +22,15 @@ namespace Alkhabeer.Data.Configurations
 
             builder.Property(x => x.Group).HasMaxLength(100);
             builder.Property(x => x.Type).HasMaxLength(50);
+
+            // ✅ Explicitly define timestamp type (avoids invalid default value)
+            builder.Property(s => s.CreatedAt)
+                .HasColumnType("timestamp")
+                .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+            builder.Property(s => s.UpdatedAt)
+                .HasColumnType("timestamp")
+                .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
         }
     }
 }

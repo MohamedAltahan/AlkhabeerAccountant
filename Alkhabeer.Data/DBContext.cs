@@ -12,6 +12,10 @@ namespace Alkhabeer.Data
 {
     public class DBContext : DbContext
     {
+        // ✅ Required constructor for AddDbContext
+        public DBContext(DbContextOptions<DBContext> options) : base(options)
+        {
+        }
         // 🔹 Define your DbSets (tables)
         //“I want to create and manage a table in the database for the entity Setting.”
         //In other words, it’s how EF knows which classes in your code should become database tables.
@@ -35,6 +39,7 @@ namespace Alkhabeer.Data
 
             // This scans and applies all IEntityTypeConfiguration<T> automatically
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(DBContext).Assembly);
+
             // ✅ Convert table and column names to snake_case
             foreach (var entity in modelBuilder.Model.GetEntityTypes())
             {

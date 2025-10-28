@@ -94,12 +94,10 @@
 
     <!-- Base Icon Button Template -->
     <Style x:Key="BaseRoundedButton" TargetType="Button">
-        <!-- Consistent Size -->
+        <!-- Base setters -->
         <Setter Property="Width" Value="140"/>
         <Setter Property="Height" Value="45"/>
         <Setter Property="Margin" Value="10,0"/>
-
-        <!-- Common Typography -->
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="{StaticResource FontWeight-3}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSize-3}"/>
@@ -107,19 +105,18 @@
         <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
 
-        <!-- Template with icon + text -->
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border x:Name="border"
-                            CornerRadius="{StaticResource ButtonCornerRadius}"
-                            Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
-                            BorderThickness="{TemplateBinding BorderThickness}">
+                        CornerRadius="{StaticResource ButtonCornerRadius}"
+                        Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}">
                         <StackPanel Orientation="Horizontal"
-                                    VerticalAlignment="Center"
-                                    HorizontalAlignment="Center"
-                                    Margin="10,0">
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Center"
+                                Margin="10,0">
                             <!-- Icon -->
                             <Image x:Name="Icon"
                                Width="25"
@@ -131,13 +128,22 @@
 
                             <!-- Text -->
                             <ContentPresenter VerticalAlignment="Center"
-                                              HorizontalAlignment="Center"
-                                              RecognizesAccessKey="True"/>
+                                          HorizontalAlignment="Center"
+                                          RecognizesAccessKey="True"/>
                         </StackPanel>
                     </Border>
 
-                    <!-- Visual States -->
+                    <!-- Visual Triggers -->
                     <ControlTemplate.Triggers>
+
+                        <!-- ✅ Hide the icon if Tag is null or empty -->
+                        <Trigger Property="Tag" Value="{x:Null}">
+                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+                        <Trigger Property="Tag" Value="">
+                            <Setter TargetName="Icon" Property="Visibility" Value="Collapsed"/>
+                        </Trigger>
+
                         <!-- Hover -->
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="border" Property="Opacity" Value="0.9"/>
@@ -196,6 +202,22 @@
         <Setter Property="Background" Value="#0D6EFD"/>
         <Setter Property="BorderBrush" Value="#0D6EFD"/>
         <Setter Property="Tag" Value="/Resources/edit.png"/>
+    </Style>
+
+    <!--  green Button -->
+    <Style x:Key="GreenButtonStyle"
+           BasedOn="{StaticResource BaseRoundedButton}"
+           TargetType="Button">
+        <Setter Property="Background" Value="#2E7D32"/>
+        <Setter Property="BorderBrush" Value="#2E7D32"/>
+    </Style>
+
+    <!--  red Button -->
+    <Style x:Key="RedButtonStyle"
+           BasedOn="{StaticResource BaseRoundedButton}"
+           TargetType="Button">
+        <Setter Property="Background" Value="#a82828"/>
+        <Setter Property="BorderBrush" Value="#a82828"/>
     </Style>
 
 </ResourceDictionary>

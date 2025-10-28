@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AlkhabeerAccountant.Shared;
+using AlkhabeerAccountant.ViewModels.Setting;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,19 +12,20 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace AlkhabeerAccountant.Views.Setting
 {
     /// <summary>
-    /// Interaction logic for RolesView.xaml
+    /// Interaction logic for Setting.xaml
     /// </summary>
-    public partial class RolesView : UserControl
+    public partial class SettingMainView : BaseWindow
     {
-        public RolesView()
+        public SettingMainView()
         {
             InitializeComponent();
+            DataContext = new SettingMainViewModel();
         }
+
     }
 }

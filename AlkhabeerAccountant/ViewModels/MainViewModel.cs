@@ -20,7 +20,7 @@ namespace AlkhabeerAccountant.ViewModel
             var mainWindow = Application.Current.MainWindow;
             if (mainWindow == null) return;
 
-            var settingsWindow = new Setting
+            var settingsWindow = new SettingMainView
             {
                 Owner = mainWindow,
                 ShowInTaskbar = false,

@@ -5,7 +5,6 @@
              xmlns:helpers="clr-namespace:AlkhabeerAccountant.Helpers"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
-
     <Application.Resources>
         <ResourceDictionary>
             <!--All shared dictionaries -->
@@ -21,6 +20,7 @@
                 <ResourceDictionary Source="/Shared/ControlStyle/RadioButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Shared/ControlStyle/SharedStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

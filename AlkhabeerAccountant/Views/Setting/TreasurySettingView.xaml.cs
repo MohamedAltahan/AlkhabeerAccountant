@@ -18,9 +18,9 @@ namespace AlkhabeerAccountant.Views.Setting
     /// <summary>
     /// Interaction logic for TreasuryView.xaml
     /// </summary>
-    public partial class TreasuryView : UserControl
+    public partial class TreasurySettingView : UserControl
     {
-        public TreasuryView()
+        public TreasurySettingView()
         {
             InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AlkhabeerAccountant.Views.Setting.UsersView"
+﻿<UserControl x:Class="AlkhabeerAccountant.Views.Setting.UsersSettingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -54,7 +54,7 @@
                                Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,5"/>
                     <ComboBox Style="{StaticResource RoundedComboBoxStyle}"
                               Margin="5" Grid.Row="2" Grid.Column="1"  SelectedIndex="0">
-                        <ComboBoxItem Content="كاشير"/> 
+                        <ComboBoxItem Content="كاشير"/>
                         <ComboBoxItem Content="مدير"/>
                         <ComboBoxItem Content="محاسب"/>
                     </ComboBox>
