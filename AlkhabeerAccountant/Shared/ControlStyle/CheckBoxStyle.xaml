@@ -1,0 +1,59 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- 🔹 Rounded Blue CheckBox Style -->
+    <Style x:Key="RoundedCheckBoxStyle" TargetType="CheckBox">
+        <Setter Property="Foreground" Value="{StaticResource TextPrimaryBrush}" />
+        <Setter Property="FontSize" Value="{StaticResource FontSize-3}" />
+        <Setter Property="FontWeight" Value="{StaticResource FontWeight-2}" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="CheckBox">
+                    <StackPanel Orientation="Horizontal">
+                        <!-- Checkbox Border -->
+                        <Border x:Name="border"
+                            Width="23" Height="23"
+                            CornerRadius="4"
+                            BorderThickness="2"
+                            Margin="0,0,8,0"
+                            BorderBrush="{StaticResource PrimaryDarkBrush}"
+                            Background="Transparent">
+                            <Path x:Name="check"
+                              Data="M17,8 L13,16 L3,2"
+                              StrokeThickness="2.5"
+                              Stroke="{StaticResource PrimaryLightBrush}"
+                              StrokeEndLineCap="Round"
+                              StrokeStartLineCap="Round"
+                              Visibility="Collapsed"/>
+                        </Border>
+
+                        <!-- Label -->
+                        <ContentPresenter VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <ControlTemplate.Triggers>
+                        <!-- Checked -->
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="border" Property="Background" Value="{StaticResource PrimaryLightBrush}"/>
+                            <Setter TargetName="check" Property="Visibility" Value="Visible"/>
+                            <Setter TargetName="check" Property="Stroke" Value="{StaticResource TextPrimaryBrush}"/>
+                        </Trigger>
+
+                        <!-- Hover -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource PrimaryLightBrush}"/>
+                        </Trigger>
+
+                        <!-- Disabled -->
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                            <Setter Property="Foreground" Value="Gray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:AlkhabeerAccountant"
              xmlns:helpers="clr-namespace:AlkhabeerAccountant.Helpers"
+             xmlns:converters="clr-namespace:AlkhabeerAccountant.Helpers.Converters"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
@@ -19,8 +20,9 @@
                 <ResourceDictionary Source="/Shared/ControlStyle/TextBlock.xaml"/>
                 <ResourceDictionary Source="/Shared/ControlStyle/RadioButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Shared/ControlStyle/SharedStyles.xaml"/>
+                <ResourceDictionary Source="/Shared/ControlStyle/CheckBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
-
+            <converters:RadioTagMatchConverter x:Key="RadioTagMatchConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

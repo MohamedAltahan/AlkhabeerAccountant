@@ -1,52 +1,105 @@
 ﻿<UserControl x:Class="AlkhabeerAccountant.Views.Setting.InventoryCostSettingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cc="clr-namespace:AlkhabeerAccountant.CustomControls.SecondaryWindow"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
              Background="Transparent">
 
-    <Grid FlowDirection="RightToLeft" >
+    <Grid FlowDirection="RightToLeft">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <!-- Content Border -->
-        <Border Grid.Row="0" Style="{StaticResource MainCardBorderStyle}">
+        <!-- 🟦 Main Content -->
+        <Border Grid.Row="0" Style="{StaticResource MainCardBorderStyle}" Padding="25">
             <StackPanel>
+
+                <!-- Description -->
                 <TextBlock Text="هنا يتم تعريف كيفية حساب تكلفة البضاعة عند دخول كميات بأسعار مختلفة لنفس المنتج ويعتمد حساب التقارير والأرباح والخسائر على ذلك."
                            Style="{StaticResource HeaderTextBlock}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,25"/>
 
-                <StackPanel Orientation="Vertical" Margin="20,10,20,0">
-                    <RadioButton GroupName="CostMethod"
-                                 Content="متوسط التكلفة"
-                                 IsChecked="True"
-                                 Style="{StaticResource BlueRadioButtonStyle}"
-                                 Margin="0,5"/>
-                    <RadioButton GroupName="CostMethod"
-                                 Content="آخر سعر شراء"
-                                 Style="{StaticResource BlueRadioButtonStyle}"
-                                 Margin="0,5"/>
-                    <RadioButton GroupName="CostMethod"
-                                 Content="أقل سعر شراء"
-                                 Style="{StaticResource BlueRadioButtonStyle}"
-                                 Margin="0,5"/>
-                    <RadioButton GroupName="CostMethod"
-                                 Content="أعلى سعر شراء"
-                                 Style="{StaticResource BlueRadioButtonStyle}"
-                                 Margin="0,5"/>
-                    <RadioButton GroupName="CostMethod"
-                                 Content="حسب تكلفة كل دفعة كما دخلت (FIFO)"
-                                 Style="{StaticResource BlueRadioButtonStyle}"
-                                 Margin="0,5"/>
+                <!-- 🔹 Cost Method Section -->
+                <StackPanel Orientation="Vertical" Margin="10,0,20,15">
+                    <TextBlock Text="طريقة احتساب التكلفة" 
+                               Style="{StaticResource InputLableTextBlock}"
+                               Margin="0,0,0,10"/>
+                    <StackPanel Orientation="Vertical">
+                        <RadioButton Content="متوسط التكلفة" 
+                                     GroupName="CostMethod"
+                                     Tag="WeightedAverage"
+                                     IsChecked="{Binding CostMethod, Converter={StaticResource RadioTagMatchConverter}, ConverterParameter=WeightedAverage, Mode=TwoWay}"
+                                     Style="{StaticResource BlueRadioButtonStyle}" Margin="0,5"/>
+                        <RadioButton Content="آخر سعر شراء" 
+                                     GroupName="CostMethod"
+                                     Tag="LastPurchase"
+                                     IsChecked="{Binding CostMethod, Converter={StaticResource RadioTagMatchConverter}, ConverterParameter=LastPurchase, Mode=TwoWay}"
+                                     Style="{StaticResource BlueRadioButtonStyle}" Margin="0,5"/>
+                        <RadioButton Content="أقل سعر شراء"
+                                     GroupName="CostMethod"
+                                     Tag="LowestPurchase"
+                                     IsChecked="{Binding CostMethod, Converter={StaticResource RadioTagMatchConverter}, ConverterParameter=LowestPurchase, Mode=TwoWay}"
+                                     Style="{StaticResource BlueRadioButtonStyle}" Margin="0,5"/>
+                        <RadioButton Content="أعلى سعر شراء"
+                                     GroupName="CostMethod"
+                                     Tag="HighestPurchase"
+                                     IsChecked="{Binding CostMethod, Converter={StaticResource RadioTagMatchConverter}, ConverterParameter=HighestPurchase, Mode=TwoWay}"
+                                     Style="{StaticResource BlueRadioButtonStyle}" Margin="0,5"/>
+                        <RadioButton Content="حسب تكلفة كل دفعة كما دخلت (FIFO)"
+                                     GroupName="CostMethod"
+                                     Tag="FIFO"
+                                     IsChecked="{Binding CostMethod, Converter={StaticResource RadioTagMatchConverter}, ConverterParameter=FIFO, Mode=TwoWay}"
+                                     Style="{StaticResource BlueRadioButtonStyle}" Margin="0,5"/>
+                    </StackPanel>
                 </StackPanel>
+                <Separator Margin="0,15" Background="Black" Height="1"/>
+                <!-- 🔹 Other Options -->
+                <Grid Margin="10,10,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Each option row -->
+                    <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,5" FlowDirection="RightToLeft">
+                        <CheckBox IsChecked="{Binding AllowNegativeStock, Mode=TwoWay}"
+                                  Style="{StaticResource RoundedCheckBoxStyle}"
+                                  Content="السماح بالمخزون السالب"
+                                  VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,5" FlowDirection="RightToLeft">
+                        <CheckBox IsChecked="{Binding IncludeFreightInCost, Mode=TwoWay}"
+                                  Style="{StaticResource RoundedCheckBoxStyle}"
+                                  Content="تضمين مصاريف الشحن في التكلفة"
+                                  VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,5" FlowDirection="RightToLeft">
+                        <CheckBox IsChecked="{Binding IncludeTaxInCost, Mode=TwoWay}"
+                                  Style="{StaticResource RoundedCheckBoxStyle}"
+                                  Content="تضمين الضريبة في التكلفة"
+                                  VerticalAlignment="Center"/>
+                    </StackPanel>
+                </Grid>
+
             </StackPanel>
         </Border>
 
-        <!-- Save Button OUTSIDE the border -->
+        <!-- 🟢 Bottom Buttons -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,0">
             <Button Content="حفظ"
-                    Style="{StaticResource SaveButtonStyle}"/>
+                    Command="{Binding SaveCommand}"
+                    Style="{StaticResource SaveButtonStyle}"
+                    Width="150"/>
         </StackPanel>
     </Grid>
 </UserControl>
