@@ -42,6 +42,8 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             await _settingService.UpdateInventorySettingAsync("cost_method", CostMethod);
             await _settingService.UpdateInventorySettingAsync("allow_negative_stock", AllowNegativeStock.ToString());
             await _settingService.UpdateInventorySettingAsync("include_tax_in_cost", IncludeTaxInCost.ToString());
+
+            ToastService.Success();
         }
     }
 }
