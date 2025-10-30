@@ -23,6 +23,17 @@
                 <ResourceDictionary Source="/Shared/ControlStyle/CheckBoxStyle.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <converters:RadioTagMatchConverter x:Key="RadioTagMatchConverter"/>
+            <Image x:Key="SuccessIcon" Source="pack://application:,,,/AlkhabeerAccountant;component/Resources/right.png" />
+
+
+            <!-- ✅ Prevent text style error -->
+            <Style x:Key="NotificationText" TargetType="TextBlock">
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="TextWrapping" Value="Wrap"/>
+                <Setter Property="FontFamily" Value="Segoe UI"/>
+                <Setter Property="FlowDirection" Value="RightToLeft"/>
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

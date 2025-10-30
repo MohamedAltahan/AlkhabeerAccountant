@@ -18,7 +18,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [ObservableProperty] private string companyName;
         [ObservableProperty] private string companyActivity;
         [ObservableProperty] private string companyLogoPath;
-        [ObservableProperty] private BitmapImage companyLogo;
+        [ObservableProperty] private BitmapImage? companyLogo;
         [ObservableProperty] private string companyEmail;
         [ObservableProperty] private string companyPhone;
         [ObservableProperty] private string companyAddress;
@@ -41,7 +41,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         private async Task LoadCompanySettings()
         {
             Flag = false;
-            var settings = await _repository.GetAllAsync("Company");
+            var settings = await _repository.GetAllAsync("company");
 
             CompanyName = settings.FirstOrDefault(s => s.Key == "company_name")?.Value ?? "";
             CompanyActivity = settings.FirstOrDefault(s => s.Key == "company_activity")?.Value ?? "";
@@ -76,21 +76,31 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [RelayCommand]
         private async Task Save()
         {
+            try
+            {
             Flag = false;
 
-            await _repository.SaveOrUpdateAsync("company_name", CompanyName, "string", "Company");
-            await _repository.SaveOrUpdateAsync("company_activity", CompanyActivity, "string", "Company");
-            await _repository.SaveOrUpdateAsync("company_email", CompanyEmail, "string", "Company");
-            await _repository.SaveOrUpdateAsync("company_phone", CompanyPhone, "string", "Company");
-            await _repository.SaveOrUpdateAsync("company_address", CompanyAddress, "string", "Company");
-            await _repository.SaveOrUpdateAsync("company_tax_number", CompanyTaxNumber, "string", "Company");
-            await _repository.SaveOrUpdateAsync("company_commercial_register", CompanyCommercialRegister, "string", "Company");
-            await _repository.SaveOrUpdateAsync("company_website", CompanyWebsite, "string", "Company");
-            await _repository.SaveOrUpdateAsync("invoice_footer_line", InvoiceFooterLine, "string", "Company");
-            await _repository.SaveOrUpdateAsync("invoice_note_text", InvoiceNoteText, "string", "Company");
+            await _repository.SaveOrUpdateAsync("company_name", CompanyName, "string", "company");
+            await _repository.SaveOrUpdateAsync("company_activity", CompanyActivity, "string", "company");
+            await _repository.SaveOrUpdateAsync("company_email", CompanyEmail, "string", "company");
+            await _repository.SaveOrUpdateAsync("company_phone", CompanyPhone, "string", "company");
+            await _repository.SaveOrUpdateAsync("company_address", CompanyAddress, "string", "company");
+            await _repository.SaveOrUpdateAsync("company_tax_number", CompanyTaxNumber, "string", "company");
+            await _repository.SaveOrUpdateAsync("company_commercial_register", CompanyCommercialRegister, "string", "company");
+            await _repository.SaveOrUpdateAsync("company_website", CompanyWebsite, "string", "company");
+            await _repository.SaveOrUpdateAsync("invoice_footer_line", InvoiceFooterLine, "string", "company");
+            await _repository.SaveOrUpdateAsync("invoice_note_text", InvoiceNoteText, "string", "company");
 
-            StatusMessage = "✅ Company settings saved successfully!";
+            ToastService.Success();
+
             Flag = true;
+            }
+            catch
+            {
+                ToastService.Error();
+            }
+
+
         }
 
         [RelayCommand]
@@ -102,7 +112,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             {
                 CompanyLogoPath = path;
                 CompanyLogo = _imageService.LoadImage(path); //  يعرضها فورًا في الواجهة
-                await _repository.SaveOrUpdateAsync("company_logo", path, "string", "Company");
+                await _repository.SaveOrUpdateAsync("company_logo", path, "string", "company");
             }
         }
 

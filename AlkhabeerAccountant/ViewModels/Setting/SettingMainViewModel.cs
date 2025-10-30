@@ -50,7 +50,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             CurrentContent = pageType switch
             {
                 "Company" => new CompanySettingView(),
-                "InventoryCost" => new InventoryCostSettingView(),
+                "InventoryCost" => new InventorySettingView(),
                 "Banks" => new BanksSettingView(),
                 "Treasures" => new TreasurySettingView(),
                 "Users" => new UsersSettingView(),

@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="AlkhabeerAccountant.Views.Setting.InventoryCostSettingView"
+﻿<UserControl x:Class="AlkhabeerAccountant.Views.Setting.InventorySettingView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:cc="clr-namespace:AlkhabeerAccountant.CustomControls.SecondaryWindow"
@@ -31,8 +31,8 @@
                     <StackPanel Orientation="Vertical">
                         <RadioButton Content="متوسط التكلفة" 
                                      GroupName="CostMethod"
-                                     Tag="WeightedAverage"
-                                     IsChecked="{Binding CostMethod, Converter={StaticResource RadioTagMatchConverter}, ConverterParameter=WeightedAverage, Mode=TwoWay}"
+                                     Tag="AVG"
+                                     IsChecked="{Binding CostMethod, Converter={StaticResource RadioTagMatchConverter}, ConverterParameter=AVG, Mode=TwoWay}"
                                      Style="{StaticResource BlueRadioButtonStyle}" Margin="0,5"/>
                         <RadioButton Content="آخر سعر شراء" 
                                      GroupName="CostMethod"
@@ -76,12 +76,6 @@
                                   VerticalAlignment="Center"/>
                     </StackPanel>
 
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,5" FlowDirection="RightToLeft">
-                        <CheckBox IsChecked="{Binding IncludeFreightInCost, Mode=TwoWay}"
-                                  Style="{StaticResource RoundedCheckBoxStyle}"
-                                  Content="تضمين مصاريف الشحن في التكلفة"
-                                  VerticalAlignment="Center"/>
-                    </StackPanel>
 
                     <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0,5" FlowDirection="RightToLeft">
                         <CheckBox IsChecked="{Binding IncludeTaxInCost, Mode=TwoWay}"

@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Alkhabeer.Data;
+using AlkhabeerAccountant.Services;
+using AlkhabeerAccountant.ViewModels.Setting;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,11 +22,14 @@ namespace AlkhabeerAccountant.Views.Setting
     /// <summary>
     /// Interaction logic for Inventory_Cost.xaml
     /// </summary>
-    public partial class InventoryCostSettingView : UserControl
+    public partial class InventorySettingView : UserControl
     {
-        public InventoryCostSettingView()
+        public InventorySettingView()
         {
             InitializeComponent();
+            DataContext = Ioc.Default.GetService<InventorySettingViewModel>();
+
+            //DataContext = new InventorySettingViewModel(new SettingService(new DBContext()));
         }
     }
 }
