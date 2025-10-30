@@ -118,11 +118,9 @@
         </Border>
 
         <!-- 🔹 Save Button -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,20,0,0">
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
             <Button Style="{StaticResource SaveButtonStyle}"
-                    Content="حفظ"
-                    Command="{Binding SaveCommand}"
-                    />
+                    Command="{Binding SaveCommand}"/>
 
         </StackPanel>
 

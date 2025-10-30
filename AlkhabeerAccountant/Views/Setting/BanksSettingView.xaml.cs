@@ -1,4 +1,6 @@
-﻿using System;
+﻿using AlkhabeerAccountant.ViewModels.Setting;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,7 @@ namespace AlkhabeerAccountant.Views.Setting
         public BanksSettingView()
         {
             InitializeComponent();
+            DataContext = Ioc.Default.GetService<BankSettingViewModel>();
         }
     }
 }

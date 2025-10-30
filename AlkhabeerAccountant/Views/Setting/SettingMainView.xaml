@@ -101,7 +101,7 @@
         Background="{StaticResource windowBackgroundBrush}"
         BorderBrush="{StaticResource BorderBrush}"
         BorderThickness="{StaticResource BorderThick-1}"
-        Padding="10"
+        Padding="0"
         Margin="10,0,0,0">
             <ContentControl Content="{Binding CurrentContent}" />
         </Border>

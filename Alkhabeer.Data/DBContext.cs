@@ -16,10 +16,12 @@ namespace Alkhabeer.Data
         public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
         }
+        public DBContext() { }
         // 🔹 Define your DbSets (tables)
         //“I want to create and manage a table in the database for the entity Setting.”
         //In other words, it’s how EF knows which classes in your code should become database tables.
         public DbSet<Setting> Settings { get; set; }
+        public DbSet<Bank> Banks { get; set; }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Set your MySQL connection string

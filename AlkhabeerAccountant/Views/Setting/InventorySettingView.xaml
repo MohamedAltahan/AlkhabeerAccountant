@@ -89,11 +89,9 @@
         </Border>
 
         <!-- 🟢 Bottom Buttons -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,0">
-            <Button Content="حفظ"
-                    Command="{Binding SaveCommand}"
-                    Style="{StaticResource SaveButtonStyle}"
-                    Width="150"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Command="{Binding SaveCommand}"
+                    Style="{StaticResource SaveButtonStyle}"/>
         </StackPanel>
     </Grid>
 </UserControl>

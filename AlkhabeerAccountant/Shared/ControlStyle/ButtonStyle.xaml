@@ -95,9 +95,9 @@
     <!-- Base Icon Button Template -->
     <Style x:Key="BaseRoundedButton" TargetType="Button">
         <!-- Base setters -->
-        <Setter Property="Width" Value="140"/>
-        <Setter Property="Height" Value="45"/>
-        <Setter Property="Margin" Value="10,0"/>
+        <Setter Property="Width" Value="120"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Margin" Value="10,5"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="{StaticResource FontWeight-3}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSize-3}"/>
@@ -184,6 +184,7 @@
         <Setter Property="Background" Value="#2E7D32"/>
         <Setter Property="BorderBrush" Value="#2E7D32"/>
         <Setter Property="Tag" Value="/Resources/right.png"/>
+        <Setter Property="Content" Value="حفظ"/>
     </Style>
 
     <!--  Delete Button -->
@@ -193,6 +194,7 @@
         <Setter Property="Background" Value="#a82828"/>
         <Setter Property="BorderBrush" Value="#a82828"/>
         <Setter Property="Tag" Value="/Resources/delete.png"/>
+        <Setter Property="Content" Value="حذف"/>
     </Style>
 
     <!--  edit Button -->

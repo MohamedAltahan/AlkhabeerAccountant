@@ -1,30 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace AlkhabeerAccountant.CustomControls.SecondaryWindow
 {
-    /// <summary>
-    /// Interaction logic for StatusSelector.xaml
-    /// </summary>
     public partial class StatusSelector : UserControl
     {
         public StatusSelector()
         {
             InitializeComponent();
         }
-        // ✅ Dependency property for IsActive
+
+        // ✅ Main bindable property
         public bool IsActive
         {
             get => (bool)GetValue(IsActiveProperty);
@@ -32,11 +18,14 @@ namespace AlkhabeerAccountant.CustomControls.SecondaryWindow
         }
 
         public static readonly DependencyProperty IsActiveProperty =
-            DependencyProperty.Register(nameof(IsActive), typeof(bool), typeof(StatusSelector),
-                new FrameworkPropertyMetadata(true, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnIsActiveChanged));
+            DependencyProperty.Register(
+                nameof(IsActive),
+                typeof(bool),
+                typeof(StatusSelector),
+                new PropertyMetadata(true, OnIsActiveChanged));
 
-        // Derived property to handle "Inactive" binding
-        public bool IsInactive
+        // Derived property for "غير نشط"
+        public bool Inactive
         {
             get => !IsActive;
             set => IsActive = !value;
@@ -44,8 +33,18 @@ namespace AlkhabeerAccountant.CustomControls.SecondaryWindow
 
         private static void OnIsActiveChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            // Optional: handle changes if you want to react in code-behind later
+            var control = (StatusSelector)d;
+            // This ensures both radios stay in sync
+            control.RaisePropertyChanged(nameof(Inactive));
+        }
+
+        private void RaisePropertyChanged(string propertyName)
+        {
+            var prop = GetType().GetProperty(propertyName);
+            if (prop != null)
+            {
+                SetValue(IsActiveProperty, IsActive);
+            }
         }
     }
 }
-

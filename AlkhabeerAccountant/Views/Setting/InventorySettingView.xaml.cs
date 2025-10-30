@@ -29,7 +29,6 @@ namespace AlkhabeerAccountant.Views.Setting
             InitializeComponent();
             DataContext = Ioc.Default.GetService<InventorySettingViewModel>();
 
-            //DataContext = new InventorySettingViewModel(new SettingService(new DBContext()));
         }
     }
 }
