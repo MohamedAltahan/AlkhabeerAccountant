@@ -22,6 +22,12 @@
     <CornerRadius x:Key="InputCornerRadius">4</CornerRadius>
     <CornerRadius x:Key="MainCardCornerRadius">10</CornerRadius>
     <CornerRadius x:Key="WindowCornerRadius">10</CornerRadius>
-
+    <!-- ✅ Soft Drop Shadow Effect -->
+    <DropShadowEffect x:Key="ShadowEffect"
+                          BlurRadius="20"
+                          ShadowDepth="2"
+                          Direction="270"
+                          Opacity="0.25"
+                          Color="#000000"/>
 
 </ResourceDictionary>

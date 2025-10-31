@@ -15,14 +15,24 @@ namespace Alkhabeer.Core.Validation
 
         protected override ValidationResult? IsValid(object? value, ValidationContext validationContext)
         {
+            //  Skip if nothing entered
             if (value == null)
-                return ValidationResult.Success; // ignore null — RequiredEx will handle emptiness
+                return ValidationResult.Success;
 
-            var strValue = value.ToString();
+            var strValue = value.ToString()?.Trim();
 
-            // ✅ only allow digits 0-9
+            //  Skip if empty or whitespace after trimming
+            if (string.IsNullOrEmpty(strValue))
+                return ValidationResult.Success;
+
+            //  Check digits only (0–9)
             if (!Regex.IsMatch(strValue, @"^\d+$"))
                 return new ValidationResult(ErrorMessage);
+
+            //  Update the property value (remove spaces)
+            var property = validationContext.ObjectType.GetProperty(validationContext.MemberName!);
+            if (property != null && property.CanWrite)
+                property.SetValue(validationContext.ObjectInstance, strValue);
 
             return ValidationResult.Success;
         }

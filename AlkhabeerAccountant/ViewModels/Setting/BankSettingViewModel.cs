@@ -1,6 +1,8 @@
 ﻿using Alkhabeer.Core.Models;
 using Alkhabeer.Core.Validation;
 using Alkhabeer.Data.Repositories;
+using AlkhabeerAccountant.CustomControls.SecondaryWindow;
+using AlkhabeerAccountant.Helpers;
 using AlkhabeerAccountant.Services;
 using AlkhabeerAccountant.ViewModel;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -105,29 +107,23 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                 await _bankRepository.UpdateAsync(SelectedBank);
                 ToastService.Updated();
             }
-            ClearForm();
+            FormResetHelper.Reset(this);
         }
 
         [RelayCommand]
         private async Task DeleteAsync()
         {
             if (SelectedBank == null) return;
+            if (CustomMessageBox.ShowDelete())
+            {
+                await _bankRepository.DeleteAsync(SelectedBank.Id);
+                Banks.Remove(SelectedBank);
+                FormResetHelper.Reset(this);
+                ToastService.Deleted();
+            }
 
-            await _bankRepository.DeleteAsync(SelectedBank.Id);
-            Banks.Remove(SelectedBank);
-            ClearForm();
-            ToastService.Deleted();
         }
-        private void ClearForm()
-        {
-            BankName = string.Empty;
-            AccountName = string.Empty;
-            AccountNumber = string.Empty;
-            Iban = string.Empty;
-            Notes = string.Empty;
-            IsActive = true;
-            SelectedBank = null;
-        }
+
 
         partial void OnSelectedBankChanged(Bank value)
         {

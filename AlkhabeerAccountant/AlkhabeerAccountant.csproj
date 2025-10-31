@@ -26,8 +26,10 @@
     <None Remove="Resources\document.png" />
     <None Remove="Resources\economy.png" />
     <None Remove="Resources\edit.png" />
+    <None Remove="Resources\error.png" />
     <None Remove="Resources\exchange.png" />
     <None Remove="Resources\financial-data.png" />
+    <None Remove="Resources\info.png" />
     <None Remove="Resources\list.png" />
     <None Remove="Resources\low-cost.png" />
     <None Remove="Resources\order.png" />
@@ -50,6 +52,7 @@
     <None Remove="Resources\trial.png" />
     <None Remove="Resources\trolley.png" />
     <None Remove="Resources\tutorial.png" />
+    <None Remove="Resources\warning.png" />
     <None Remove="Resources\youtube.png" />
   </ItemGroup>
 
@@ -137,10 +140,16 @@
     <Resource Include="Resources\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\error.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\exchange.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\financial-data.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\list.png">
@@ -207,6 +216,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\tutorial.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\warning.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\youtube.png">
