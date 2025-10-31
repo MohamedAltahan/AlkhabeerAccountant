@@ -1,4 +1,5 @@
-﻿using Alkhabeer.Core.Models;
+﻿using Alkhabeer.Core.Shared;
+using Alkhabeer.Core.Models;
 using Alkhabeer.Core.Validation;
 using Alkhabeer.Data.Repositories;
 using AlkhabeerAccountant.CustomControls.SecondaryWindow;
@@ -15,17 +16,17 @@ using System.Windows;
 
 namespace AlkhabeerAccountant.ViewModels.Setting
 {
-    public partial class BankSettingViewModel : BaseViewModel
+    public partial class BankSettingViewModel : BasePagedViewModel<Bank>
     {
         private readonly BankRepository _bankRepository;
-
+        public int PageOffset => (CurrentPage - 1) * PageSize;
         public BankSettingViewModel(BankRepository bankRepository)
         {
             _bankRepository = bankRepository;
-            LoadBanksAsync();
+            _ = LoadPageAsync(); // load first paged data
         }
 
-        //  Form fields
+        // ===================== Form Fields =====================
         [ObservableProperty]
         [RequiredEx]
         [MaxLengthEx(50)]
@@ -54,16 +55,19 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [ObservableProperty]
         private bool isActive = true;
 
-        //  Table data
-        [ObservableProperty] private ObservableCollection<Bank> banks = new();
-        [ObservableProperty] private Bank selectedBank;
+        // ===================== Table Data =====================
+        [ObservableProperty]
+        private Bank selectedBank;
 
-        //  Load all banks
-        private async Task LoadBanksAsync()
+        // ===================== Pagination Override =====================
+        protected override async Task<PaginatedResult<Bank>> GetPagedDataAsync(int page, int size)
         {
-            var allBanks = await _bankRepository.GetAllAsync();
-            Banks = new ObservableCollection<Bank>(allBanks);
+            // You can replace this with a filtered version if needed:
+            // return await _bankRepository.GetPagedFilteredAsync(SearchText, page, size);
+            return await _bankRepository.GetPagedAsync(page, size);
         }
+
+        // ===================== Commands =====================
 
         [RelayCommand]
         private async Task SaveAsync()
@@ -72,15 +76,14 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             if (HasErrors)
             {
                 ToastService.Warning(GetErrors(null)
-                                    .Cast<ValidationResult>()
-                                    .FirstOrDefault()?.ErrorMessage);
+                    .Cast<ValidationResult>()
+                    .FirstOrDefault()?.ErrorMessage);
                 return;
-
             }
-
 
             if (SelectedBank == null)
             {
+                // Create new
                 var newBank = new Bank
                 {
                     BankName = BankName,
@@ -91,12 +94,13 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                     IsActive = IsActive
                 };
                 await _bankRepository.AddAsync(newBank);
-                Banks.Add(newBank);
+                CurrentPage = 1;
+                await LoadPageAsync(); // refresh table with pagination
                 ToastService.Added();
             }
             else
             {
-                // Update the existing bank
+                // Update existing
                 SelectedBank.BankName = BankName;
                 SelectedBank.AccountName = AccountName;
                 SelectedBank.AccountNumber = AccountNumber;
@@ -105,8 +109,10 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                 SelectedBank.IsActive = IsActive;
 
                 await _bankRepository.UpdateAsync(SelectedBank);
+                await LoadPageAsync(); // refresh current page
                 ToastService.Updated();
             }
+
             FormResetHelper.Reset(this);
         }
 
@@ -114,30 +120,28 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         private async Task DeleteAsync()
         {
             if (SelectedBank == null) return;
+
             if (CustomMessageBox.ShowDelete())
             {
                 await _bankRepository.DeleteAsync(SelectedBank.Id);
-                Banks.Remove(SelectedBank);
+
+                await LoadPageAsync(); // reload current page
                 FormResetHelper.Reset(this);
                 ToastService.Deleted();
             }
-
         }
 
-
+        // ===================== On Selection =====================
         partial void OnSelectedBankChanged(Bank value)
         {
-            if (value != null)
-            {
-                BankName = value.BankName;
-                AccountName = value.AccountName;
-                AccountNumber = value.AccountNumber;
-                Iban = value.Iban;
-                Notes = value.Notes;
-                IsActive = value.IsActive;
-            }
+            if (value == null) return;
+
+            BankName = value.BankName;
+            AccountName = value.AccountName;
+            AccountNumber = value.AccountNumber;
+            Iban = value.Iban;
+            Notes = value.Notes;
+            IsActive = value.IsActive;
         }
-
-
     }
 }

@@ -20,6 +20,10 @@ namespace AlkhabeerAccountant.Helpers
                     && prop.PropertyType != typeof(string))
                     continue;
 
+                //skip these also
+                if (prop.Name is "PageSize" or "CurrentPage" or "TotalPages")
+                    continue;
+
                 object? defaultValue = prop.PropertyType.IsValueType
                     ? Activator.CreateInstance(prop.PropertyType)
                     : null;

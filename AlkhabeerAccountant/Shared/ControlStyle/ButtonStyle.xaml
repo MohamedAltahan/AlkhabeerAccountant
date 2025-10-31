@@ -97,7 +97,7 @@
         <!-- Base setters -->
         <Setter Property="Width" Value="120"/>
         <Setter Property="Height" Value="40"/>
-        <Setter Property="Margin" Value="10,5"/>
+        <Setter Property="Margin" Value="5"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="FontWeight" Value="{StaticResource FontWeight-3}"/>
         <Setter Property="FontSize" Value="{StaticResource FontSize-3}"/>
@@ -185,6 +185,8 @@
         <Setter Property="BorderBrush" Value="#2E7D32"/>
         <Setter Property="Tag" Value="/Resources/right.png"/>
         <Setter Property="Content" Value="حفظ"/>
+      
+        <!--<Setter Property="Margin" Value="150,0"/>-->
     </Style>
 
     <!--  Delete Button -->
@@ -195,6 +197,7 @@
         <Setter Property="BorderBrush" Value="#a82828"/>
         <Setter Property="Tag" Value="/Resources/delete.png"/>
         <Setter Property="Content" Value="حذف"/>
+       
     </Style>
 
     <!--  edit Button -->
@@ -204,6 +207,7 @@
         <Setter Property="Background" Value="#0D6EFD"/>
         <Setter Property="BorderBrush" Value="#0D6EFD"/>
         <Setter Property="Tag" Value="/Resources/edit.png"/>
+        
     </Style>
 
     <!--  green Button -->
@@ -222,4 +226,26 @@
         <Setter Property="BorderBrush" Value="#a82828"/>
     </Style>
 
+    <!-- next pagination Button -->
+    <Style x:Key="PaginationNextButtonStyle"
+           BasedOn="{StaticResource BaseRoundedButton}"
+           TargetType="Button">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Content" Value="التالي ❯"/>
+    </Style>
+
+    <!-- previous pagination Button -->
+    <Style x:Key="PaginationPrevButtonStyle"
+           BasedOn="{StaticResource BaseRoundedButton}"
+           TargetType="Button">
+        <Setter Property="Background" Value="White"/>
+        <Setter Property="BorderBrush" Value="White"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Height" Value="25"/>
+        <Setter Property="Content" Value="❮ السابق"/>
+    </Style>
+    
 </ResourceDictionary>

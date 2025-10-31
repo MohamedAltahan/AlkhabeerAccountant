@@ -17,6 +17,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- =======================  Bank Form Section ======================== -->
@@ -92,12 +93,13 @@
                 <!-- =======================  DataGrid Section ======================== -->
                 <Border Grid.Row="1" Style="{StaticResource TableBorderStyle}">
                     <DataGrid Grid.Row="1"
-                              ItemsSource="{Binding Banks}"
+                              ItemsSource="{Binding Items}"
                               SelectedItem="{Binding SelectedBank, Mode=TwoWay}"
                               Style="{StaticResource TableStyle}"
                               AutoGenerateColumns="False"
                               CanUserAddRows="False" >
                         <DataGrid.Columns>
+                      
                             <DataGridTextColumn Header="اسم البنك" Binding="{Binding BankName}" Width="*"/>
                             <DataGridTextColumn Header="اسم الحساب" Binding="{Binding AccountName}" Width="*"/>
                             <DataGridTextColumn Header="رقم الحساب" Binding="{Binding AccountNumber}" Width="*"/>
@@ -122,6 +124,20 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
+                
+                <!-- Pagination controls -->
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource PaginationPrevButtonStyle}"
+                    Command="{Binding PreviousPageCommand}"/>
+
+                    <TextBlock Text="{Binding PageInfo}"
+                       VerticalAlignment="Center"
+                       FontWeight="Bold"
+                       Margin="10,0" />
+                    
+                    <Button Style="{StaticResource PaginationNextButtonStyle}"
+                    Command="{Binding NextPageCommand}"/>
+                </StackPanel>
             </Grid>
         </Border>
 
@@ -137,8 +153,7 @@
             <!-- Delete Button -->
             <Button Content="حذف"
                     Command="{Binding DeleteCommand}"
-                    Style="{StaticResource DeleteButtonStyle}"
-                    />
+                    Style="{StaticResource DeleteButtonStyle}"/>
         </StackPanel>
     </Grid>
 </UserControl>

@@ -15,7 +15,7 @@
     <Thickness x:Key="BorderThick-2">2</Thickness>
     <Thickness x:Key="BorderThick-3">3</Thickness>
 
-    <Thickness x:Key="ContentPadding">15</Thickness>
+    <Thickness x:Key="ContentPadding">8</Thickness>
     <Thickness x:Key="ContentMargin">10</Thickness>
     <!--============cornerRadius============-->
     <CornerRadius x:Key="ButtonCornerRadius">6</CornerRadius>

@@ -21,10 +21,13 @@
                 <ResourceDictionary Source="/Shared/ControlStyle/RadioButtonStyle.xaml"/>
                 <ResourceDictionary Source="/Shared/ControlStyle/SharedStyles.xaml"/>
                 <ResourceDictionary Source="/Shared/ControlStyle/CheckBoxStyle.xaml"/>
+
             </ResourceDictionary.MergedDictionaries>
+
             <converters:RadioTagMatchConverter x:Key="RadioTagMatchConverter"/>
             <converters:BoolToStatusConverter  x:Key="BoolToStatusConverter"/>
             <converters:InverseBoolConverter  x:Key="InverseBoolConverter"/>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

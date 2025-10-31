@@ -53,7 +53,7 @@ namespace AlkhabeerAccountant
             services.AddDbContext<DBContext>(options =>
                 options.UseMySql(
                     "server=localhost;database=desktop_pos;user=root;password=;port=3307",
-                    new MySqlServerVersion(new Version(8, 0, 30))));
+                    new MySqlServerVersion(new Version(8, 0, 30))), ServiceLifetime.Transient);
 
             // ✅ Scan current assembly + Data assembly
             var currentAssembly = Assembly.GetExecutingAssembly();
