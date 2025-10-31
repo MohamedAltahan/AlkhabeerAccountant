@@ -41,9 +41,12 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         private string accountNumber;
 
         [ObservableProperty]
+        [MaxLengthEx(25)]
+        [NumbersOnlyEx]
         private string? iban;
 
         [ObservableProperty]
+        [MaxLengthEx(300)]
         private string? notes;
 
         [ObservableProperty]
