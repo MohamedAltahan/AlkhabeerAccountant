@@ -93,13 +93,13 @@
                 <!-- =======================  DataGrid Section ======================== -->
                 <Border Grid.Row="1" Style="{StaticResource TableBorderStyle}">
                     <DataGrid Grid.Row="1"
-                              ItemsSource="{Binding Items}"
-                              SelectedItem="{Binding SelectedBank, Mode=TwoWay}"
-                              Style="{StaticResource TableStyle}"
-                              AutoGenerateColumns="False"
-                              CanUserAddRows="False" >
+          ItemsSource="{Binding Items}"
+          SelectedItem="{Binding SelectedBank, Mode=TwoWay}"
+          Style="{StaticResource TableStyle}"
+          AutoGenerateColumns="False"
+          CanUserAddRows="False"
+          LoadingRow="DataGrid_LoadingRow">
                         <DataGrid.Columns>
-                      
                             <DataGridTextColumn Header="اسم البنك" Binding="{Binding BankName}" Width="*"/>
                             <DataGridTextColumn Header="اسم الحساب" Binding="{Binding AccountName}" Width="*"/>
                             <DataGridTextColumn Header="رقم الحساب" Binding="{Binding AccountNumber}" Width="*"/>
@@ -108,11 +108,9 @@
                                 <DataGridTextColumn.CellStyle>
                                     <Style TargetType="DataGridCell">
                                         <Style.Triggers>
-                                            <!-- Active -->
                                             <DataTrigger Binding="{Binding IsActive}" Value="True">
                                                 <Setter Property="Background" Value="#C9F7C1"/>
                                             </DataTrigger>
-                                            <!-- Inactive -->
                                             <DataTrigger Binding="{Binding IsActive}" Value="False">
                                                 <Setter Property="Background" Value="#F7C1C1"/>
                                             </DataTrigger>
@@ -120,11 +118,10 @@
                                     </Style>
                                 </DataGridTextColumn.CellStyle>
                             </DataGridTextColumn>
-
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
-                
+
                 <!-- Pagination controls -->
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button Style="{StaticResource PaginationPrevButtonStyle}"
@@ -134,7 +131,7 @@
                        VerticalAlignment="Center"
                        FontWeight="Bold"
                        Margin="10,0" />
-                    
+
                     <Button Style="{StaticResource PaginationNextButtonStyle}"
                     Command="{Binding NextPageCommand}"/>
                 </StackPanel>
