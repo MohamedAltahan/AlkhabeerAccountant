@@ -20,6 +20,7 @@
 
     </Style>
 
+
     <!-- ===================  DataGrid Style =================== -->
     <Style x:Key="TableStyle" TargetType="DataGrid">
         <Setter Property="AutoGenerateColumns" Value="False"/>
@@ -40,13 +41,31 @@
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
                     <Setter Property="VerticalContentAlignment" Value="Center"/>
                     <Setter Property="FontWeight" Value="Bold"/>
-
                     <!--<Setter Property="Background" Value="#E5E5E5"/>
-                    <Setter Property="Foreground" Value="Black"/>
-                    <Setter Property="BorderBrush" Value="#CCCCCC"/>
-                    <Setter Property="BorderThickness" Value="0,0,0,1"/>
-                    <Setter Property="Padding" Value="8,4"/>-->
-                    
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="BorderBrush" Value="#CCCCCC"/>
+                <Setter Property="BorderThickness" Value="0,0,0,1"/>
+                <Setter Property="Padding" Value="8,4"/>-->
+                </Style>
+            </Setter.Value>
+        </Setter>
+
+        <!-- ✅ Add Row Style with Hover Effect -->
+        <Setter Property="RowStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <!-- Hover Effect -->
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="#E8F4FD"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                        </Trigger>
+
+                        <!-- Selected Row -->
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Blue"/>
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </Setter.Value>
         </Setter>
