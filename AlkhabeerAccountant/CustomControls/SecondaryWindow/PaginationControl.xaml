@@ -1,0 +1,34 @@
+﻿<UserControl x:Class="AlkhabeerAccountant.CustomControls.SecondaryWindow.PaginationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AlkhabeerAccountant.CustomControls.SecondaryWindow"
+             mc:Ignorable="d" 
+              Background="Transparent" >
+
+    <StackPanel Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+
+        <Button Style="{StaticResource PaginationPrevButtonStyle}"
+                Command="{Binding PreviousPageCommand}"/>
+        
+        <TextBlock Text="{Binding PageInfo}"
+                   VerticalAlignment="Center"
+                   FontWeight="{StaticResource FontWeight-5}"
+                   Margin="10,0"/>
+        
+        <!-- Total Count -->
+        <TextBlock Text="{Binding Items.Count, StringFormat='عدد العناصر: {0}'}"
+                   VerticalAlignment="Center"
+                   FontWeight="{StaticResource FontWeight-2}"
+                   Margin="10,0,10,0" />
+
+
+        <Button Style="{StaticResource PaginationNextButtonStyle}"
+                Command="{Binding NextPageCommand}"
+               />
+    </StackPanel>
+
+</UserControl>

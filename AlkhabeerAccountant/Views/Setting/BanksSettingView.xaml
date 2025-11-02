@@ -104,37 +104,13 @@
                             <DataGridTextColumn Header="اسم الحساب" Binding="{Binding AccountName}" Width="*"/>
                             <DataGridTextColumn Header="رقم الحساب" Binding="{Binding AccountNumber}" Width="*"/>
                             <DataGridTextColumn Header="رقم IBAN" Binding="{Binding Iban}" Width="*"/>
-                            <DataGridTextColumn Header="الحالة" Binding="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}" Width="100">
-                                <DataGridTextColumn.CellStyle>
-                                    <Style TargetType="DataGridCell">
-                                        <Style.Triggers>
-                                            <DataTrigger Binding="{Binding IsActive}" Value="True">
-                                                <Setter Property="Background" Value="#C9F7C1"/>
-                                            </DataTrigger>
-                                            <DataTrigger Binding="{Binding IsActive}" Value="False">
-                                                <Setter Property="Background" Value="#F7C1C1"/>
-                                            </DataTrigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </DataGridTextColumn.CellStyle>
-                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="الحالة" Binding="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}" 
+                                                CellStyle="{StaticResource StatusCellStyle}" Width="70"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
+                <cc:PaginationControl Grid.Row="2" DataContext="{Binding}" />
 
-                <!-- Pagination controls -->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button Style="{StaticResource PaginationPrevButtonStyle}"
-                    Command="{Binding PreviousPageCommand}"/>
-
-                    <TextBlock Text="{Binding PageInfo}"
-                       VerticalAlignment="Center"
-                       FontWeight="Bold"
-                       Margin="10,0" />
-
-                    <Button Style="{StaticResource PaginationNextButtonStyle}"
-                    Command="{Binding NextPageCommand}"/>
-                </StackPanel>
             </Grid>
         </Border>
 

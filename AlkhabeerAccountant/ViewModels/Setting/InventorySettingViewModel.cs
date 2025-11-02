@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace AlkhabeerAccountant.ViewModels.Setting
 {
-    public partial class InventorySettingViewModel : ObservableObject
+    public partial class InventorySettingViewModel : BaseViewModel
     {
         private readonly SettingService _settingService;
 

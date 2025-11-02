@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Alkhabeer.core\Alkhabeer.Core.csproj" />
+    <ProjectReference Include="..\Alkhabeer.Data\Alkhabeer.Data.csproj" />
+  </ItemGroup>
+
 </Project>

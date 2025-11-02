@@ -1,30 +1,38 @@
-﻿using System;
+﻿using Alkhabeer.Data.Repositories;
+using AlkhabeerAccountant.Services;
+using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.Generic;
-using System.ComponentModel;
+using System.Collections.ObjectModel;
+using System.ComponentModel.DataAnnotations;
+using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AlkhabeerAccountant.ViewModel
+namespace AlkhabeerAccountant.ViewModels
 {
-    public class BaseViewModel : INotifyPropertyChanged
+    public partial class BaseViewModel : ObservableValidator
     {
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged([CallerMemberName] string propertyName = null!)
+        protected bool ValidateFormWithToast()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            ValidateAllProperties();
+
+            if (HasErrors)
+            {
+                var firstError = GetErrors(null)
+                    .Cast<ValidationResult>()
+                    .FirstOrDefault()?.ErrorMessage;
+
+                if (!string.IsNullOrWhiteSpace(firstError))
+                    ToastService.Warning(firstError);
+
+                return false; // فيه أخطاء
+            }
+            return true; // سليم
         }
 
-        protected bool SetProperty<T>(ref T field, T value, [CallerMemberName] string propertyName = null!)
-        {
-            if (Equals(field, value))
-                return false;
 
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
     }
 }

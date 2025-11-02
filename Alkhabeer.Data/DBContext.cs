@@ -16,12 +16,18 @@ namespace Alkhabeer.Data
         public DBContext(DbContextOptions<DBContext> options) : base(options)
         {
         }
+        //second constructor for design time services like migrations(no dependency injection)
         public DBContext() { }
         // 🔹 Define your DbSets (tables)
         //“I want to create and manage a table in the database for the entity Setting.”
         //In other words, it’s how EF knows which classes in your code should become database tables.
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Bank> Banks { get; set; }
+        public DbSet<User> Users => Set<User>();
+        public DbSet<Role> Roles => Set<Role>();
+        public DbSet<Permission> Permissions => Set<Permission>();
+        public DbSet<UserRole> UserRoles => Set<UserRole>();
+        public DbSet<RolePermission> RolePermissions => Set<RolePermission>();
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             // Set your MySQL connection string

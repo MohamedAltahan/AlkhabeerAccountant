@@ -1,6 +1,7 @@
 ﻿using Alkhabeer.Data;
 using Alkhabeer.Data.Repositories;
 using Alkhabeer.Data.Seeders;
+using Alkhabeer.Service.Banks;
 using AlkhabeerAccountant.Services;
 using AlkhabeerAccountant.ViewModels.Setting;
 using CommunityToolkit.Mvvm.DependencyInjection;
@@ -58,8 +59,9 @@ namespace AlkhabeerAccountant
             // ✅ Scan current assembly + Data assembly
             var currentAssembly = Assembly.GetExecutingAssembly();
             var dataAssembly = typeof(SettingRepository).Assembly;
+            var serviceAssembly = typeof(BankService).Assembly;
 
-            var allAssemblies = new[] { currentAssembly, dataAssembly };
+            var allAssemblies = new[] { currentAssembly, dataAssembly, serviceAssembly };
 
             //scan all assemlies in the solution
             foreach (var assembly in allAssemblies)

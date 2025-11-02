@@ -1,51 +1,43 @@
-﻿using Alkhabeer.Core.Shared;
-using Alkhabeer.Core.Models;
+﻿using Alkhabeer.Core.Models;
+using Alkhabeer.Core.Shared;
 using Alkhabeer.Core.Validation;
-using Alkhabeer.Data.Repositories;
+using Alkhabeer.Service.Banks;
 using AlkhabeerAccountant.CustomControls.SecondaryWindow;
 using AlkhabeerAccountant.Helpers;
 using AlkhabeerAccountant.Services;
-using AlkhabeerAccountant.ViewModel;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
-using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace AlkhabeerAccountant.ViewModels.Setting
 {
     public partial class BankSettingViewModel : BasePagedViewModel<Bank>
     {
-        private readonly BankRepository _bankRepository;
+        private readonly BankService _bankService;
         public int PageOffset => (CurrentPage - 1) * PageSize;
-        public BankSettingViewModel(BankRepository bankRepository)
+
+        public BankSettingViewModel(BankService bankService) : base(bankService)
         {
-            _bankRepository = bankRepository;
-            _ = LoadPageAsync(); // load first paged data
+            _bankService = bankService;
+            _ = LoadPageAsync();
         }
 
         // ===================== Form Fields =====================
         [ObservableProperty]
-        [RequiredEx]
-        [MaxLengthEx(50)]
+        [RequiredEx, MaxLengthEx(50)]
         private string bankName;
 
         [ObservableProperty]
-        [RequiredEx]
-        [MaxLengthEx(50)]
+        [RequiredEx, MaxLengthEx(50)]
         private string accountName;
 
         [ObservableProperty]
-        [RequiredEx]
-        [MaxLengthEx(25)]
-        [NumbersOnlyEx]
+        [RequiredEx, MaxLengthEx(25), NumbersOnlyEx]
         private string accountNumber;
 
         [ObservableProperty]
-        [MaxLengthEx(25)]
-        [NumbersOnlyEx]
+        [MaxLengthEx(25), NumbersOnlyEx]
         private string? iban;
 
         [ObservableProperty]
@@ -59,61 +51,40 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [ObservableProperty]
         private Bank selectedBank;
 
-        // ===================== Pagination Override =====================
+        // ===================== Pagination =====================
         protected override async Task<PaginatedResult<Bank>> GetPagedDataAsync(int page, int size)
         {
-            // You can replace this with a filtered version if needed:
-            // return await _bankRepository.GetPagedFilteredAsync(SearchText, page, size);
-            return await _bankRepository.GetPagedAsync(page, size);
+            return await _bankService.GetPagedAsync(page, size);
         }
 
         // ===================== Commands =====================
-
         [RelayCommand]
         private async Task SaveAsync()
         {
-            ValidateAllProperties();
-            if (HasErrors)
-            {
-                ToastService.Warning(GetErrors(null)
-                    .Cast<ValidationResult>()
-                    .FirstOrDefault()?.ErrorMessage);
+            if (!ValidateFormWithToast())
                 return;
-            }
 
-            if (SelectedBank == null)
+            var entity = SelectedBank ?? new Bank();
+            entity.BankName = BankName;
+            entity.AccountName = AccountName;
+            entity.AccountNumber = AccountNumber;
+            entity.Iban = Iban;
+            entity.Notes = Notes;
+            entity.IsActive = IsActive;
+
+            var result = await _bankService.SaveAsync(entity);
+
+            if (result.IsSuccess)
             {
-                // Create new
-                var newBank = new Bank
-                {
-                    BankName = BankName,
-                    AccountName = AccountName,
-                    AccountNumber = AccountNumber,
-                    Iban = Iban,
-                    Notes = Notes,
-                    IsActive = IsActive
-                };
-                await _bankRepository.AddAsync(newBank);
-                CurrentPage = 1;
-                await LoadPageAsync(); // refresh table with pagination
                 ToastService.Added();
+                CurrentPage = 1;
+                await LoadPageAsync();
+                FormResetHelper.Reset(this);
             }
             else
             {
-                // Update existing
-                SelectedBank.BankName = BankName;
-                SelectedBank.AccountName = AccountName;
-                SelectedBank.AccountNumber = AccountNumber;
-                SelectedBank.Iban = Iban;
-                SelectedBank.Notes = Notes;
-                SelectedBank.IsActive = IsActive;
-
-                await _bankRepository.UpdateAsync(SelectedBank);
-                await LoadPageAsync(); // refresh current page
-                ToastService.Updated();
+                ToastService.Warning(result.ErrorMessage);
             }
-
-            FormResetHelper.Reset(this);
         }
 
         [RelayCommand]
@@ -123,11 +94,18 @@ namespace AlkhabeerAccountant.ViewModels.Setting
 
             if (CustomMessageBox.ShowDelete())
             {
-                await _bankRepository.DeleteAsync(SelectedBank.Id);
+                var result = await _bankService.DeleteAsync(SelectedBank.Id);
 
-                await LoadPageAsync(); // reload current page
-                FormResetHelper.Reset(this);
-                ToastService.Deleted();
+                if (result.IsSuccess)
+                {
+                    await LoadPageAsync();
+                    ToastService.Deleted();
+                    FormResetHelper.Reset(this);
+                }
+                else
+                {
+                    ToastService.Warning(result.ErrorMessage);
+                }
             }
         }
 
@@ -135,7 +113,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         partial void OnSelectedBankChanged(Bank value)
         {
             if (value == null) return;
-
+            //if (SelectedBank == null) return;
             BankName = value.BankName;
             AccountName = value.AccountName;
             AccountNumber = value.AccountNumber;

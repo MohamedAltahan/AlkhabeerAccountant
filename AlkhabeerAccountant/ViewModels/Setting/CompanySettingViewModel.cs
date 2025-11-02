@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace AlkhabeerAccountant.ViewModels.Setting
 {
-    public partial class CompanySettingViewModel : ObservableObject
+    public partial class CompanySettingViewModel : BaseViewModel
     {
         private readonly SettingRepository _repository;
         private readonly ImageService _imageService;
@@ -78,22 +78,22 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         {
             try
             {
-            Flag = false;
+                Flag = false;
 
-            await _repository.SaveOrUpdateAsync("company_name", CompanyName, "string", "company");
-            await _repository.SaveOrUpdateAsync("company_activity", CompanyActivity, "string", "company");
-            await _repository.SaveOrUpdateAsync("company_email", CompanyEmail, "string", "company");
-            await _repository.SaveOrUpdateAsync("company_phone", CompanyPhone, "string", "company");
-            await _repository.SaveOrUpdateAsync("company_address", CompanyAddress, "string", "company");
-            await _repository.SaveOrUpdateAsync("company_tax_number", CompanyTaxNumber, "string", "company");
-            await _repository.SaveOrUpdateAsync("company_commercial_register", CompanyCommercialRegister, "string", "company");
-            await _repository.SaveOrUpdateAsync("company_website", CompanyWebsite, "string", "company");
-            await _repository.SaveOrUpdateAsync("invoice_footer_line", InvoiceFooterLine, "string", "company");
-            await _repository.SaveOrUpdateAsync("invoice_note_text", InvoiceNoteText, "string", "company");
+                await _repository.SaveOrUpdateAsync("company_name", CompanyName, "string", "company");
+                await _repository.SaveOrUpdateAsync("company_activity", CompanyActivity, "string", "company");
+                await _repository.SaveOrUpdateAsync("company_email", CompanyEmail, "string", "company");
+                await _repository.SaveOrUpdateAsync("company_phone", CompanyPhone, "string", "company");
+                await _repository.SaveOrUpdateAsync("company_address", CompanyAddress, "string", "company");
+                await _repository.SaveOrUpdateAsync("company_tax_number", CompanyTaxNumber, "string", "company");
+                await _repository.SaveOrUpdateAsync("company_commercial_register", CompanyCommercialRegister, "string", "company");
+                await _repository.SaveOrUpdateAsync("company_website", CompanyWebsite, "string", "company");
+                await _repository.SaveOrUpdateAsync("invoice_footer_line", InvoiceFooterLine, "string", "company");
+                await _repository.SaveOrUpdateAsync("invoice_note_text", InvoiceNoteText, "string", "company");
 
-            ToastService.Success();
+                ToastService.Success();
 
-            Flag = true;
+                Flag = true;
             }
             catch
             {

@@ -9,10 +9,11 @@ namespace Alkhabeer.Data.Seeders
         private const string VersionKey = "app_Version";
         private const string VersionGroup = "system";
 
+        //run all seeders if app version changed
         public static void Seed(DBContext context)
         {
             //  Get current app version (from assembly)
-            var currentVersion = "1.0.3";
+            var currentVersion = "1.0.4";
 
             //  Get last seeded version from Settings
             var versionSetting = context.Settings
@@ -58,6 +59,8 @@ namespace Alkhabeer.Data.Seeders
         {
             //  Add your specific seeders here
             InventorySettingSeeder.Seed(context);
+            RolePermissionSeeder.Seed(context);
+            UserSeeder.Seed(context);
         }
     }
 }

@@ -1,35 +1,19 @@
 ﻿using AlkhabeerAccountant.Helpers;
 using AlkhabeerAccountant.Views.Setting;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
 namespace AlkhabeerAccountant.ViewModels.Setting
 {
-    public class SettingMainViewModel : INotifyPropertyChanged
+    public partial class SettingMainViewModel : BaseViewModel
     {
-        private object _currentContent;
-        private string _activePage;
+        [ObservableProperty]
+        private object currentContent;
+        [ObservableProperty]
+        private string activePage;
 
-        public object CurrentContent
-        {
-            get => _currentContent;
-            set
-            {
-                _currentContent = value;
-                OnPropertyChanged();
-            }
-        }
-
-        public string ActivePage
-        {
-            get => _activePage;
-            set
-            {
-                _activePage = value;
-                OnPropertyChanged();
-            }
-        }
 
         public ICommand NavigateCommand { get; }
 

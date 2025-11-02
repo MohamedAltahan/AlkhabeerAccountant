@@ -27,6 +27,7 @@
             <converters:RadioTagMatchConverter x:Key="RadioTagMatchConverter"/>
             <converters:BoolToStatusConverter  x:Key="BoolToStatusConverter"/>
             <converters:InverseBoolConverter  x:Key="InverseBoolConverter"/>
+            <converters:BoolToVisibilityConverter  x:Key="BoolToVisibilityConverter"/>
 
         </ResourceDictionary>
     </Application.Resources>

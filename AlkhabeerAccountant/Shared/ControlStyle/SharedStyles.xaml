@@ -70,4 +70,19 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- ===================== Active / Inactive Cell Style ===================== -->
+    <Style x:Key="StatusCellStyle" TargetType="DataGridCell">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsActive}" Value="True">
+                <Setter Property="Background" Value="#C9F7C1"/>
+                <!-- Light Green -->
+            </DataTrigger>
+            <DataTrigger Binding="{Binding IsActive}" Value="False">
+                <Setter Property="Background" Value="#F7C1C1"/>
+                <!-- Light Red -->
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
 </ResourceDictionary>
