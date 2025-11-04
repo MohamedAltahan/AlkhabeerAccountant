@@ -9,10 +9,7 @@ namespace AlkhabeerAccountant.Helpers
 {
     public static class DataGridRowNumberHelper
     {
-        /// <summary>
-        /// Sets the row header with correct serial number based on pagination.
-        /// Works for any DataGrid whose DataContext inherits from BasePagedViewModel.
-        /// </summary>
+        //get row number for any table
         public static void HandleLoadingRow(object sender, DataGridRowEventArgs e)
         {
             if (sender is not DataGrid grid) return;
@@ -23,9 +20,6 @@ namespace AlkhabeerAccountant.Helpers
         }
     }
 
-    /// <summary>
-    /// Small interface for pagination props so helper doesn’t need to depend on generic BasePagedViewModel&lt;T&gt;.
-    /// </summary>
     public interface IBasePagedViewModel
     {
         int CurrentPage { get; }

@@ -1,5 +1,7 @@
 ﻿using Alkhabeer.Core.Shared;
 using Alkhabeer.Data.Repositories;
+using System.Diagnostics;
+
 
 namespace Alkhabeer.Service.Base
 {
@@ -34,6 +36,7 @@ namespace Alkhabeer.Service.Base
             }
             catch (Exception ex)
             {
+                Debug.WriteLine(ex.ToString());
                 return Result<T>.Failure($"خطأ أثناء التحديث: {ex.Message}");
             }
         }
@@ -45,29 +48,22 @@ namespace Alkhabeer.Service.Base
                 await _repository.DeleteAsync(id);
                 return Result.Success();
             }
-            catch (Exception ex)
+            catch
             {
-                return Result.Failure($"خطأ أثناء الحذف: {ex.Message}");
+                return Result.Failure();
             }
         }
 
-        public virtual async Task<PaginatedResult<T>> GetPagedAsync(int page, int size)
+        public virtual async Task<PaginatedResult<T>> GetPagedAsync(int pageNumber, int pageSize)
         {
             try
             {
-                // The repository already returns a PaginatedResult<T>
-                var result = await _repository.GetPagedAsync(page, size);
+                var result = await _repository.GetPagedAsync(pageNumber, pageSize);
                 return result;
             }
-            catch (Exception ex)
+            catch
             {
-                // In case of error, return an empty paginated result with an error message
-                return new PaginatedResult<T>(
-                    data: new List<T>(),
-                    totalCount: 0,
-                    pageNumber: 0,
-                    pageSize: size
-                );
+                return new PaginatedResult<T>(new List<T>(), 0, 0, pageSize, "حدث خطأ ما");
             }
         }
 

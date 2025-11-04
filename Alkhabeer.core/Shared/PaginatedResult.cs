@@ -13,13 +13,14 @@ namespace Alkhabeer.Core.Shared
         public int PageNumber { get; set; }
         public int PageSize { get; set; }
         public int TotalPages => (int)System.Math.Ceiling((double)TotalCount / PageSize);
-
-        public PaginatedResult(List<T> data, int totalCount, int pageNumber, int pageSize)
+        public string? ErrorMessage { get; set; }
+        public PaginatedResult(List<T> data, int totalCount, int pageNumber, int pageSize, string? errorMessage = null)
         {
             Data = data;
             TotalCount = totalCount;
             PageNumber = pageNumber;
             PageSize = pageSize;
+            ErrorMessage = errorMessage;
         }
     }
 

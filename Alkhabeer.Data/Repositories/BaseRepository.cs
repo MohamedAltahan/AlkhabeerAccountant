@@ -17,34 +17,40 @@ namespace Alkhabeer.Data.Repositories
         {
             _context = context;
         }
-
-        // Get all (no tracking for performance)
         public virtual async Task<List<T>> GetAllAsync()
         {
             return await Table.AsNoTracking().ToListAsync();
         }
-
-        //  Get by ID (works for numeric keys)
         public virtual async Task<T?> GetByIdAsync(int id)
         {
-            return await Table.FindAsync(id);
+            return await Table
+                .AsNoTracking()
+                .FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
         }
-
-        //  Add
         public virtual async Task AddAsync(T entity)
         {
             await Table.AddAsync(entity);
             await _context.SaveChangesAsync();
         }
-
-        //  Update
         public virtual async Task UpdateAsync(T entity)
         {
-            Table.Update(entity);
+            // Find tracked entity with the same Id and detach it
+            var keyProperty = typeof(T).GetProperty("Id");
+            if (keyProperty != null)
+            {
+                var entityId = keyProperty.GetValue(entity);
+                var local = _context.Set<T>()
+                    .Local
+                    .FirstOrDefault(e => keyProperty.GetValue(e).Equals(entityId));
+
+                if (local != null)
+                    _context.Entry(local).State = EntityState.Detached;
+            }
+
+            _context.Update(entity);
             await _context.SaveChangesAsync();
         }
 
-        //  Delete by entity
         public virtual async Task DeleteAsync(T entity)
         {
             Table.Remove(entity);
@@ -64,14 +70,11 @@ namespace Alkhabeer.Data.Repositories
         //  Pagination
         public virtual async Task<PaginatedResult<T>> GetPagedAsync(int pageNumber, int pageSize)
         {
-            if (pageSize <= 0)
-                pageSize = 10;
 
             var query = Table.AsNoTracking()
                 .OrderByDescending(e => EF.Property<int>(e, "Id"));
 
             int total = await query.CountAsync();
-
 
             var data = await query
                 .Skip((pageNumber - 1) * pageSize)

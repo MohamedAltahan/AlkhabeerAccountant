@@ -8,6 +8,7 @@ using AlkhabeerAccountant.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace AlkhabeerAccountant.ViewModels.Setting
@@ -47,9 +48,6 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [ObservableProperty]
         private bool isActive = true;
 
-        // ===================== Table Data =====================
-        [ObservableProperty]
-        private Bank selectedBank;
 
         // ===================== Pagination =====================
         protected override async Task<PaginatedResult<Bank>> GetPagedDataAsync(int page, int size)
@@ -64,7 +62,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             if (!ValidateFormWithToast())
                 return;
 
-            var entity = SelectedBank ?? new Bank();
+            var entity = SelectedItem ?? new Bank();
             entity.BankName = BankName;
             entity.AccountName = AccountName;
             entity.AccountNumber = AccountNumber;
@@ -90,11 +88,11 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [RelayCommand]
         private async Task DeleteAsync()
         {
-            if (SelectedBank == null) return;
+            if (SelectedItem == null) return;
 
             if (CustomMessageBox.ShowDelete())
             {
-                var result = await _bankService.DeleteAsync(SelectedBank.Id);
+                var result = await _bankService.DeleteAsync(SelectedItem.Id);
 
                 if (result.IsSuccess)
                 {
@@ -109,17 +107,16 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             }
         }
 
-        // ===================== On Selection =====================
-        partial void OnSelectedBankChanged(Bank value)
-        {
-            if (value == null) return;
-            //if (SelectedBank == null) return;
-            BankName = value.BankName;
-            AccountName = value.AccountName;
-            AccountNumber = value.AccountNumber;
-            Iban = value.Iban;
-            Notes = value.Notes;
-            IsActive = value.IsActive;
-        }
+        //// ===================== On Selection =====================
+        //protected override void OnSelectedItemChanged(Bank value)
+        //{
+        //    if (value == null) return;
+        //    BankName = value.BankName;
+        //    AccountName = value.AccountName;
+        //    AccountNumber = value.AccountNumber;
+        //    Iban = value.Iban;
+        //    Notes = value.Notes;
+        //    IsActive = value.IsActive;
+        //}
     }
 }

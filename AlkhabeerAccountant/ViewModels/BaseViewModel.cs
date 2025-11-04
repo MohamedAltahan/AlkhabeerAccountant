@@ -15,6 +15,8 @@ namespace AlkhabeerAccountant.ViewModels
 {
     public partial class BaseViewModel : ObservableValidator
     {
+
+        //validate inputs and return show toaster
         protected bool ValidateFormWithToast()
         {
             ValidateAllProperties();

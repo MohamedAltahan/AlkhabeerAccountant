@@ -16,34 +16,71 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel, IBasePagedV
     [ObservableProperty] private int totalPages;
     [ObservableProperty] private ObservableCollection<T> items = new();
 
-    // ✅ Use service layer instead of repository
-    protected BaseService<T> _service;
+    //========automate bind selected item form the table to inputs
+    [ObservableProperty] private T? selectedItem;
+    //private T _selectedItem;
+    //public T SelectedItem
+    //{
+    //    get => _selectedItem;
+    //    set
+    //    {
+    //        if (!EqualityComparer<T>.Default.Equals(_selectedItem, value))
+    //        {
+    //            SetProperty(ref _selectedItem, value);
+    //            OnSelectedItemChanged(value);
+    //        }
+    //    }
+    //}
 
+    partial void OnSelectedItemChanged(T value)
+    {
+        if (value == null) return;
+
+        // Copy any matching property names (case-insensitive)
+        var entityProps = typeof(T).GetProperties();
+        var vmProps = GetType().GetProperties();
+
+        foreach (var prop in entityProps)
+        {
+            var target = vmProps.FirstOrDefault(p =>
+                string.Equals(p.Name, prop.Name, StringComparison.OrdinalIgnoreCase) &&
+                p.CanWrite && p.PropertyType == prop.PropertyType);
+
+            if (target != null)
+            {
+                var val = prop.GetValue(value);
+                target.SetValue(this, val);
+            }
+        }
+    }
+
+    // Use service layer instead of repository
+    protected BaseService<T> _service;
     public int TotalCount => Items?.Count ?? 0;
     public string PageInfo => $"صفحة {CurrentPage} من {TotalPages}";
-
-    // ✅ By default, use service.GetPagedAsync
-    protected virtual async Task<PaginatedResult<T>> GetPagedDataAsync(int page, int size)
-    {
-        return await _service.GetPagedAsync(page, size);
-    }
 
     protected BasePagedViewModel(BaseService<T> service)
     {
         _service = service;
     }
 
-    // ================= Pagination =================
+
+    // ================= Pagination section=================
     [RelayCommand]
     public async Task LoadPageAsync()
     {
         var result = await GetPagedDataAsync(CurrentPage, PageSize);
 
-
         Items = new ObservableCollection<T>(result.Data);
         TotalPages = result.TotalPages;
         OnPropertyChanged(nameof(PageInfo));
     }
+
+    protected virtual async Task<PaginatedResult<T>> GetPagedDataAsync(int pageNumber, int pageSize)
+    {
+        return await _service.GetPagedAsync(pageNumber, pageSize);
+    }
+
 
     [RelayCommand]
     public async Task NextPageAsync()
@@ -65,15 +102,14 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel, IBasePagedV
         }
     }
 
-    // ================= Generic CRUD Support =================
-    [ObservableProperty]
-    private T? selectedItem;
+    // ================= Generic T CRUD section =================
 
     protected virtual async Task AddAsync(T entity)
     {
         var result = await _service.AddAsync(entity);
+
         if (result.IsSuccess)
-            ToastService.Success("تمت الإضافة بنجاح");
+            ToastService.Success();
         else
             ToastService.Warning(result.ErrorMessage);
     }
@@ -81,19 +117,21 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel, IBasePagedV
     protected virtual async Task UpdateAsync(T entity)
     {
         var result = await _service.UpdateAsync(entity);
-        if (result.IsSuccess)
-            ToastService.Updated("تم التحديث بنجاح");
-        else
-            ToastService.Warning(result.ErrorMessage);
-    }
 
+        if (result.IsSuccess)
+            ToastService.Updated();
+        else
+            ToastService.Error(result.ErrorMessage);
+    }
 
     public virtual async Task DeleteAsync(int entity)
     {
         var result = await _service.DeleteAsync(entity);
+
         if (result.IsSuccess)
-            ToastService.Deleted("تم الحذف بنجاح");
+            ToastService.Deleted();
         else
-            ToastService.Warning(result.ErrorMessage);
+            ToastService.Error();
     }
+
 }

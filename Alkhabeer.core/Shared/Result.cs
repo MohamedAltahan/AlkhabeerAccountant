@@ -12,20 +12,20 @@
         }
 
         public static Result Success() => new(true);
-        public static Result Failure(string message) => new(false, message);
+        public static Result Failure(string message = "حدث حطأ ما") => new(false, message);
     }
 
+    // when it has return value
     public class Result<T> : Result
     {
         public T? Value { get; }
 
-        private Result(bool success, T? value, string? message = null)
-            : base(success, message)
+        private Result(bool success, T? value, string? message = null) : base(success, message)
         {
             Value = value;
         }
 
         public static Result<T> Success(T value) => new(true, value);
-        public static new Result<T> Failure(string message) => new(false, default, message);
+        public static new Result<T> Failure(string message = "حدث حطأ ما") => new(false, default, message);
     }
 }

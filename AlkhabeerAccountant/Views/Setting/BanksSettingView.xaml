@@ -94,7 +94,7 @@
                 <Border Grid.Row="1" Style="{StaticResource TableBorderStyle}">
                     <DataGrid Grid.Row="1"
           ItemsSource="{Binding Items}"
-          SelectedItem="{Binding SelectedBank, Mode=TwoWay}"
+          SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
           Style="{StaticResource TableStyle}"
           AutoGenerateColumns="False"
           CanUserAddRows="False"
