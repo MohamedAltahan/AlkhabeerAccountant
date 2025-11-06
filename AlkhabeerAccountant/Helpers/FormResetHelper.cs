@@ -21,7 +21,7 @@ namespace AlkhabeerAccountant.Helpers
                     continue;
 
                 //skip these also
-                if (prop.Name is "PageSize" or "CurrentPage" or "TotalPages")
+                if (prop.Name is "PageSize" or "CurrentPage" or "TotalPages" or "TotalCount")
                     continue;
 
                 object? defaultValue = prop.PropertyType.IsValueType

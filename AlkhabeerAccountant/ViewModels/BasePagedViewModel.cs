@@ -53,7 +53,6 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel<T>, IBasePag
         Items = new ObservableCollection<T>(result.Data);
         TotalPages = result.TotalPages;
         TotalCount = result.TotalCount;
-        Debug.WriteLine(TotalCount);
         OnPropertyChanged(nameof(PageInfo));
     }
 
@@ -76,8 +75,8 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel<T>, IBasePag
         {
             ToastService.Added();
             CurrentPage = 1;
+            //FormResetHelper.Reset(this);
             await LoadPageAsync();
-            FormResetHelper.Reset(this);
         }
         else
         {
@@ -85,43 +84,43 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel<T>, IBasePag
         }
     }
 
-    //[RelayCommand]
-    //public virtual async Task DeleteAsync()
-    //{
-    //    if (SelectedItem == null)
-    //        return;
+    [RelayCommand]
+    public virtual async Task DeleteAsync()
+    {
+        if (SelectedItem == null)
+            return;
 
-    //    if (!CustomMessageBox.ShowDelete())
-    //        return;
+        if (!CustomMessageBox.ShowDelete())
+            return;
 
-    //    // Use reflection or BaseEntity pattern to get Id
-    //    var idProperty = typeof(T).GetProperty("Id");
-    //    if (idProperty == null)
-    //    {
-    //        ToastService.Error("لا يمكن حذف هذا السجل لأنه لا يحتوي على خاصية Id");
-    //        return;
-    //    }
+        // Use reflection or BaseEntity pattern to get Id
+        var idProperty = typeof(T).GetProperty("Id");
+        if (idProperty == null)
+        {
+            ToastService.Error("لا يمكن حذف هذا السجل لأنه لا يحتوي على خاصية Id");
+            return;
+        }
 
-    //    var idValue = idProperty.GetValue(SelectedItem);
-    //    if (idValue is not int id)
-    //    {
-    //        ToastService.Error("فشل حذف السجل: رقم المعرف غير صالح");
-    //        return;
-    //    }
+        var idValue = idProperty.GetValue(SelectedItem);
+        if (idValue is not int id)
+        {
+            ToastService.Error("فشل حذف السجل: رقم المعرف غير صالح");
+            return;
+        }
 
-    //    var result = await _service.DeleteAsync(id);
+        var result = await _service.DeleteAsync(id);
 
-    //    if (result.IsSuccess)
-    //    {
-    //        await LoadPageAsync();
-    //        ToastService.Deleted();
-    //        FormResetHelper.Reset(this);
-    //    }
-    //    else
-    //    {
-    //        ToastService.Error(result.ErrorMessage);
-    //    }
-    //}
+        if (result.IsSuccess)
+        {
+            await LoadPageAsync();
+            ToastService.Deleted();
+            FormResetHelper.Reset(this);
+        }
+        else
+        {
+            ToastService.Error(result.ErrorMessage);
+        }
+    }
 
 
 

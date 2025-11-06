@@ -47,15 +47,6 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [ObservableProperty]
         private bool isActive = true;
 
-
-        // ===================== Pagination =====================
-        //protected override async Task<PaginatedResult<Bank>> GetPagedDataAsync(int page, int size)
-        //{
-        //    return await _bankService.GetPagedAsync(page, size);
-        //}
-
-        // ===================== Commands =====================
-
         protected override Bank MapEntityFromView()
         {
             var entity = SelectedItem ?? new Bank();
@@ -68,38 +59,6 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             return entity;
         }
 
-        [RelayCommand]
-        private async Task DeleteAsync()
-        {
-            if (SelectedItem == null) return;
 
-            if (CustomMessageBox.ShowDelete())
-            {
-                var result = await _bankService.DeleteAsync(SelectedItem.Id);
-
-                if (result.IsSuccess)
-                {
-                    await LoadPageAsync();
-                    ToastService.Deleted();
-                    FormResetHelper.Reset(this);
-                }
-                else
-                {
-                    ToastService.Error(result.ErrorMessage);
-                }
-            }
-        }
-
-        //// ===================== On Selection =====================
-        //protected override void OnSelectedItemChanged(Bank value)
-        //{
-        //    if (value == null) return;
-        //    BankName = value.BankName;
-        //    AccountName = value.AccountName;
-        //    AccountNumber = value.AccountNumber;
-        //    Iban = value.Iban;
-        //    Notes = value.Notes;
-        //    IsActive = value.IsActive;
-        //}
     }
 }
