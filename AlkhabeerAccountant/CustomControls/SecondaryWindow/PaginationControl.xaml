@@ -13,14 +13,14 @@
 
         <Button Style="{StaticResource PaginationPrevButtonStyle}"
                 Command="{Binding PreviousPageCommand}"/>
-        
+
         <TextBlock Text="{Binding PageInfo}"
                    VerticalAlignment="Center"
                    FontWeight="{StaticResource FontWeight-5}"
                    Margin="10,0"/>
-        
+
         <!-- Total Count -->
-        <TextBlock Text="{Binding Items.Count, StringFormat='عدد العناصر: {0}'}"
+        <TextBlock Text="{Binding TotalCount, StringFormat='عدد العناصر: {0}'}"
                    VerticalAlignment="Center"
                    FontWeight="{StaticResource FontWeight-2}"
                    Margin="10,0,10,0" />

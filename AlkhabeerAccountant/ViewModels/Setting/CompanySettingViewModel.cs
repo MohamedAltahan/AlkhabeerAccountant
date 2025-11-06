@@ -10,7 +10,7 @@ using System.Windows.Media.Imaging;
 
 namespace AlkhabeerAccountant.ViewModels.Setting
 {
-    public partial class CompanySettingViewModel : BaseViewModel
+    public partial class CompanySettingViewModel : BaseViewModel<object>
     {
         private readonly SettingRepository _repository;
         private readonly ImageService _imageService;

@@ -1,7 +1,7 @@
 ﻿using Alkhabeer.Data;
 using Alkhabeer.Data.Repositories;
 using Alkhabeer.Data.Seeders;
-using Alkhabeer.Service.Banks;
+using Alkhabeer.Service;
 using AlkhabeerAccountant.Services;
 using AlkhabeerAccountant.ViewModels.Setting;
 using CommunityToolkit.Mvvm.DependencyInjection;

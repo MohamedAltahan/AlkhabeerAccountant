@@ -1,7 +1,7 @@
 ﻿using Alkhabeer.Core.Models;
 using Alkhabeer.Core.Shared;
 using Alkhabeer.Core.Validation;
-using Alkhabeer.Service.Banks;
+using Alkhabeer.Service;
 using AlkhabeerAccountant.CustomControls.SecondaryWindow;
 using AlkhabeerAccountant.Helpers;
 using AlkhabeerAccountant.Services;
@@ -16,7 +16,6 @@ namespace AlkhabeerAccountant.ViewModels.Setting
     public partial class BankSettingViewModel : BasePagedViewModel<Bank>
     {
         private readonly BankService _bankService;
-        public int PageOffset => (CurrentPage - 1) * PageSize;
 
         public BankSettingViewModel(BankService bankService) : base(bankService)
         {
@@ -50,18 +49,15 @@ namespace AlkhabeerAccountant.ViewModels.Setting
 
 
         // ===================== Pagination =====================
-        protected override async Task<PaginatedResult<Bank>> GetPagedDataAsync(int page, int size)
-        {
-            return await _bankService.GetPagedAsync(page, size);
-        }
+        //protected override async Task<PaginatedResult<Bank>> GetPagedDataAsync(int page, int size)
+        //{
+        //    return await _bankService.GetPagedAsync(page, size);
+        //}
 
         // ===================== Commands =====================
-        [RelayCommand]
-        private async Task SaveAsync()
-        {
-            if (!ValidateFormWithToast())
-                return;
 
+        protected override Bank MapEntityFromView()
+        {
             var entity = SelectedItem ?? new Bank();
             entity.BankName = BankName;
             entity.AccountName = AccountName;
@@ -69,20 +65,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             entity.Iban = Iban;
             entity.Notes = Notes;
             entity.IsActive = IsActive;
-
-            var result = await _bankService.SaveAsync(entity);
-
-            if (result.IsSuccess)
-            {
-                ToastService.Added();
-                CurrentPage = 1;
-                await LoadPageAsync();
-                FormResetHelper.Reset(this);
-            }
-            else
-            {
-                ToastService.Warning(result.ErrorMessage);
-            }
+            return entity;
         }
 
         [RelayCommand]
@@ -102,7 +85,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                 }
                 else
                 {
-                    ToastService.Warning(result.ErrorMessage);
+                    ToastService.Error(result.ErrorMessage);
                 }
             }
         }

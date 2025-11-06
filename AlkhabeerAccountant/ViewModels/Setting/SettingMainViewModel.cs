@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace AlkhabeerAccountant.ViewModels.Setting
 {
-    public partial class SettingMainViewModel : BaseViewModel
+    public partial class SettingMainViewModel : BaseViewModel<object>
     {
         [ObservableProperty]
         private object currentContent;
@@ -37,7 +37,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                 "InventoryCost" => new InventorySettingView(),
                 "Banks" => new BanksSettingView(),
                 "Treasures" => new TreasurySettingView(),
-                "Users" => new UsersSettingView(),
+                //"Users" => new UsersSettingView(),
                 "Roles" => new RolesSettingView(),
                 "PaymentMethods" => new PaymentMethodsSettingView(),
                 "Currency" => new CurrencySettingView(),

@@ -93,12 +93,12 @@
                 <!-- =======================  DataGrid Section ======================== -->
                 <Border Grid.Row="1" Style="{StaticResource TableBorderStyle}">
                     <DataGrid Grid.Row="1"
-          ItemsSource="{Binding Items}"
-          SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
-          Style="{StaticResource TableStyle}"
-          AutoGenerateColumns="False"
-          CanUserAddRows="False"
-          LoadingRow="DataGrid_LoadingRow">
+                              ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                              Style="{StaticResource TableStyle}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              LoadingRow="DataGrid_LoadingRow">
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="اسم البنك" Binding="{Binding BankName}" Width="*"/>
                             <DataGridTextColumn Header="اسم الحساب" Binding="{Binding AccountName}" Width="*"/>
@@ -120,7 +120,7 @@
                     HorizontalAlignment="Center">
             <!-- Save Button -->
             <Button Content="حفظ"
-                    Command="{Binding SaveCommand}"
+                    Command="{Binding SaveOrUpdateCommand}"
                     Style="{StaticResource SaveButtonStyle}"/>
 
             <!-- Delete Button -->

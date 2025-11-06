@@ -48,9 +48,26 @@ namespace Alkhabeer.Service.Base
                 await _repository.DeleteAsync(id);
                 return Result.Success();
             }
+            catch (Exception ex)
+            {
+                {
+                    Debug.WriteLine(ex.ToString());
+                    return Result.Failure(ex.ToString());
+                }
+            }
+        }
+
+        public virtual async Task<Result<List<T>>> GetAllAsync()
+        {
+            try
+            {
+                var result = await _repository.GetAllAsync();
+
+                return Result<List<T>>.Success(result);
+            }
             catch
             {
-                return Result.Failure();
+                return Result<List<T>>.Failure();
             }
         }
 
@@ -66,6 +83,30 @@ namespace Alkhabeer.Service.Base
                 return new PaginatedResult<T>(new List<T>(), 0, 0, pageSize, "حدث خطأ ما");
             }
         }
+
+        public virtual async Task<Result<T>> SaveOrUpdateAsync(T entity)
+        {
+            try
+            {
+                // Use reflection to read the "Id" property of the entity
+                var idProperty = typeof(T).GetProperty("Id");
+
+                var idValue = idProperty.GetValue(entity);
+
+                // Handle both int and long IDs safely
+                bool isNew = idValue == null || (idValue is int intId && intId == 0);
+
+                if (isNew)
+                    return await AddAsync(entity);
+                else
+                    return await UpdateAsync(entity);
+            }
+            catch
+            {
+                return Result<T>.Failure();
+            }
+        }
+
 
     }
 }

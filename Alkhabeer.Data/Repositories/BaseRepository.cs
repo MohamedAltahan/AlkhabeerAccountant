@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,6 @@ namespace Alkhabeer.Data.Repositories
         public virtual async Task<T?> GetByIdAsync(int id)
         {
             return await Table
-                .AsNoTracking()
                 .FirstOrDefaultAsync(e => EF.Property<int>(e, "Id") == id);
         }
         public virtual async Task AddAsync(T entity)
@@ -67,27 +67,27 @@ namespace Alkhabeer.Data.Repositories
             }
         }
 
-        //  Pagination
+        //  ==========================Pagination=========================
         public virtual async Task<PaginatedResult<T>> GetPagedAsync(int pageNumber, int pageSize)
         {
-
             var query = Table.AsNoTracking()
                 .OrderByDescending(e => EF.Property<int>(e, "Id"));
 
-            int total = await query.CountAsync();
+            int totalCount = await query.CountAsync();
 
             var data = await query
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
                 .ToListAsync();
 
-            return new PaginatedResult<T>(data, total, pageNumber, pageSize);
+            return new PaginatedResult<T>(data, totalCount, pageNumber, pageSize);
         }
 
         //pagination wiht filter(inject query)
         public async Task<PaginatedResult<T>> GetPagedAsync(IQueryable<T> query, int pageNumber, int pageSize)
         {
             int total = await query.CountAsync();
+
             var data = await query
                 .Skip((pageNumber - 1) * pageSize)
                 .Take(pageSize)
