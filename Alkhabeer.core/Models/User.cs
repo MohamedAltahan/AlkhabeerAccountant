@@ -15,8 +15,8 @@ namespace Alkhabeer.Core.Models
         [Required, MaxLength(50)]
         public string FullName { get; set; } = string.Empty;
 
-        [Required, MaxLength(200)]
-        public string PasswordHash { get; set; } = string.Empty;
+        [MaxLength(200)]
+        public string? PasswordHash { get; set; }
 
         [MaxLength(150)]
         public string? Email { get; set; }
@@ -28,11 +28,12 @@ namespace Alkhabeer.Core.Models
 
         public bool IsAdmin { get; set; } = false;
 
-        public DateTime CreatedAt
-        { get; set; } = DateTime.Now;
+        public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
         // Navigation
         public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+        public string RoleNames => string.Join("، ", UserRoles.Select(ur => ur.Role.Name));
+
     }
 }
