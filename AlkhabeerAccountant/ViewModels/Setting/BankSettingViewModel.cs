@@ -15,33 +15,27 @@ namespace AlkhabeerAccountant.ViewModels.Setting
 {
     public partial class BankSettingViewModel : BasePagedViewModel<Bank>
     {
-        private readonly BankService _bankService;
-
         public BankSettingViewModel(BankService bankService) : base(bankService)
         {
-            _bankService = bankService;
             _ = LoadPageAsync();
         }
 
         // ===================== Form Fields =====================
-        [ObservableProperty]
-        [RequiredEx, MaxLengthEx(50)]
+
+        [ObservableProperty, RequiredEx, MaxLengthEx(50)]
         private string bankName;
 
-        [ObservableProperty]
-        [RequiredEx, MaxLengthEx(50)]
+
+        [ObservableProperty, RequiredEx, MaxLengthEx(50)]
         private string accountName;
 
-        [ObservableProperty]
-        [RequiredEx, MaxLengthEx(25), NumbersOnlyEx]
+        [ObservableProperty, RequiredEx, MaxLengthEx(25), NumbersOnlyEx]
         private string accountNumber;
 
-        [ObservableProperty]
-        [MaxLengthEx(25), NumbersOnlyEx]
+        [ObservableProperty, MaxLengthEx(25), NumbersOnlyEx]
         private string? iban;
 
-        [ObservableProperty]
-        [MaxLengthEx(300)]
+        [ObservableProperty, MaxLengthEx(300)]
         private string? notes;
 
         [ObservableProperty]

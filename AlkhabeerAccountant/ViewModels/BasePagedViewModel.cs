@@ -45,7 +45,6 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel<T>, IBasePag
     }
 
     // ================= Pagination section=================
-    [RelayCommand]
     public async Task LoadPageAsync()
     {
         var result = await GetPagedDataAsync(CurrentPage, PageSize);
@@ -63,7 +62,6 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel<T>, IBasePag
 
     protected abstract T MapEntityFromView();
 
-    [RelayCommand]
     protected virtual async Task SaveOrUpdateAsync()
     {
         if (!ValidateForm()) return;
@@ -75,7 +73,7 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel<T>, IBasePag
         {
             ToastService.Added();
             CurrentPage = 1;
-            //FormResetHelper.Reset(this);
+            FormResetHelper.Reset(this);
             await LoadPageAsync();
         }
         else
@@ -84,7 +82,6 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel<T>, IBasePag
         }
     }
 
-    [RelayCommand]
     public virtual async Task DeleteAsync()
     {
         if (SelectedItem == null)

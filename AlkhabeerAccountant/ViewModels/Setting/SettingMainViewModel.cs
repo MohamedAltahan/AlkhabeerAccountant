@@ -37,7 +37,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                 "InventoryCost" => new InventorySettingView(),
                 "Banks" => new BanksSettingView(),
                 "Treasures" => new TreasurySettingView(),
-                //"Users" => new UsersSettingView(),
+                "Users" => new UserSettingView(),
                 "Roles" => new RolesSettingView(),
                 "PaymentMethods" => new PaymentMethodsSettingView(),
                 "Currency" => new CurrencySettingView(),
