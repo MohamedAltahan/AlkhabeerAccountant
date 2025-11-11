@@ -33,12 +33,6 @@ namespace AlkhabeerAccountant.Views.Setting
         {
             DataGridRowNumberHelper.HandleLoadingRow(sender, e);
         }
-        private void RolesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (DataContext is UserSettingViewModel vm)
-            {
-                vm.SelectedRoleIds = RolesListBox.SelectedItems.Cast<Role>().ToList();
-            }
-        }
+
     }
 }

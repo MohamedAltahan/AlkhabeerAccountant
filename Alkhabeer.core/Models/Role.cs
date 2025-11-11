@@ -20,7 +20,8 @@ namespace Alkhabeer.Core.Models
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime UpdatedAt { get; set; } = DateTime.Now;
 
-        public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
+        // Navigation
         public ICollection<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
+        public ICollection<User> Users { get; set; } = new List<User>();
     }
 }

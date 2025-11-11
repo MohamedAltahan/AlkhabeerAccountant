@@ -4,7 +4,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:cc="clr-namespace:AlkhabeerAccountant.CustomControls.SecondaryWindow"
-             xmlns:helpers="clr-namespace:AlkhabeerAccountant.Helpers"
              mc:Ignorable="d"
              FlowDirection="RightToLeft"
              d:DesignHeight="650" d:DesignWidth="900">
@@ -24,11 +23,10 @@
                     <!-- Form -->
                     <RowDefinition Height="*"/>
                     <!-- Table -->
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- =================== User Form =================== -->
-                <Grid Grid.Row="0" Margin="0,10,0,10">
+                <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="220"/>
                         <ColumnDefinition Width="*"/>
@@ -43,59 +41,46 @@
                     </Grid.RowDefinitions>
 
                     <!-- 🧑‍💼 الاسم الكامل -->
-                    <TextBlock Grid.Row="0" Grid.Column="0" 
-                               Text="الاسم الكامل"
-                               Style="{StaticResource InputLableTextBlock}" 
-                               VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" 
-                             x:Name="FullName"
-                             Text="{Binding FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="الاسم الكامل"
+                               Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="FullName"
+                             Text="{Binding FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
-                    <cc:PlaceholderText Grid.Row="0" Grid.Column="1"
-                                        Placeholder="مثل : محمد مسعد الطحان"
-                                        TargetTextBox="{Binding ElementName=FullName}"/>
+                    <cc:PlaceholderText Grid.Row="0" Grid.Column="1"  Placeholder="مثل : محمد مسعد الطحان"
+                        TargetTextBox="{Binding ElementName=FullName}"/>
 
                     <!-- 👤 اسم المستخدم -->
-                    <TextBlock Grid.Row="1" Grid.Column="0"
-                               Text="اسم المستخدم"
-                               Style="{StaticResource InputLableTextBlock}" 
-                               VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" 
-                             x:Name="Username"
+                    <TextBlock  Text="اسم المستخدم"   Grid.Row="1" Grid.Column="0"
+                               Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <TextBox  Grid.Row="1" Grid.Column="1" x:Name="Username"
                              Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
-                    <cc:PlaceholderText Grid.Row="1" Grid.Column="1"
-                                        Placeholder="يستخدم فى تسجيل الدخول للنظام. مثل : moh_tahan او محمد"
-                                        TargetTextBox="{Binding ElementName=Username}"/>
+                    <cc:PlaceholderText Grid.Row="1" Grid.Column="1" 
+                                        Placeholder="يستحدم فى تسجيل الدخول للنظام. مثل : moh_tahan او محمد"
+                        TargetTextBox="{Binding ElementName=Username}"/>
 
                     <!-- 🔑 الرقم السري -->
-                    <TextBlock Grid.Row="2" Grid.Column="0"
-                               Text="الرقم السري"
-                               Style="{StaticResource InputLableTextBlock}"
-                               VerticalAlignment="Center"/>
-
-                    <TextBox Grid.Row="2" Grid.Column="1"
-                             x:Name="PasswordHash"
-                             Text="{Binding PasswordHash, Mode=OneWayToSource, UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
-
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="الرقم السري"
+                               Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <TextBox     Grid.Row="2" Grid.Column="1" x:Name="password"
+                                 Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Style="{StaticResource RoundedTextInputStyle}"/>
                     <cc:PlaceholderText Grid.Row="2" Grid.Column="1"
-                    Placeholder="مثل : 123 أو يمكن أن يكون بدون رقم سري"
-                    TargetTextBox="{Binding ElementName=PasswordHash}"/>
+                                        Placeholder="مثل : 123 او يمكن ان يكون بدون رقم سري"
+                        TargetTextBox="{Binding ElementName=password}"/>
 
-                    <!-- ⚙️ الصلاحية -->
-                    <TextBlock Grid.Row="3" Grid.Column="0"
-                               Text="الصلاحية"
-                               Style="{StaticResource InputLableTextBlock}" 
-                               VerticalAlignment="Center"/>
-                    <ListBox x:Name="RolesListBox"
-         ItemsSource="{Binding Roles}"
-         DisplayMemberPath="Name"
-         SelectionMode="Multiple"
-         SelectionChanged="RolesListBox_SelectionChanged" />
+                    <!-- ⚙️ الصلاحية (ComboBox) -->
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="الصلاحية"
+                               Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <ComboBox Grid.Row="3" Grid.Column="1"
+                              ItemsSource="{Binding Roles}"
+                              SelectedValuePath="Id"
+                              DisplayMemberPath="Name"
+                              SelectedValue="{Binding RoleId, Mode=TwoWay}"
+                              Style="{StaticResource RoundedComboBoxStyle}" Margin="5"/>
 
-                    <!-- ✅ الحالة -->
-                    <cc:StatusSelector Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2"
+                    <!-- الحالة -->
+                    <cc:StatusSelector Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
                                        IsActive="{Binding IsActive, Mode=TwoWay}" />
                 </Grid>
 
@@ -104,14 +89,14 @@
                     <DataGrid ItemsSource="{Binding Items}"
                               SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                               AutoGenerateColumns="False"
-                              Style="{StaticResource TableStyle}"
-                              LoadingRow="DataGrid_LoadingRow">
+                              Style="{StaticResource TableStyle}">
                         <DataGrid.Columns>
+                            <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="50"/>
                             <DataGridTextColumn Header="اسم المستخدم" Binding="{Binding Username}" Width="*"/>
                             <DataGridTextColumn Header="الاسم الكامل" Binding="{Binding FullName}" Width="2*"/>
-                            <DataGridTextColumn Header="الصلاحية" Binding="{Binding RoleNames}" Width="1.5*"/>
-                            <DataGridTextColumn Header="الحالة" Binding="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}"
-                                                CellStyle="{StaticResource StatusCellStyle}" Width="70"/>
+                            <DataGridTextColumn Header="الصلاحية" Binding="{Binding Role.Name}" Width="1.5*"/>
+                            <DataGridTextColumn Header="الحالة" Binding="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}" 
+                                               CellStyle="{StaticResource StatusCellStyle}" Width="70"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -119,13 +104,10 @@
         </Border>
 
         <!-- =================== Bottom Buttons =================== -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,10,0,10">
-            <Button Content="حفظ"
-                    Command="{Binding SaveOrUpdateCommand}"
-                    Style="{StaticResource SaveButtonStyle}" Margin="5"/>
-            <Button Content="حذف"
-                    Command="{Binding DeleteCommand}"
-                    Style="{StaticResource DeleteButtonStyle}" Margin="5"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,15">
+            <Button Content="حفظ" Command="{Binding SaveCommand}" Style="{StaticResource SaveButtonStyle}" Margin="5"/>
+            <Button Content="حذف" Command="{Binding DeleteCommand}" Style="{StaticResource DeleteButtonStyle}" Margin="5"/>
+            <Button Content="جديد" Command="{Binding ClearFormCommand}" Style="{StaticResource EditButtonStyle}" Margin="5"/>
         </StackPanel>
     </Grid>
 </UserControl>

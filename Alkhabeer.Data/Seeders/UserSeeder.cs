@@ -36,12 +36,6 @@ namespace Alkhabeer.Data.Seeders
                 context.Users.Add(desiredAdmin);
                 context.SaveChanges();
 
-                // Link to Admin role
-                context.UserRoles.Add(new UserRole
-                {
-                    UserId = desiredAdmin.Id,
-                    RoleId = adminRole.Id
-                });
             }
             else
             {
@@ -81,16 +75,6 @@ namespace Alkhabeer.Data.Seeders
                 if (updated)
                     context.Users.Update(existing);
 
-                // Ensure link to Admin role exists
-                var hasAdmin = context.UserRoles.Any(ur => ur.UserId == existing.Id && ur.RoleId == adminRole.Id);
-                if (!hasAdmin)
-                {
-                    context.UserRoles.Add(new UserRole
-                    {
-                        UserId = existing.Id,
-                        RoleId = adminRole.Id
-                    });
-                }
             }
 
             // Save all once

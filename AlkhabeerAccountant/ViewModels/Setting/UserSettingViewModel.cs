@@ -7,6 +7,7 @@ using AlkhabeerAccountant.Helpers;
 using AlkhabeerAccountant.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using System;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
@@ -30,12 +31,12 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         private string passwordHash = string.Empty;
         [ObservableProperty]
         private bool isActive = true;
-
+        // Selected role form combobox
+        [ObservableProperty]
+        private int roleId;
         // All roles loaded from backend
         [ObservableProperty] private ObservableCollection<Role> roles = new();
 
-        // Selected role form combobox
-        [ObservableProperty] private ObservableCollection<Role> selectedRoleIds = new();
 
         public UserSettingViewModel(UserService userService) : base(userService)
         {
@@ -56,7 +57,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                 Roles = new ObservableCollection<Role>(rolesResult.Value!);
         }
 
-        // ================== Save or Update ==================
+        //// ================== Save or Update ==================
         [RelayCommand]
         protected async override Task SaveOrUpdateAsync()
         {
@@ -68,7 +69,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
                 entity.PasswordHash = HashHelper.HashPassword(PasswordHash);
 
 
-            var result = await _userService.SaveOrUpdateAsync(entity, SelectedRoleId);
+            var result = await _userService.SaveOrUpdateAsync(entity);
 
             if (result.IsSuccess)
             {
@@ -92,7 +93,9 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             entity.Phone = Phone;
             entity.IsActive = IsActive;
             entity.PasswordHash = PasswordHash;
+            entity.RoleId = RoleId;
             return entity;
         }
+
     }
 }

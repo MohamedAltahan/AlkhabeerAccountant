@@ -22,6 +22,7 @@ namespace Alkhabeer.Services
 
         public async Task<Result<List<User>>> GetAllWithRolesAsync()
         {
+
             var users = await _userRepo.GetAllWithRolesAsync();
             return Result<List<User>>.Success(users);
         }
@@ -38,20 +39,7 @@ namespace Alkhabeer.Services
             return Result<List<Role>>.Success(roles);
         }
 
-        // Save or Update user (with roles)
-        public async Task<Result> SaveOrUpdateAsync(User user, IEnumerable<int>? roleIds)
-        {
-            if (user.Id == 0)
-            {
-                await _userRepo.AddWithRolesAsync(user, roleIds);
-                return Result.Success();
-            }
-            else
-            {
-                await _userRepo.UpdateWithRolesAsync(user, roleIds);
-                return Result.Success();
-            }
-        }
+
 
         // ✅ Delete user
         public async Task<Result> DeleteAsync(int id)
@@ -61,17 +49,17 @@ namespace Alkhabeer.Services
         }
 
         // ✅ Assign roles manually
-        public async Task<Result> AssignRolesAsync(int userId, IEnumerable<int> roleIds)
-        {
-            await _userRepo.AssignRolesAsync(userId, roleIds);
-            return Result.Success();
-        }
+        //public async Task<Result> AssignRolesAsync(int userId, IEnumerable<int> roleIds)
+        //{
+        //    await _userRepo.AssignRolesAsync(userId, roleIds);
+        //    return Result.Success();
+        //}
 
         // ✅ Get roles for specific user
-        public async Task<Result<List<Role>>> GetUserRolesAsync(int userId)
-        {
-            var roles = await _userRepo.GetRolesForUserAsync(userId);
-            return Result<List<Role>>.Success(roles);
-        }
+        //public async Task<Result<List<Role>>> GetUserRolesAsync(int userId)
+        //{
+        //    var roles = await _userRepo.GetRolesForUserAsync(userId);
+        //    return Result<List<Role>>.Success(roles);
+        //}
     }
 }

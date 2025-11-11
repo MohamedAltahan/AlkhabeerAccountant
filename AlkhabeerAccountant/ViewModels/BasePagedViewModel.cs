@@ -1,4 +1,5 @@
-﻿using Alkhabeer.Core.Shared;
+﻿using Alkhabeer.Core.Models;
+using Alkhabeer.Core.Shared;
 using Alkhabeer.Service.Base;
 using AlkhabeerAccountant.CustomControls.SecondaryWindow;
 using AlkhabeerAccountant.Helpers;
@@ -42,8 +43,13 @@ public abstract partial class BasePagedViewModel<T> : BaseViewModel<T>, IBasePag
                 target.SetValue(this, val);
             }
         }
+
+        // ✅ Manual mapping for special cases
+        // call subclass hook
+        AfterEntitySelected(value);
     }
 
+    protected virtual void AfterEntitySelected(T entity) { }
     // ================= Pagination section=================
     public async Task LoadPageAsync()
     {

@@ -9,9 +9,7 @@ namespace Alkhabeer.Data.Repositories
 {
     public class UserRepository : BaseRepository<User>
     {
-        public UserRepository(DBContext context) : base(context)
-        {
-        }
+        public UserRepository(DBContext context) : base(context) { }
 
         // ============= Custom Queries =============
 
@@ -19,8 +17,7 @@ namespace Alkhabeer.Data.Repositories
         public async Task<List<User>> GetAllWithRolesAsync()
         {
             return await Table
-                .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role)
+                .Include(u => u.Role)
                 .AsNoTracking()
                 .OrderByDescending(u => u.Id)
                 .ToListAsync();
@@ -30,21 +27,14 @@ namespace Alkhabeer.Data.Repositories
         public async Task<User?> GetByIdWithRolesAsync(int id)
         {
             return await Table
-                .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role)
+                .Include(u => u.Role)
                 .FirstOrDefaultAsync(u => u.Id == id);
         }
 
         // Add new user with roles
         public async Task AddWithRolesAsync(User user, IEnumerable<int>? roleIds = null)
         {
-            if (roleIds != null)
-            {
-                user.UserRoles = roleIds.Select(rid => new UserRole
-                {
-                    RoleId = rid
-                }).ToList();
-            }
+
 
             await Table.AddAsync(user);
             await _context.SaveChangesAsync();
@@ -54,7 +44,7 @@ namespace Alkhabeer.Data.Repositories
         public async Task UpdateWithRolesAsync(User user, IEnumerable<int>? roleIds = null)
         {
             var existing = await Table
-                .Include(u => u.UserRoles)
+                .Include(u => u.Role)
                 .FirstOrDefaultAsync(u => u.Id == user.Id);
 
             if (existing == null)
@@ -71,22 +61,6 @@ namespace Alkhabeer.Data.Repositories
             if (!string.IsNullOrEmpty(user.PasswordHash))
                 existing.PasswordHash = user.PasswordHash;
 
-            // Reassign roles if passed
-            if (roleIds != null)
-            {
-                var oldRoles = _context.Set<UserRole>().Where(ur => ur.UserId == user.Id);
-                _context.Set<UserRole>().RemoveRange(oldRoles);
-
-                foreach (var rid in roleIds)
-                {
-                    _context.Set<UserRole>().Add(new UserRole
-                    {
-                        UserId = user.Id,
-                        RoleId = rid
-                    });
-                }
-            }
-
             Table.Update(existing);
             await _context.SaveChangesAsync();
         }
@@ -102,40 +76,29 @@ namespace Alkhabeer.Data.Repositories
             await _context.SaveChangesAsync();
         }
 
-        // Get roles for a specific user
-        public async Task<List<Role>> GetRolesForUserAsync(int userId)
-        {
-            return await _context.Set<UserRole>()
-                .Where(ur => ur.UserId == userId)
-                .Include(ur => ur.Role)
-                .Select(ur => ur.Role)
-                .ToListAsync();
-        }
 
         // Assign specific roles to user (replaces all existing)
-        public async Task AssignRolesAsync(int userId, IEnumerable<int> roleIds)
-        {
-            var existing = _context.Set<UserRole>().Where(ur => ur.UserId == userId);
-            _context.Set<UserRole>().RemoveRange(existing);
+        //public async Task AssignRolesAsync(int userId, IEnumerable<int> roleIds)
+        //{
+        //    var existing = _context.Set<UserRole>().Where(ur => ur.UserId == userId);
+        //    _context.Set<UserRole>().RemoveRange(existing);
 
-            foreach (var rid in roleIds)
-            {
-                _context.Set<UserRole>().Add(new UserRole
-                {
-                    UserId = userId,
-                    RoleId = rid
-                });
-            }
+        //    foreach (var rid in roleIds)
+        //    {
+        //        _context.Set<UserRole>().Add(new UserRole
+        //        {
+        //            UserId = userId,
+        //            RoleId = rid
+        //        });
+        //    }
 
-            await _context.SaveChangesAsync();
-        }
+        //    await _context.SaveChangesAsync();
+        //}
 
         // Get paginated users with roles
         public async Task<PaginatedResult<User>> GetPagedWithRolesAsync(int page, int pageSize)
         {
             var query = Table
-                .Include(u => u.UserRoles)
-                .ThenInclude(ur => ur.Role)
                 .AsNoTracking()
                 .OrderByDescending(u => u.Id);
 

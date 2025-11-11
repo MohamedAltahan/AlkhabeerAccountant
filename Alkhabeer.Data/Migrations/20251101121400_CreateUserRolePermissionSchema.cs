@@ -101,40 +101,12 @@ namespace Alkhabeer.Data.Migrations
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
-            migrationBuilder.CreateTable(
-                name: "user_roles",
-                columns: table => new
-                {
-                    user_id = table.Column<int>(type: "int", nullable: false),
-                    role_id = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("p_k_user_roles", x => new { x.user_id, x.role_id });
-                    table.ForeignKey(
-                        name: "f_k_user_roles_roles_role_id",
-                        column: x => x.role_id,
-                        principalTable: "roles",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "f_k_user_roles_users_user_id",
-                        column: x => x.user_id,
-                        principalTable: "users",
-                        principalColumn: "id",
-                        onDelete: ReferentialAction.Cascade);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
-
             migrationBuilder.CreateIndex(
                 name: "i_x_role_permissions_permission_id",
                 table: "role_permissions",
                 column: "permission_id");
 
-            migrationBuilder.CreateIndex(
-                name: "i_x_user_roles_role_id",
-                table: "user_roles",
-                column: "role_id");
+
         }
 
         /// <inheritdoc />
@@ -142,9 +114,6 @@ namespace Alkhabeer.Data.Migrations
         {
             migrationBuilder.DropTable(
                 name: "role_permissions");
-
-            migrationBuilder.DropTable(
-                name: "user_roles");
 
             migrationBuilder.DropTable(
                 name: "permissions");

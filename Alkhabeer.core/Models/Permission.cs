@@ -14,6 +14,7 @@ namespace Alkhabeer.Core.Models
         [MaxLength(200)]
         public string? DisplayName { get; set; }          // e.g. "حذف الخزنة"
 
+        // Navigation
         public ICollection<RolePermission> RolePermissions { get; set; } = new List<RolePermission>();
     }
 }

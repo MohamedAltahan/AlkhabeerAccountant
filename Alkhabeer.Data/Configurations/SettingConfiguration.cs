@@ -14,6 +14,7 @@ namespace Alkhabeer.Data.Configurations
         public void Configure(EntityTypeBuilder<Setting> builder)
         {
             builder.HasKey(x => x.Id);
+
             builder.Property(x => x.Key)
                    .IsRequired()
                    .HasMaxLength(150);
@@ -21,6 +22,7 @@ namespace Alkhabeer.Data.Configurations
             builder.HasIndex(x => x.Key).IsUnique();
 
             builder.Property(x => x.Group).HasMaxLength(100);
+
             builder.Property(x => x.Type).HasMaxLength(50);
 
             // ✅ Explicitly define timestamp type (avoids invalid default value)

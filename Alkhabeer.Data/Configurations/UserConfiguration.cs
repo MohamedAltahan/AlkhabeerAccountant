@@ -43,9 +43,10 @@ namespace Alkhabeer.Data.Configurations
                 .HasDefaultValueSql("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP");
 
             // Relationships
-            builder.HasMany(u => u.UserRoles)
-                   .WithOne(ur => ur.User)
-                   .HasForeignKey(ur => ur.UserId);
+            builder.HasOne(u => u.Role)
+                   .WithMany(r => r.Users)
+                   .HasForeignKey(u => u.RoleId)
+                   .OnDelete(DeleteBehavior.Restrict);
         }
     }
 }
