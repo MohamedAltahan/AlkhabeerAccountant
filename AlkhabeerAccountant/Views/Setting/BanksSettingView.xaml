@@ -113,17 +113,18 @@
         </Border>
 
         <!-- ======================= Bottom Buttons Outside Border ======================== -->
-        <StackPanel Grid.Row="1"
-                    Orientation="Horizontal"
-                    HorizontalAlignment="Center">
-            <!-- Save Button -->
-            <Button Content="حفظ"
-                    Command="{Binding SaveOrUpdateCommand}"
-                    Style="{StaticResource SaveButtonStyle}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+            <Button  Command="{Binding SaveOrUpdateCommand}"
+                    Style="{StaticResource SaveButtonStyle}"
+                     Margin="0,0,190,0"/>
 
-            <!-- Delete Button -->
-            <Button Content="حذف"
-                    Command="{Binding DeleteCommand}"
+            <Button  Command="{Binding AddCommand}"
+                    Style="{StaticResource AddButtonStyle}"/>
+
+            <Button  Command="{Binding EditCommand}"
+                    Style="{StaticResource EditButtonStyle}"/>
+
+            <Button  Command="{Binding DeleteCommand}"
                     Style="{StaticResource DeleteButtonStyle}"/>
         </StackPanel>
     </Grid>

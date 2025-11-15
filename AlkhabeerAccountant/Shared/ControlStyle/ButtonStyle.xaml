@@ -186,7 +186,6 @@
         <Setter Property="Tag" Value="/Resources/right.png"/>
         <Setter Property="Content" Value="حفظ"/>
 
-        <!--<Setter Property="Margin" Value="150,0"/>-->
     </Style>
 
     <!--  Delete Button -->
@@ -200,7 +199,7 @@
 
     </Style>
 
-    <!--  Delete Button -->
+    <!--  Cancel Button -->
     <Style x:Key="CancelButtonStyle"
            BasedOn="{StaticResource BaseRoundedButton}"
            TargetType="Button">
@@ -211,6 +210,17 @@
 
     </Style>
 
+    <!--  add Button -->
+    <Style x:Key="AddButtonStyle"
+           BasedOn="{StaticResource BaseRoundedButton}"
+           TargetType="Button">
+        <Setter Property="Background" Value="#2F3A45"/>
+        <Setter Property="BorderBrush" Value="#2F3A45"/>
+        <Setter Property="Width" Value="150"/>
+        <Setter Property="Tag" Value="/Resources/add.png"/>
+        <Setter Property="Content" Value="إضافة جديد"/>
+    </Style>
+
     <!--  edit Button -->
     <Style x:Key="EditButtonStyle"
            BasedOn="{StaticResource BaseRoundedButton}"
@@ -218,6 +228,7 @@
         <Setter Property="Background" Value="#0D6EFD"/>
         <Setter Property="BorderBrush" Value="#0D6EFD"/>
         <Setter Property="Tag" Value="/Resources/edit.png"/>
+        <Setter Property="Content" Value="تعديل"/>
 
     </Style>
 

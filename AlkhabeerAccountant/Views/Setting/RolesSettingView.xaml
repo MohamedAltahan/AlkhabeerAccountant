@@ -94,18 +94,18 @@
 
         <!-- ===================  Bottom Buttons =================== -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-
-            <Button Content="حفظ"
+            <Button  Command="{Binding SaveOrUpdateCommand}"
                     Style="{StaticResource SaveButtonStyle}"
-                    Command="{Binding SaveOrUpdateCommand}" />
+                     Margin="0,0,190,0"/>
 
-            <Button Content="تعديل"
-                    Style="{StaticResource EditButtonStyle}"
-                    Command="{Binding EditCommand}" />
+            <Button  Command="{Binding SaveOrUpdateCommand}"
+                    Style="{StaticResource AddButtonStyle}"/>
 
-            <Button Content="حذف"
-                    Style="{StaticResource DeleteButtonStyle}"
-                    Command="{Binding DeleteCommand}" />
+            <Button  Command="{Binding SaveOrUpdateCommand}"
+                    Style="{StaticResource EditButtonStyle}"/>
+
+            <Button  Command="{Binding DeleteCommand}"
+                    Style="{StaticResource DeleteButtonStyle}"/>
         </StackPanel>
 
     </Grid>

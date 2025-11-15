@@ -11,6 +11,7 @@
   <ItemGroup>
     <None Remove="Resources\3890943_bag_cash_currency_dollar_money_icon.png" />
     <None Remove="Resources\accounting.png" />
+    <None Remove="Resources\add.png" />
     <None Remove="Resources\atm-card.png" />
     <None Remove="Resources\branch.png" />
     <None Remove="Resources\brand.png" />
@@ -95,6 +96,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\accounting.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\atm-card.png">

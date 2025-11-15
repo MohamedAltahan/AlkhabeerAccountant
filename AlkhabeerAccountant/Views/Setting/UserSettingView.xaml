@@ -44,7 +44,7 @@
                                Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
                     <TextBox Grid.Row="0" Grid.Column="1" x:Name="FullName"
                              Text="{Binding FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+                             Style="{StaticResource RoundedTextInputStyle}" />
                     <cc:PlaceholderText Grid.Row="0" Grid.Column="1"  Placeholder="مثل : محمد مسعد الطحان"
                         TargetTextBox="{Binding ElementName=FullName}"/>
 
@@ -53,7 +53,7 @@
                                Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
                     <TextBox  Grid.Row="1" Grid.Column="1" x:Name="Username"
                              Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                             Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+                             Style="{StaticResource RoundedTextInputStyle}" />
                     <cc:PlaceholderText Grid.Row="1" Grid.Column="1" 
                                         Placeholder="يستحدم فى تسجيل الدخول للنظام. مثل : moh_tahan او محمد"
                         TargetTextBox="{Binding ElementName=Username}"/>
@@ -76,7 +76,7 @@
                               SelectedValuePath="Id"
                               DisplayMemberPath="Name"
                               SelectedValue="{Binding RoleId, Mode=TwoWay}"
-                              Style="{StaticResource RoundedComboBoxStyle}" Margin="5"/>
+                              Style="{StaticResource RoundedComboBoxStyle}" />
 
                     <!-- الحالة -->
                     <cc:StatusSelector Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
