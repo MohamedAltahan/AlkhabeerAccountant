@@ -34,7 +34,7 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [ObservableProperty]
         private bool isActive = true;
         // Selected role form combobox
-        [ObservableProperty]
+        [RequiredSelectEx, ObservableProperty]
         private int roleId;
         // All roles loaded from backend
         [ObservableProperty] private ObservableCollection<Role> roles = new();

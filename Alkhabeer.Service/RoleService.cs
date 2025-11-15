@@ -24,8 +24,9 @@ namespace Alkhabeer.Service
             using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
-                _context.ChangeTracker.Clear();
+
                 await _repository.SaveRoleAsync(role);
+
                 await _repository.RemoveRolePermissionsAsync(role.Id);//  Remove old permissions 
                 if (permissionIds != null && (permissionIds.Count() > 0))//  Add new permissions
                     await _repository.AddRolePermissionsAsync(role.Id, permissionIds);
@@ -36,7 +37,6 @@ namespace Alkhabeer.Service
             catch (Exception ex)
             {
                 await transaction.RollbackAsync();
-                Debug.WriteLine(ex.Message);
                 return Result.Failure($"Error saving role: {ex.Message}");
             }
         }

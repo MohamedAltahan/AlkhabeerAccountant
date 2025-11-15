@@ -42,7 +42,7 @@
                     <!-- 🧑‍💼 الاسم الكامل -->
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="الاسم الكامل"
                                Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="FullName"
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="FullName" IsEnabled="{Binding IsFormEnabled}"
                              Text="{Binding FullName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource RoundedTextInputStyle}" />
                     <cc:PlaceholderText Grid.Row="0" Grid.Column="1"  Placeholder="مثل : محمد مسعد الطحان"
@@ -51,7 +51,7 @@
                     <!-- 👤 اسم المستخدم -->
                     <TextBlock  Text="اسم المستخدم"   Grid.Row="1" Grid.Column="0"
                                Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox  Grid.Row="1" Grid.Column="1" x:Name="Username"
+                    <TextBox  Grid.Row="1" Grid.Column="1" x:Name="Username" IsEnabled="{Binding IsFormEnabled}"
                              Text="{Binding Username, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource RoundedTextInputStyle}" />
                     <cc:PlaceholderText Grid.Row="1" Grid.Column="1" 
@@ -61,7 +61,7 @@
                     <!-- 🔑 الرقم السري -->
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="الرقم السري"
                                Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox     Grid.Row="2" Grid.Column="1" x:Name="password"
+                    <TextBox     Grid.Row="2" Grid.Column="1" x:Name="password" IsEnabled="{Binding IsFormEnabled}"
                                  Text="{Binding PasswordHash, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource RoundedTextInputStyle}"/>
                     <cc:PlaceholderText Grid.Row="2" Grid.Column="1"
@@ -69,17 +69,19 @@
                         TargetTextBox="{Binding ElementName=password}"/>
 
                     <!-- ⚙️ الصلاحية (ComboBox) -->
-                    <TextBlock Grid.Row="3" Grid.Column="0" Text="الصلاحية"
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="الصلاحية" 
                                Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
                     <ComboBox Grid.Row="3" Grid.Column="1"
                               ItemsSource="{Binding Roles}"
                               SelectedValuePath="Id"
                               DisplayMemberPath="Name"
+                              IsEnabled="{Binding IsFormEnabled}"
                               SelectedValue="{Binding RoleId, Mode=TwoWay}"
                               Style="{StaticResource RoundedComboBoxStyle}" />
 
                     <!-- الحالة -->
                     <cc:StatusSelector Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2"
+                                       IsEnabled="{Binding IsFormEnabled}"
                                        IsActive="{Binding IsActive, Mode=TwoWay}" />
                 </Grid>
 
@@ -105,8 +107,21 @@
 
         <!-- =================== Bottom Buttons =================== -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
-            <Button Content="حفظ" Command="{Binding SaveOrUpdateCommand}" Style="{StaticResource SaveButtonStyle}" Margin="5"/>
-            <Button Content="حذف" Command="{Binding DeleteCommand}" Style="{StaticResource DeleteButtonStyle}" Margin="5"/>
+            <Button Command="{Binding SaveOrUpdateCommand}"
+                    Style="{StaticResource SaveButtonStyle}"
+                    IsEnabled="{Binding IsSaveEnabled}"
+                    Margin="0,0,190,0"/>
+
+            <Button Command="{Binding AddCommand}"
+                    Style="{StaticResource AddButtonStyle}"/>
+
+            <Button Command="{Binding EditCommand}"
+                    Style="{StaticResource EditButtonStyle}"
+                    IsEnabled="{Binding IsEditEnabled}"/>
+
+            <Button Command="{Binding DeleteCommand}"
+                    Style="{StaticResource DeleteButtonStyle}"
+                    IsEnabled="{Binding IsDeleteEnabled}"/>
         </StackPanel>
     </Grid>
 </UserControl>

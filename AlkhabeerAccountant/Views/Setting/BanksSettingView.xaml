@@ -43,6 +43,7 @@
                                VerticalAlignment="Center"/>
                     <TextBox Grid.Row="0" Grid.Column="1"
                              Text="{Binding BankName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged }"
+                             IsEnabled="{Binding IsFormEnabled}"
                              Style="{StaticResource RoundedTextInputStyle}"/>
 
                     <!-- اسم الحساب -->
@@ -52,6 +53,7 @@
                                VerticalAlignment="Center"/>
                     <TextBox Grid.Row="1" Grid.Column="1"
                              Text="{Binding AccountName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="{Binding IsFormEnabled}"
                              Style="{StaticResource RoundedTextInputStyle}"/>
 
                     <!-- رقم الحساب -->
@@ -61,6 +63,7 @@
                                VerticalAlignment="Center"/>
                     <TextBox Grid.Row="2" Grid.Column="1"
                              Text="{Binding AccountNumber, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="{Binding IsFormEnabled}"
                              Style="{StaticResource RoundedTextInputStyle}"/>
 
                     <!-- رقم IBAN -->
@@ -70,6 +73,7 @@
                                VerticalAlignment="Center"/>
                     <TextBox Grid.Row="3" Grid.Column="1"
                              Text="{Binding Iban, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                             IsEnabled="{Binding IsFormEnabled}"
                              Style="{StaticResource RoundedTextInputStyle}"/>
 
                     <!-- ملاحظات -->
@@ -80,6 +84,7 @@
                     <TextBox Grid.Row="4" Grid.Column="1"
                              Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                              Style="{StaticResource RoundedTextInputStyle}"
+                             IsEnabled="{Binding IsFormEnabled}"
                              AcceptsReturn="True"
                              TextWrapping="Wrap"/>
 
@@ -87,6 +92,7 @@
                     <cc:StatusSelector Grid.Row="5"
                                        Grid.Column="0"
                                        Grid.ColumnSpan="2"
+                                       IsEnabled="{Binding IsFormEnabled}"
                                        IsActive="{Binding IsActive, Mode=TwoWay}" />
                 </Grid>
 
@@ -104,6 +110,8 @@
                             <DataGridTextColumn Header="اسم الحساب" Binding="{Binding AccountName}" Width="*"/>
                             <DataGridTextColumn Header="رقم الحساب" Binding="{Binding AccountNumber}" Width="*"/>
                             <DataGridTextColumn Header="رقم IBAN" Binding="{Binding Iban}" Width="*"/>
+                            <DataGridTextColumn Header="الحالة" Binding="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}" 
+                                                CellStyle="{StaticResource StatusCellStyle}" Width="70"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
@@ -114,18 +122,21 @@
 
         <!-- ======================= Bottom Buttons Outside Border ======================== -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button  Command="{Binding SaveOrUpdateCommand}"
+            <Button Command="{Binding SaveOrUpdateCommand}"
                     Style="{StaticResource SaveButtonStyle}"
-                     Margin="0,0,190,0"/>
+                    IsEnabled="{Binding IsSaveEnabled}"
+                    Margin="0,0,190,0"/>
 
-            <Button  Command="{Binding AddCommand}"
+            <Button Command="{Binding AddCommand}"
                     Style="{StaticResource AddButtonStyle}"/>
 
-            <Button  Command="{Binding EditCommand}"
-                    Style="{StaticResource EditButtonStyle}"/>
+            <Button Command="{Binding EditCommand}"
+                    Style="{StaticResource EditButtonStyle}"
+                    IsEnabled="{Binding IsEditEnabled}"/>
 
-            <Button  Command="{Binding DeleteCommand}"
-                    Style="{StaticResource DeleteButtonStyle}"/>
+            <Button Command="{Binding DeleteCommand}"
+                    Style="{StaticResource DeleteButtonStyle}"
+                    IsEnabled="{Binding IsDeleteEnabled}"/>
         </StackPanel>
     </Grid>
 </UserControl>

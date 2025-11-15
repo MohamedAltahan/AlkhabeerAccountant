@@ -15,7 +15,7 @@ namespace AlkhabeerAccountant.Services
                 Type = NotificationType.Success
             });
         }
-        public static void Updated(string message = "تم التحديث بنجاح", string title = "تمت العملية")
+        public static void Updated(string message = "تم العملية بنجاح", string title = "تمت العملية")
         {
             _manager.Show(new NotificationContent
             {
@@ -24,7 +24,7 @@ namespace AlkhabeerAccountant.Services
                 Type = NotificationType.Success
             });
         }
-        public static void Added(string message = "تمت الإضافة بنجاح", string title = "تمت العملية")
+        public static void Added(string message = "تمت العملية بنجاح", string title = "تمت العملية")
         {
             _manager.Show(new NotificationContent
             {

@@ -43,7 +43,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="0"
                                Text="اسم الصلاحية"
                                Style="{StaticResource InputLableTextBlock}" />
-                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="Name"
+                    <TextBox Grid.Row="0" Grid.Column="1" x:Name="Name" IsEnabled="{Binding IsSaveEnabled}"
                              Style="{StaticResource RoundedTextInputStyle}"
                              Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
                     <cc:PlaceholderText Grid.Row="0" Grid.Column="1"  Placeholder="مثل محاسب او كاشير او مدير ....."
@@ -53,7 +53,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0"
                                Text="وصف الصلاحية"
                                Style="{StaticResource InputLableTextBlock}" />
-                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="Description"
+                    <TextBox Grid.Row="1" Grid.Column="1" x:Name="Description" IsEnabled="{Binding IsSaveEnabled}"
                              Style="{StaticResource RoundedTextInputStyle}"
                              Text="{Binding Description, UpdateSourceTrigger=PropertyChanged}" />
                     <cc:PlaceholderText Grid.Row="1" Grid.Column="1"  Placeholder="وصف للصلاحية و يمكن ان يترك فارغ"
@@ -63,12 +63,14 @@
                     <cc:StatusSelector Grid.Row="2"
                                        Grid.Column="0"
                                        Grid.ColumnSpan="2"
+                                       IsEnabled="{Binding IsSaveEnabled}"
                                        IsActive="{Binding IsActive, Mode=TwoWay}" />
 
                     <!--  Add Permissions Button -->
                     <Button Grid.Row="3" Grid.Column="1" Content="اضغط لإضافة الصلاحيات" Height="35" Width="250"
                             Margin="0,0,180,0"
                             Style="{StaticResource SaveButtonStyle}"
+                            IsEnabled="{Binding IsSaveEnabled}"
                             Command="{Binding OpenPermissionsDialogCommand}"/>
                 </Grid>
 
@@ -94,18 +96,21 @@
 
         <!-- ===================  Bottom Buttons =================== -->
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button  Command="{Binding SaveOrUpdateCommand}"
+            <Button Command="{Binding SaveOrUpdateCommand}"
                     Style="{StaticResource SaveButtonStyle}"
-                     Margin="0,0,190,0"/>
+                    IsEnabled="{Binding IsSaveEnabled}"
+                    Margin="0,0,190,0"/>
 
-            <Button  Command="{Binding SaveOrUpdateCommand}"
+            <Button Command="{Binding AddCommand}"
                     Style="{StaticResource AddButtonStyle}"/>
 
-            <Button  Command="{Binding SaveOrUpdateCommand}"
-                    Style="{StaticResource EditButtonStyle}"/>
+            <Button Command="{Binding EditCommand}"
+                    Style="{StaticResource EditButtonStyle}"
+                    IsEnabled="{Binding IsEditEnabled}"/>
 
-            <Button  Command="{Binding DeleteCommand}"
-                    Style="{StaticResource DeleteButtonStyle}"/>
+            <Button Command="{Binding DeleteCommand}"
+                    Style="{StaticResource DeleteButtonStyle}"
+                    IsEnabled="{Binding IsDeleteEnabled}"/>
         </StackPanel>
 
     </Grid>

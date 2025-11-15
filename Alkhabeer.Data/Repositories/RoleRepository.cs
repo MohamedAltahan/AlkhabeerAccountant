@@ -28,6 +28,7 @@ namespace Alkhabeer.Data.Repositories
 
         public async Task SaveRoleAsync(Role role)
         {
+            _context.ChangeTracker.Clear();
             if (role.Id == 0)
                 await _context.Roles.AddAsync(role);
             else
@@ -43,6 +44,7 @@ namespace Alkhabeer.Data.Repositories
         }
         public async Task AddRolePermissionsAsync(int roleId, List<int> permissionIds)
         {
+            _context.ChangeTracker.Clear();
             foreach (var id in permissionIds)
             {
                 _context.RolePermissions.Add(new RolePermission
