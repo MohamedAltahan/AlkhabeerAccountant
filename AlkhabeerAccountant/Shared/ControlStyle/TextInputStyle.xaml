@@ -7,7 +7,7 @@
         <Setter Property="FontSize" Value="{StaticResource FontSize-3}"/>
         <Setter Property="BorderBrush" Value="{StaticResource BorderBrush}"/>
         <Setter Property="BorderThickness" Value="1"/>
-        <Setter Property="Padding" Value="2"/>
+        <Setter Property="Padding" Value="10,1,1,1"/>
         <Setter Property="Margin" Value="2"/>
         <Setter Property="SnapsToDevicePixels" Value="True"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>

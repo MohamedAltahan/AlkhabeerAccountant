@@ -12,9 +12,7 @@
         <!-- Define Rows: main content + bottom buttons -->
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <!-- Main Border Content -->
             <RowDefinition Height="Auto"/>
-            <!-- Bottom Buttons -->
         </Grid.RowDefinitions>
 
         <!-- ===================  Main Border Container =================== -->
@@ -22,9 +20,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <!-- Form -->
                     <RowDefinition Height="*"/>
-                    <!-- Table -->
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- ===================  Treasury Form Section =================== -->
@@ -46,11 +43,11 @@
 
                     <!-- اسم الخزنة -->
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="اسم الخزنة" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" />
 
                     <!-- المستخدم المسؤول عن الخزنة -->
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="المستخدم المسؤول عن الخزنة" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedComboBoxStyle}" Margin="5" SelectedIndex="0">
+                    <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedComboBoxStyle}"  SelectedIndex="0">
                         <ComboBoxItem Content="محمد"/>
                         <ComboBoxItem Content="أحمد"/>
                         <ComboBoxItem Content="فاطمة"/>
@@ -58,15 +55,15 @@
 
                     <!-- الرصيد الافتتاحي -->
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="الرصيد الافتتاحي" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+                    <TextBox Grid.Row="2" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" />
 
                     <!-- الرصيد الحالي -->
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="الرصيد الحالي (يُحدث تلقائيًا)" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+                    <TextBox Grid.Row="3" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" />
 
                     <!-- ملاحظات -->
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="ملاحظات" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+                    <TextBox Grid.Row="4" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}"/>
 
                     <!-- الحالة -->
                     <cc:StatusSelector Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2" IsActive="{Binding IsActive, Mode=TwoWay}" />
@@ -78,19 +75,32 @@
                         <DataGrid.Columns>
                             <DataGridTextColumn Header="اسم الخزنة" Binding="{Binding TreasuryName}" Width="*"/>
                             <DataGridTextColumn Header="الرصيد الحالي" Binding="{Binding CurrentBalance}" Width="*"/>
-                            <DataGridTextColumn Header="الحالة" Binding="{Binding Status}" Width="100"/>
+                            <DataGridTextColumn Header="الحالة" Binding="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}" 
+                                                CellStyle="{StaticResource StatusCellStyle}" Width="70"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
+                <cc:PaginationControl Grid.Row="2" DataContext="{Binding}" />
             </Grid>
         </Border>
 
         <!-- ===================  Bottom Buttons Outside Border =================== -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,15">
-            <!-- Save Button -->
-            <Button Content="حفظ"  Style="{StaticResource SaveButtonStyle}" />
-            <!-- Delete Button -->
-            <Button Content="حذف"  Style="{StaticResource DeleteButtonStyle}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Command="{Binding SaveOrUpdateCommand}"
+                    Style="{StaticResource SaveButtonStyle}"
+                    IsEnabled="{Binding IsSaveEnabled}"
+                    Margin="0,0,190,0"/>
+
+            <Button Command="{Binding AddCommand}"
+                    Style="{StaticResource AddButtonStyle}"/>
+
+            <Button Command="{Binding EditCommand}"
+                    Style="{StaticResource EditButtonStyle}"
+                    IsEnabled="{Binding IsEditEnabled}"/>
+
+            <Button Command="{Binding DeleteCommand}"
+                    Style="{StaticResource DeleteButtonStyle}"
+                    IsEnabled="{Binding IsDeleteEnabled}"/>
         </StackPanel>
     </Grid>
 </UserControl>

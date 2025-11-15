@@ -97,9 +97,11 @@ namespace Alkhabeer.Service.Base
                 bool isNew = idValue == null || (idValue is int intId && intId == 0);
 
                 if (isNew)
-                    return await AddAsync(entity);
+                    await _repository.AddAsync(entity);
                 else
-                    return await UpdateAsync(entity);
+                    await _repository.UpdateAsync(entity);
+
+                return Result<T>.Success(entity);
             }
             catch
             {

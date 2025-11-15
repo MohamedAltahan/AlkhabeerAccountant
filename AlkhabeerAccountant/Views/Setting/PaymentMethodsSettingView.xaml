@@ -21,9 +21,8 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <!-- Form -->
                     <RowDefinition Height="*"/>
-                    <!-- Table -->
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- ===================  Payment Method Form Section =================== -->
@@ -42,34 +41,61 @@
 
                     <!-- اسم وسيلة الدفع -->
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="اسم وسيلة الدفع" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="0" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+                    <TextBox Grid.Row="0" Grid.Column="1" Text="{Binding Name}"
+                             Style="{StaticResource RoundedTextInputStyle}"  IsEnabled="{Binding IsFormEnabled}"/>
 
-                    <!-- ملاحظات -->
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="ملاحظات" Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
-                    <TextBox Grid.Row="1" Grid.Column="1" Style="{StaticResource RoundedTextInputStyle}" Margin="5"/>
+                    <!-- الوصف -->
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="الوصف" 
+                               Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
+                    <TextBox Grid.Row="1" Grid.Column="1" Text="{Binding Description}"
+                             Style="{StaticResource RoundedTextInputStyle}"    IsEnabled="{Binding IsFormEnabled}"/>
 
                     <!-- الحالة -->
-                    <cc:StatusSelector Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" IsActive="{Binding IsActive, Mode=TwoWay}" Margin="5"/>
+                    <cc:StatusSelector Grid.Row="5"
+                                       Grid.Column="0"
+                                       Grid.ColumnSpan="2"
+                                       IsEnabled="{Binding IsFormEnabled}"
+                                       IsActive="{Binding IsActive, Mode=TwoWay}" />
+
                 </Grid>
 
                 <!-- ===================  Payment Methods Table Section =================== -->
                 <Border Grid.Row="1" Style="{StaticResource TableBorderStyle}">
-                    <DataGrid Style="{StaticResource TableStyle}">
+                    <DataGrid Grid.Row="1"
+                              ItemsSource="{Binding Items}"
+                              SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
+                              Style="{StaticResource TableStyle}"
+                              AutoGenerateColumns="False"
+                              CanUserAddRows="False"
+                              LoadingRow="DataGrid_LoadingRow">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="اسم وسيلة الدفع" Binding="{Binding PaymentMethodName}" Width="*"/>
-                            <DataGridTextColumn Header="الحالة" Binding="{Binding Status}" Width="100"/>
+                            <DataGridTextColumn Header="اسم وسيلة الدفع" Binding="{Binding Name}" Width="*"/>
+                            <DataGridTextColumn Header="ملاحظات" Binding="{Binding Description}" Width="*"/>
+                            <DataGridTextColumn Header="الحالة" Binding="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}" 
+                                                CellStyle="{StaticResource StatusCellStyle}" Width="70"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
+                <cc:PaginationControl Grid.Row="2" DataContext="{Binding}" />
             </Grid>
         </Border>
-
         <!-- ===================  Bottom Buttons Outside Border =================== -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,15">
-            <!-- Save Button -->
-            <Button Content="حفظ" Style="{StaticResource SaveButtonStyle}"/>
-            <!-- Delete Button -->
-            <Button Content="حذف"  Style="{StaticResource DeleteButtonStyle}"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Command="{Binding SaveOrUpdateCommand}"
+        Style="{StaticResource SaveButtonStyle}"
+        IsEnabled="{Binding IsSaveEnabled}"/>
+
+            <Button Command="{Binding AddCommand}"
+        Style="{StaticResource AddButtonStyle}"/>
+
+            <Button Command="{Binding EditCommand}"
+        Style="{StaticResource EditButtonStyle}"
+        IsEnabled="{Binding IsEditEnabled}"/>
+
+            <Button Command="{Binding DeleteCommand}"
+        Style="{StaticResource DeleteButtonStyle}"
+        IsEnabled="{Binding IsDeleteEnabled}"/>
+
         </StackPanel>
     </Grid>
 </UserControl>

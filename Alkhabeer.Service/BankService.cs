@@ -8,12 +8,8 @@ namespace Alkhabeer.Service
 {
     public class BankService : BaseService<Bank>
     {
-        private readonly BankRepository _bankRepository;
-
         public BankService(BankRepository bankRepository) : base(bankRepository)
-        {
-            _bankRepository = bankRepository;
-        }
+        { }
 
     }
 }
