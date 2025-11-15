@@ -26,12 +26,41 @@ namespace Alkhabeer.Data.Repositories
                 .ToListAsync();
         }
 
+        public async Task SaveRoleAsync(Role role)
+        {
+            if (role.Id == 0)
+                await _context.Roles.AddAsync(role);
+            else
+                _context.Roles.Update(role);
+
+            await _context.SaveChangesAsync();
+        }
+        public async Task RemoveRolePermissionsAsync(int roleId)
+        {
+            var old = _context.RolePermissions.Where(rp => rp.RoleId == roleId);
+            _context.RolePermissions.RemoveRange(old);
+            await _context.SaveChangesAsync();
+        }
+        public async Task AddRolePermissionsAsync(int roleId, List<int> permissionIds)
+        {
+            foreach (var id in permissionIds)
+            {
+                _context.RolePermissions.Add(new RolePermission
+                {
+                    RoleId = roleId,
+                    PermissionId = id
+                });
+            }
+
+            await _context.SaveChangesAsync();
+        }
         // Get single role with permissions
         public async Task<Role?> GetByIdWithPermissionsAsync(int id)
         {
             return await Table
                 .Include(r => r.RolePermissions)
                 .ThenInclude(rp => rp.Permission)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(r => r.Id == id);
         }
 

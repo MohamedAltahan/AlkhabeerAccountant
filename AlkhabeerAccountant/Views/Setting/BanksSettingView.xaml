@@ -104,8 +104,6 @@
                             <DataGridTextColumn Header="اسم الحساب" Binding="{Binding AccountName}" Width="*"/>
                             <DataGridTextColumn Header="رقم الحساب" Binding="{Binding AccountNumber}" Width="*"/>
                             <DataGridTextColumn Header="رقم IBAN" Binding="{Binding Iban}" Width="*"/>
-                            <DataGridTextColumn Header="الحالة" Binding="{Binding IsActive, Converter={StaticResource BoolToStatusConverter}}" 
-                                                CellStyle="{StaticResource StatusCellStyle}" Width="70"/>
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>

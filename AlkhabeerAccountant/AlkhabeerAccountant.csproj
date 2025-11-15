@@ -17,6 +17,7 @@
     <None Remove="Resources\budget %281%29.png" />
     <None Remove="Resources\budget.png" />
     <None Remove="Resources\building.png" />
+    <None Remove="Resources\cancel.png" />
     <None Remove="Resources\cashback.png" />
     <None Remove="Resources\customer-service.png" />
     <None Remove="Resources\customer.png" />
@@ -112,6 +113,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\building.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\cancel.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\cashback.png">

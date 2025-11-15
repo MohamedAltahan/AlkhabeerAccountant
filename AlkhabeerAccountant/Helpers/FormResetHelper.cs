@@ -8,19 +8,21 @@ namespace AlkhabeerAccountant.Helpers
 {
     public static class FormResetHelper
     {
-        public static void Reset<T>(T obj)
+        public static void Reset(object obj)
         {
-            var props = typeof(T).GetProperties()
+            if (obj == null) return;
+
+            var props = obj.GetType().GetProperties()   // child class properties
                 .Where(p => p.CanWrite);
 
             foreach (var prop in props)
             {
-                // Skip collections, lists, or complex objects
+                // Skip collections except string
                 if (typeof(System.Collections.IEnumerable).IsAssignableFrom(prop.PropertyType)
                     && prop.PropertyType != typeof(string))
                     continue;
 
-                //skip these also
+                // Skip paging properties
                 if (prop.Name is "PageSize" or "CurrentPage" or "TotalPages" or "TotalCount")
                     continue;
 
@@ -28,12 +30,17 @@ namespace AlkhabeerAccountant.Helpers
                     ? Activator.CreateInstance(prop.PropertyType)
                     : null;
 
+                // Set the default value
                 prop.SetValue(obj, defaultValue);
 
-                //f you want strings or any thing to become empty instead of null
+                // Optional: boolean fields default to TRUE
                 if (prop.PropertyType == typeof(bool))
+                {
                     prop.SetValue(obj, true);
+                }
+
             }
         }
     }
+
 }

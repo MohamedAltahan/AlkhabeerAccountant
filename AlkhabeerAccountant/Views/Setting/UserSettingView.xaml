@@ -20,15 +20,14 @@
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
-                    <!-- Form -->
                     <RowDefinition Height="*"/>
-                    <!-- Table -->
+                    <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
                 <!-- =================== User Form =================== -->
                 <Grid Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="110"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
@@ -63,7 +62,7 @@
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="الرقم السري"
                                Style="{StaticResource InputLableTextBlock}" VerticalAlignment="Center"/>
                     <TextBox     Grid.Row="2" Grid.Column="1" x:Name="password"
-                                 Text="{Binding Password, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                 Text="{Binding PasswordHash, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                                  Style="{StaticResource RoundedTextInputStyle}"/>
                     <cc:PlaceholderText Grid.Row="2" Grid.Column="1"
                                         Placeholder="مثل : 123 او يمكن ان يكون بدون رقم سري"
@@ -89,9 +88,9 @@
                     <DataGrid ItemsSource="{Binding Items}"
                               SelectedItem="{Binding SelectedItem, Mode=TwoWay}"
                               AutoGenerateColumns="False"
+                              LoadingRow="DataGrid_LoadingRow"
                               Style="{StaticResource TableStyle}">
                         <DataGrid.Columns>
-                            <DataGridTextColumn Header="#" Binding="{Binding Id}" Width="50"/>
                             <DataGridTextColumn Header="اسم المستخدم" Binding="{Binding Username}" Width="*"/>
                             <DataGridTextColumn Header="الاسم الكامل" Binding="{Binding FullName}" Width="2*"/>
                             <DataGridTextColumn Header="الصلاحية" Binding="{Binding Role.Name}" Width="1.5*"/>
@@ -100,14 +99,14 @@
                         </DataGrid.Columns>
                     </DataGrid>
                 </Border>
+                <cc:PaginationControl Grid.Row="2" DataContext="{Binding}" />
             </Grid>
         </Border>
 
         <!-- =================== Bottom Buttons =================== -->
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,25,0,15">
-            <Button Content="حفظ" Command="{Binding SaveCommand}" Style="{StaticResource SaveButtonStyle}" Margin="5"/>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" >
+            <Button Content="حفظ" Command="{Binding SaveOrUpdateCommand}" Style="{StaticResource SaveButtonStyle}" Margin="5"/>
             <Button Content="حذف" Command="{Binding DeleteCommand}" Style="{StaticResource DeleteButtonStyle}" Margin="5"/>
-            <Button Content="جديد" Command="{Binding ClearFormCommand}" Style="{StaticResource EditButtonStyle}" Margin="5"/>
         </StackPanel>
     </Grid>
 </UserControl>

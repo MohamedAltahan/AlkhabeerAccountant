@@ -46,17 +46,6 @@ namespace AlkhabeerAccountant.ViewModels
             else
                 ToastService.Error(result.ErrorMessage);
         }
-
-        //public virtual async Task DeleteAsync(int entity)
-        //{
-        //    var result = await _service.DeleteAsync(entity);
-
-        //    if (result.IsSuccess)
-        //        ToastService.Deleted();
-        //    else
-        //        ToastService.Error();
-        //}
-
         public virtual async Task<List<T>?> GetAllAsync()
         {
             var result = await _service.GetAllAsync();

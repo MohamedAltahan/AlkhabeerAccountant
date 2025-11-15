@@ -4,6 +4,7 @@ using Alkhabeer.Core.Validation;
 using Alkhabeer.Services;
 using AlkhabeerAccountant.CustomControls.SecondaryWindow;
 using AlkhabeerAccountant.Helpers;
+using AlkhabeerAccountant.Helpers.Attributes;
 using AlkhabeerAccountant.Services;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
@@ -28,7 +29,8 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         [ObservableProperty]
         private string phone = string.Empty;
         [ObservableProperty]
-        private string passwordHash = string.Empty;
+        [property: IgnoreMapping]
+        private string? passwordHash = null;
         [ObservableProperty]
         private bool isActive = true;
         // Selected role form combobox
@@ -37,55 +39,27 @@ namespace AlkhabeerAccountant.ViewModels.Setting
         // All roles loaded from backend
         [ObservableProperty] private ObservableCollection<Role> roles = new();
 
-
         public UserSettingViewModel(UserService userService) : base(userService)
         {
             _userService = userService;
-            LoadAsync();
+            _ = LoadPageAsync();
         }
 
-        // ================== Load ==================
         [RelayCommand]
-        private async Task LoadAsync()
+        protected override async Task LoadPageAsync()
         {
-            var usersResult = await _userService.GetAllWithRolesAsync();
-            if (usersResult.IsSuccess)
-                Items = new ObservableCollection<User>(usersResult.Value!);
+            await base.LoadPageAsync();
 
             var rolesResult = await _userService.GetRolesAsync();
             if (rolesResult.IsSuccess)
                 Roles = new ObservableCollection<Role>(rolesResult.Value!);
         }
 
-        //// ================== Save or Update ==================
         [RelayCommand]
-        protected async override Task SaveOrUpdateAsync()
+        protected async Task SaveOrUpdateAsync()
         {
             if (!ValidateForm()) return;
 
-            var entity = MapEntityFromView();
-
-            if (!string.IsNullOrWhiteSpace(PasswordHash))
-                entity.PasswordHash = HashHelper.HashPassword(PasswordHash);
-
-
-            var result = await _userService.SaveOrUpdateAsync(entity);
-
-            if (result.IsSuccess)
-            {
-                ToastService.Success();
-                await LoadAsync();
-                FormResetHelper.Reset(this);
-            }
-            else
-            {
-                ToastService.Error();
-            }
-        }
-
-        // ================== Mapping ==================
-        protected override User MapEntityFromView()
-        {
             var entity = SelectedItem ?? new User();
             entity.FullName = FullName;
             entity.Username = Username;
@@ -94,8 +68,22 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             entity.IsActive = IsActive;
             entity.PasswordHash = PasswordHash;
             entity.RoleId = RoleId;
-            return entity;
+
+            if (!string.IsNullOrWhiteSpace(PasswordHash))
+                entity.PasswordHash = HashHelper.HashPassword(PasswordHash);
+
+            var result = await _userService.SaveOrUpdateAsync(entity);
+            await CheckSaveResultAsync(result);
+
         }
 
+        [RelayCommand]
+        protected async Task DeleteAsync()
+        {
+            if (SelectedItem == null) return;
+            if (!CustomMessageBox.ShowDelete()) return;
+            var result = await _service.DeleteAsync(SelectedItem.Id);
+            await CheckDeleteResultAsync(result);
+        }
     }
 }

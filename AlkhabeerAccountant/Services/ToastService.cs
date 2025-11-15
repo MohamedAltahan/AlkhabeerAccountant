@@ -42,7 +42,7 @@ namespace AlkhabeerAccountant.Services
                 Type = NotificationType.Success
             });
         }
-        public static void Error(string message = "يوجد خطاء ما", string title = "خطأ")
+        public static void Error(string? message = "يوجد خطاء ما", string? title = "خطأ")
         {
             _manager.Show(new NotificationContent
             {

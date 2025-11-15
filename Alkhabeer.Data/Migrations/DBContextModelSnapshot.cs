@@ -256,9 +256,8 @@ namespace Alkhabeer.Data.Migrations
                         .HasColumnName("is_admin");
 
                     b.Property<string>("PasswordHash")
-                        .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("varchar(200)")
+                        .HasMaxLength(250)
+                        .HasColumnType("varchar(150)")
                         .HasColumnName("password_hash");
 
                     b.Property<string>("Phone")
@@ -266,7 +265,7 @@ namespace Alkhabeer.Data.Migrations
                         .HasColumnType("varchar(20)")
                         .HasColumnName("phone");
 
-                    b.Property<int?>("RoleId")
+                    b.Property<int>("RoleId")
                         .HasColumnType("int")
                         .HasColumnName("role_id");
 
@@ -318,6 +317,7 @@ namespace Alkhabeer.Data.Migrations
                         .WithMany("Users")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired()
                         .HasConstraintName("f_k_users_roles_role_id");
 
                     b.Navigation("Role");

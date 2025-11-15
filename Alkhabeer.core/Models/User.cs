@@ -15,7 +15,7 @@ namespace Alkhabeer.Core.Models
         [Required, MaxLength(50)]
         public string FullName { get; set; } = string.Empty;
 
-        [MaxLength(200)]
+        [MaxLength(150)]
         public string? PasswordHash { get; set; }
 
         [MaxLength(150)]

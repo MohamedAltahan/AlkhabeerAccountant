@@ -21,8 +21,8 @@ namespace Alkhabeer.Data.Configurations
                 .HasMaxLength(150);
 
             builder.Property(u => u.PasswordHash)
-                .IsRequired()
-                .HasMaxLength(200);
+                .IsRequired(false)
+                .HasMaxLength(250);
 
             builder.Property(u => u.Email)
                 .HasMaxLength(150);

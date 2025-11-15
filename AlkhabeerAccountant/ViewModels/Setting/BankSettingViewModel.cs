@@ -20,29 +20,25 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             _ = LoadPageAsync();
         }
 
-        // ===================== Form Fields =====================
-
         [ObservableProperty, RequiredEx, MaxLengthEx(50)]
-        private string bankName;
-
-
+        private string bankName = null!;
         [ObservableProperty, RequiredEx, MaxLengthEx(50)]
-        private string accountName;
-
+        private string accountName = null!;
         [ObservableProperty, RequiredEx, MaxLengthEx(25), NumbersOnlyEx]
-        private string accountNumber;
-
+        private string accountNumber = null!;
         [ObservableProperty, MaxLengthEx(25), NumbersOnlyEx]
         private string? iban;
-
         [ObservableProperty, MaxLengthEx(300)]
         private string? notes;
-
         [ObservableProperty]
         private bool isActive = true;
 
-        protected override Bank MapEntityFromView()
+
+        [RelayCommand]
+        protected async Task SaveOrUpdateAsync()
         {
+            if (!ValidateForm()) return;
+
             var entity = SelectedItem ?? new Bank();
             entity.BankName = BankName;
             entity.AccountName = AccountName;
@@ -50,9 +46,19 @@ namespace AlkhabeerAccountant.ViewModels.Setting
             entity.Iban = Iban;
             entity.Notes = Notes;
             entity.IsActive = IsActive;
-            return entity;
+
+            var result = await _service.SaveOrUpdateAsync(entity);
+            await CheckSaveResultAsync(result);
         }
 
+        [RelayCommand]
+        protected async Task DeleteAsync()
+        {
+            if (SelectedItem == null) return;
+            if (!CustomMessageBox.ShowDelete()) return;
+            var result = await _service.DeleteAsync(SelectedItem.Id);
+            await CheckDeleteResultAsync(result);
+        }
 
     }
 }

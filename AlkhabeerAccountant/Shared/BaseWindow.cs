@@ -56,23 +56,6 @@ namespace AlkhabeerAccountant.Shared
         public static readonly DependencyProperty TitleTextProperty =
             DependencyProperty.Register(nameof(TitleText), typeof(string), typeof(BaseWindow),
                 new PropertyMetadata("الخبير المحاسبي", OnTitleTextChanged));
-
-        //public static readonly DependencyProperty WindowBackgroundProperty =
-        //   DependencyProperty.Register(nameof(WindowBackground), typeof(Brush), typeof(BaseWindow),
-        //new PropertyMetadata(Brushes.Black, OnBackgroundChanged));
-
-        //public Brush WindowBackground
-        //{
-        //    get => (Brush)GetValue(WindowBackgroundProperty);
-        //    set => SetValue(WindowBackgroundProperty, value);
-        //}
-
-        //private static void OnBackgroundChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
-        //{
-        //    if (d is BaseWindow win && win._rootPanel != null)
-        //        win._rootPanel.Background = e.NewValue as Brush;
-        //}
-
         public string TitleText
         {
             get => (string)GetValue(TitleTextProperty);

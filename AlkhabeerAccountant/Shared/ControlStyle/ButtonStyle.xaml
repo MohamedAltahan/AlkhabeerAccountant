@@ -121,7 +121,7 @@
                             <Image x:Name="Icon"
                                Width="25"
                                Height="25"
-                               Margin="0,0,4,0"
+                               Margin="0,0,6,0"
                                Stretch="Uniform"
                                Source="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag, Mode=OneWay}"
                                RenderOptions.BitmapScalingMode="HighQuality"/>
@@ -185,7 +185,7 @@
         <Setter Property="BorderBrush" Value="#2E7D32"/>
         <Setter Property="Tag" Value="/Resources/right.png"/>
         <Setter Property="Content" Value="حفظ"/>
-      
+
         <!--<Setter Property="Margin" Value="150,0"/>-->
     </Style>
 
@@ -197,7 +197,18 @@
         <Setter Property="BorderBrush" Value="#a82828"/>
         <Setter Property="Tag" Value="/Resources/delete.png"/>
         <Setter Property="Content" Value="حذف"/>
-       
+
+    </Style>
+
+    <!--  Delete Button -->
+    <Style x:Key="CancelButtonStyle"
+           BasedOn="{StaticResource BaseRoundedButton}"
+           TargetType="Button">
+        <Setter Property="Background" Value="#a82828"/>
+        <Setter Property="BorderBrush" Value="#a82828"/>
+        <Setter Property="Tag" Value="/Resources/cancel.png"/>
+        <Setter Property="Content" Value="إلغاء"/>
+
     </Style>
 
     <!--  edit Button -->
@@ -207,7 +218,7 @@
         <Setter Property="Background" Value="#0D6EFD"/>
         <Setter Property="BorderBrush" Value="#0D6EFD"/>
         <Setter Property="Tag" Value="/Resources/edit.png"/>
-        
+
     </Style>
 
     <!--  green Button -->
@@ -247,5 +258,5 @@
         <Setter Property="Height" Value="25"/>
         <Setter Property="Content" Value="❮ السابق"/>
     </Style>
-    
+
 </ResourceDictionary>

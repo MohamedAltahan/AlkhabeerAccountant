@@ -1,4 +1,7 @@
-﻿using System;
+﻿using AlkhabeerAccountant.Helpers;
+using AlkhabeerAccountant.ViewModels.Setting;
+using CommunityToolkit.Mvvm.DependencyInjection;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +26,11 @@ namespace AlkhabeerAccountant.Views.Setting
         public RolesSettingView()
         {
             InitializeComponent();
+            DataContext = Ioc.Default.GetService<RolesSettingViewModel>();
+        }
+        private void DataGrid_LoadingRow(object sender, DataGridRowEventArgs e)
+        {
+            DataGridRowNumberHelper.HandleLoadingRow(sender, e);
         }
     }
 }

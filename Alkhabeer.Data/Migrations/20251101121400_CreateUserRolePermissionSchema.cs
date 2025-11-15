@@ -59,7 +59,7 @@ namespace Alkhabeer.Data.Migrations
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     full_name = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
-                    password_hash = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                    password_hash = table.Column<string>(type: "varchar(250)", maxLength: 200, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     email = table.Column<string>(type: "varchar(150)", maxLength: 150, nullable: true)
                         .Annotation("MySql:CharSet", "utf8mb4"),
